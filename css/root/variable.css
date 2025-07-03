@@ -41,11 +41,13 @@
     --stale-bg: #E0E0E0;
 
     /* border */
-    --border-1:rgb(186, 186, 186)
+    --border-1:rgb(186, 186, 186);
+    --border-2: white ;
 
 
     /* font sizes */
     --font-base: 1rem;
+    --font-nav: 0.8rem;
     --font-xsm: 0.9rem; /* mostly used for buttons*/
     --font-sm: 1rem;    /* mostly used for p tags*/
     --font-lg: 2rem;

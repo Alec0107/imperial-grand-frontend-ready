@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../css/reservation/reservation.css">
     <link rel="stylesheet" href="../../css/landingPage/navbar.css">
     <link rel="stylesheet" href="../../components/reusable-buttons.css">
-
+    <link rel="stylesheet" href="../../css/reservation/step-2.css">
     </head>
 
     <body>
@@ -52,7 +52,8 @@
             count and time (on the left 2 divs in a row)-->
             
             <!-- Step 1: User selects date, time and number of people-->
-            <div class="date-time-people steps"> 
+            <div class="date-time-people reservation-step" id="step1"> 
+
 
                 <section class="calendar-section">
 
@@ -95,18 +96,19 @@
                       <div class="dropdown">
                         <p class="font">Number of People</p>
                         <div class="text-div font" id="guest-dropdown">
+                          
                             <span>1 person</span>
                             <ul class="options">
-                                <li>1 person</li>
-                                <li>2 people</li>
-                                <li>3 people</li>
-                                <li>4 people</li>
-                                <li>5 people</li>
-                                <li>6 people</li>
-                                <li>7 people</li>
-                                <li>8 people</li>
-                                <li>9 people</li>
-                                <li>10 people</li>
+                                <li data-value="1">1 person</li>
+                                <li data-value="2">2 people</li>
+                                <li data-value="3">3 people</li>
+                                <li data-value="4">4 people</li>
+                                <li data-value="5">5 people</li>
+                                <li data-value="6">6 people</li>
+                                <li data-value="7">7 people</li>
+                                <li data-value="8">8 people</li>
+                                <li data-value="9">9 people</li>
+                                <li data-value="10">10 people</li>
                             </ul>
                             <svg  class="dropdown-arrow" width="64px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg>
                         </div>
@@ -150,9 +152,7 @@
                   </div>
                 
                   <div class="book-btn-div">
-                    <button class="reusable-btn">
-                      Book
-                    </button>
+                    <button class="reusable-btn" id="SendFirstStep-btn">Book</button>
                   </div>
 
 
@@ -161,14 +161,154 @@
               
             </div>
 
+
+
             <!-- Step 2: User-->
+             <section class="timer-section reservation-step" id="step2">
+
+
+                <div class="back-navigation">
+                  <svg fill="#ffffff" width="25px" height="25px" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g data-name="Layer 2"> <g data-name="arrow-ios-back"> <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"></rect> <path d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"></path> </g> </g> </g></svg>
+                  <span class="font">edit reservation</span>
+                </div>
+
+                <div class="inner">
+
+
+                  <section class="reservation-summary font">
+                    <div class="reservation-info">
+                      <!-- load this in js -->
+                        <!-- <span>Mon, 30 Jun</span>
+                        <div class="circle"></div>
+                        <span>7:00 PM</span>
+                        <div class="circle"></div>
+                        <span>2 guests</span> -->
+                    </div>
+
+                    <div class="reservation-timer">
+                        <div class="timer">
+                          <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="13" r="9" stroke="#FBDC95" stroke-width="1.5"></circle> <path d="M12 9V13L14.5 15.5" stroke="#FBDC95" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3.5 4.5L7.50002 2" stroke="#FBDC95" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20.5 4.5L16.5 2" stroke="#FBDC95" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>     
+                          <span>04:50</span>
+                        </div>
+                        <!--
+                        append this in js if lock expired
+                        <p>Your table is no longer being held, you can still try to book it.</p>
+                        -->
+                     
+                    </div>
+                   
+                  </section>
+
+    
+                  <section class="preferences-section">
+
+                    <!-- header of the box prefrence-->
+                    <h1 class="font">If you’d like, tell us more about yourself and your preferences so we can provide a better experience.</h1>
+              
+                  
+                     <!-- preference box div-->
+                    <div class="preferences-inner font">
+
+                      <section class="special-occasion">
+                        <div class="header-question">
+                            <div class="icon-wrapper">
+                              <div class="circle-bg"></div>
+                              <svg width="20px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 3C13 2.44772 12.5523 2 12 2C11.4477 2 11 2.44772 11 3V11H3C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H13V3Z" fill="#ffffff"></path> </g></svg>
+                            </div> 
+                            <h2>Is this a Special Occasion?</h2>
+                        </div>
+                       
+
+                        <div class="occasion-options">
+                            <button>Anniversary</button>
+                            <button>Birthday</button>
+                            <button>Proposal</button>
+                            <button>Graduation</button>
+                            <button>Honeymoon</button>
+                            <button>Job Promotion</button>
+                            <button>Engagement</button>
+                        </div>
+
+                        <div class="line"></div>
+
+                      </section>
+
+                      <section class="dietary-restriction">
+                        <div class="header-question">
+                            <div class="icon-wrapper">
+                              <div class="circle-bg"></div>
+                              <svg width="20px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 3C13 2.44772 12.5523 2 12 2C11.4477 2 11 2.44772 11 3V11H3C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H13V3Z" fill="#ffffff"></path> </g></svg>
+                            </div>  
+                            <h2>Does your party have any dietary restrictions?</h2>
+                        </div>
+                        
+                        <div class="dietary-options">
+                            <button>No Beef</button>
+                            <button>Gluten Free</button>
+                            <button>Lactose Intolerance</button>
+                            <button>Nut Allergy</button>
+                            <button>No Seafood</button>
+                            <button>Vegetarian</button>
+                            <button>No Pork</button>
+                        </div>
+
+                        <div class="line"></div>
+                        
+                      </section>
+
+
+                      <section class="text-box">
+                        
+                        <div class="header-question">
+                            <div class="icon-wrapper" data-="plusSign">
+                              <div class="circle-bg "></div>
+                              <svg width="20px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 3C13 2.44772 12.5523 2 12 2C11.4477 2 11 2.44772 11 3V11H3C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11H13V3Z" fill="#ffffff"></path> </g></svg>
+                            </div>
+                          <h2>Anything else we should know?</h2>
+                        </div>
+
+                        <div class="text-input">
+                          <textarea class="font border" id="message-input" placeholder="Message"></textarea>
+                        </div>
+                      
+                      </section>
+
+                    </div>
+
+                    <!-- check boxes and submit button -->
+                    <div class="policy-consent-submit-group font">
+
+                      <label>
+                         <input class="checkboxes" type="checkbox" id="cancel-policy" name="cancel-policy">
+                          I agree to the Cancellation Policy*
+                      </label>
+
+                      <label>
+                          <input class="checkboxes" type="checkbox" id="cancel-policy" name="cancel-policy">
+                           Receive news and offers via email for Imperial Grand
+                      </label>
+
+                      <div class="send-second-step-btn-div">
+                        <button class="reusable-btn" id="Send-second-tep-btn">Submit</button>
+                      </div>
+
+                      
+                    </div>
+
+                  </section>
+
+               
+
+
+                </div>
+              </section>
 
 
 
           </div>
 
 
-          <script src="../../js/reservation/reservation.js"></script>
+          <script type="module" src="../../js/reservation/reservation.js" defer></script>
     </body>
 
 </html>

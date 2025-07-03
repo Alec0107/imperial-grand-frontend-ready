@@ -1,0 +1,258 @@
+.timer-section{
+    background-color: beige;
+    display: none;
+}
+
+
+.timer-section.show{
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+    margin: 0px auto;
+}
+
+.back-navigation{
+    display: flex;
+    align-items: center;
+    font-weight: 100;
+    max-width: 750px;
+    background-color: var(--background-color-2);
+}
+
+.back-navigation span{
+    font-weight: 100;
+    font-size: var(--font-nav);
+}
+
+
+.inner{
+    color: white;
+    background-color: hsl(0, 0%, 0%);
+    height: auto;
+    max-height: 700px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+
+
+
+.reservation-summary{
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+    
+    font-weight: 100;
+}
+
+.reservation-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.circle{
+    background-color: var(--background-color-4);
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+}
+
+.reservation-timer p{
+    color: var(--text-color-error);
+}
+
+.timer{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.timer.show{
+    display: flex;
+}
+
+
+
+/** the container of all section (header, preference box div, and check boxes)**/
+.preferences-section{
+    background-color: rgb(0, 0, 0);
+    height: auto;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.preferences-section h1{
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+.preferences-inner{
+    max-height: 700px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding: 30px;
+
+    background-color: rgb(0, 0, 0);
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.preferences-inner section{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+
+
+.header-question {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.circle-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-20%, -20%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.3s;
+  z-index: 1;
+}
+
+.icon-wrapper svg {
+  position: absolute;
+  left: 2px;
+  top: 5px;
+  z-index: 2;
+}
+
+.icon-wrapper:hover .circle-bg {
+  background-color: var(--background-color, rgba(100, 100, 100, 0.5));
+}
+
+.header-question h2 {
+  font-weight: 100;
+
+}
+
+
+
+.line{
+    height: 0.3px;
+    width: 100%;
+    background-color: white;
+}
+
+
+.occasion-options,
+.dietary-options ,
+.text-input{
+  display: none;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.occasion-options.show,
+.dietary-options.show,
+.text-input.show{
+  display: flex;
+}
+
+.dietary-options button, 
+.occasion-options button{
+  padding: 5px 10px;
+  flex: 1 1 auto; /* grow-shrink-basis */
+  max-width: 230px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+
+
+.text-input{
+    width: 90%;
+    display: none;
+}
+
+#message-input{
+    min-height: 100px;
+    max-height: 120px;
+    width: 100%;
+    vertical-align: top;
+    padding: 5px 10px;
+    resize: none;
+    overflow: hidden;
+    line-height: 1.9;
+    color: black;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+
+
+/** check boxes and submit button **/
+
+.policy-consent-submit-group{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.policy-consent-submit-group label{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkboxes{
+  width: 20px;
+  height: 20px;
+
+  accent-color: var(--highlight-color);  /* <-- changes checkbox color when checked */
+  border: 2px solid #333;
+  border-radius: 4px;
+  background: white;
+}
+
+.send-second-step-btn-div{
+    width: 100%;
+    max-width: 650px;
+    min-width: 200px; 
+}
+
+.send-second-step-btn-div button{
+    width: 100%;
+    background-color: var(--button-color-3);
+}

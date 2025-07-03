@@ -1,200 +1,95 @@
-
-// calendar global vars
-let daysContainer;
-let prevMonthSelector;
-let nextMonthSelector;
-let currentYear;
-let currentMonth;
-let yearMonthTag;
-let currentDay;
+import { checkLockStatus } from "./reservationController.js";
+import { loadStep1 } from "./step-modals/step1.js";
+import { loadStep2 } from "./step-modals/step2.js";
 
 
-// dropdown global vars
-let isGuestDropDownOpen = false;
-
-let guestDropdown;
-let timeDropdown;
-
-let guestOptions;
-let timeOptions;
-
-const ReservationFirstStep = {
-    Date: "",
-    NumberOfPeople: 0,
-    Time: ""
-}
+export let currentStep;
 
 
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    initGlobalVars();
-    initCurrentCalendarDate();
-    initMonthSelector();
-
-    initNumberOfGuestSelector();
-    initTimeSelector();
-
+window.addEventListener("popstate", (event) =>{
+    const step = event.state?.step || 1;
+    console.log("Popstate: " + step)
+    history.replaceState({ step: step }, "", "?step=" + step);
+    showStep(step, false);
 });
 
-function initGlobalVars(){
-    daysContainer = document.getElementById("calendar-days");
-    prevMonthSelector  = document.querySelector(".prev-month");
-    nextMonthSelector  = document.querySelector(".next-month");
-    yearMonthTag = document.querySelector(".year-month");
+document.addEventListener("DOMContentLoaded", ()=>{
+    const stepFromURL = new URLSearchParams(window.location.search).get("step");
+    const reservationLockJson = JSON.parse(localStorage.getItem("reservation-lock"));
 
-    guestDropdown = document.getElementById("guest-dropdown");
-    timeDropdown = document.getElementById("time-dropdown");
-    guestOptions = document.querySelectorAll(".options")[0]; // first options which is the guest number options
-    timeOptions = document.querySelectorAll(".options")[1]; // second options which is the time options
-}
-
-function initCurrentCalendarDate(){
-    const date = new Date();
-    currentYear = date.getFullYear();
-    currentMonth = date.getMonth();
-    renderCalendar(currentYear, currentMonth);
-    setMonthYearString(currentYear, currentMonth);
-}
-
-function initMonthSelector(){
-    prevMonth();
-    nextMonth();
-}
-
-
-function renderCalendar(year, month){
-    const date = new Date();
-    const dateNow = date.getDate();
-    const monthNow = date.getMonth();
-    const yearNow = date.getFullYear();
-
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDay = new Date(year, month + 1, 0).getDate();
-
-    daysContainer.innerHTML = "";
-
-    for(let i = 0; i < firstDay; i++){
-        const empty = document.createElement("div");
-        empty.classList.add("day", "empty");
-        daysContainer.appendChild(empty);
+    if(stepFromURL === "2" && reservationLockJson){
+        history.replaceState({step: 2}, "", "?step=2");
+        checkLocalStorage(reservationLockJson); // fallback
+    }else{
+        history.replaceState({step: 1}, "", "?step=1");
+        showStep(1, false);
     }
+   
+});
 
-    for(let i = 1; i <= lastDay; i++){
-        const day = document.createElement('div');
-        day.innerText = i;
-        day.classList.add("day", "font");
 
-        if(i < dateNow && (currentMonth === monthNow && currentYear === yearNow)){
-            day.classList.add("past-days")
-        }else if(i === dateNow && currentMonth === monthNow){
-            day.classList.add("selected-day", "active-days");
-            day.setAttribute("data-number", i); 
-            addListenerToFutureDays(day);
-     
-        }else{
-           day.classList.add("future-days", "active-days");
-           day.setAttribute("data-number", i); 
-           addListenerToFutureDays(day);
+function checkLocalStorage(reservationLockJson){
+        console.log(reservationLockJson);
+        /* TODO: 
+            send a get request to the server to recheck the lock status of the current reservation
+        */
+        console.log("Rendering step 2 modal...");
+
+        const lockStatusDTO = {
+            tableId: reservationLockJson.tableId,
+            date: reservationLockJson.reservationDTO.date,
+            time: reservationLockJson.reservationDTO.time
         }
+        checkLockStatus(lockStatusDTO);
 
-        daysContainer.appendChild(day);
+
+    // }else{
+    //     /* TODO: 
+    //         Show the default modal ui (step 1)
+    //     */
+    //    console.log("Rendering step 1 modal...");
+    //    showStep(1, false);
+    // }
+}
+
+
+
+export function showStep(step, push = true){
+    if(push){
+        history.pushState({step}, "", `/pages/reservation/reservation.html?step=${step}`);
+    }
+  
+    document.querySelectorAll(".reservation-step").forEach(div => {
+        div.classList.remove("show");
+    });
+
+    if(step === 1){
+        console.log("loading step 1..")
+        loadStep1();
+    }else if(step === 2){
+        console.log("loading step 2..")
+        loadStep2();
     }
 
 }
 
-function addListenerToFutureDays(day){
-    day.addEventListener("click", function() {
-
-       document.querySelectorAll(".active-days").forEach((dayEl) => {
-         dayEl.classList.remove("selected-day");
-       });
-
-       this.classList.add("selected-day");
-
-       currentDay = this.dataset.number;
-       const dayStr = String(currentDay).padStart(2, "0")
-       const monthStr = String(currentMonth + 1).padStart(2, "0");
-
-       ReservationFirstStep.Date = `${currentYear}-${monthStr}-${dayStr}`;
-       console.log(ReservationFirstStep.Date);
-    });
-}
-
-function prevMonth(){
-    prevMonthSelector.addEventListener("click", () =>{
-        const date = new Date();
-        const todayMonth = date.getMonth();
-        const todayYear= date.getFullYear();
-
-        const canGoBack = currentYear > todayYear || (currentYear === todayYear && currentMonth > todayMonth);
-
-        if(canGoBack){
-            currentMonth--;
-            if(currentMonth < 0){
-                currentMonth = 11;
-                currentYear--;
-             }
-        }
-    
-        renderCalendar(currentYear, currentMonth);
-        setMonthYearString(currentYear, currentMonth);
-    });
-}
-
-function nextMonth(){
-    nextMonthSelector.addEventListener("click",() =>{
-        const date = new Date();
-        const todayMonth = date.getMonth();
-        const todayYear= date.getFullYear();
-
-        let maxMonth = todayMonth + 2;
-        let maxYear = todayYear;
-
-        if(maxMonth > 11){
-            maxMonth = maxMonth % 12
-            maxYear += 1;
-        }
-
-        const canGoNext = currentYear < maxYear || (currentYear === maxYear && currentMonth < maxMonth);
-
-        if(canGoNext){
-            currentMonth++;
-            if(currentMonth > 11){
-                currentMonth = 0;
-                currentYear++;
-            }
-        }
-     
-        renderCalendar(currentYear, currentMonth);
-        setMonthYearString(currentYear, currentMonth);
-    });
-}
-
-
-function setMonthYearString(year, month){
-    const monthString = new Date(year, month).toLocaleDateString("default", {
-        month: "short"
-    })
-
-    yearMonthTag.textContent = `${monthString} ${currentYear}`;
-}
 
 
 
 
-// function for dropdowns (number of guest, time)
-function initNumberOfGuestSelector(){
 
 
-    guestDropdown.addEventListener("click", ()=>{
 
-        if(!isGuestDropDownOpen){
-            openGuestDropdown();
-        }else{
-            closeGuestDropdown();
-        }
-    });
 
+
+
+
+
+
+
+
+function closeDropDownOnDocument(){
     document.addEventListener("click", (e) => {
         if(!guestOptions.contains(e.target) && !guestDropdown.contains(e.target)){
             closeGuestDropdown();
@@ -203,23 +98,7 @@ function initNumberOfGuestSelector(){
             console.log("clicked inside")
         }
     });
-
 }
 
 
-function openGuestDropdown(){
-    const ulOptionsGuest = guestDropdown.querySelector(".options");
-    ulOptionsGuest.classList.add("open");
-    isGuestDropDownOpen = true;
-}
-
-function closeGuestDropdown(){
-    const ulOptionsGuest = guestDropdown.querySelector(".options");
-    ulOptionsGuest.classList.remove("open");
-    isGuestDropDownOpen = false;
-}
-
-function initTimeSelector(){
-
-}
 
