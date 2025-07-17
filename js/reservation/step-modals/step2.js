@@ -1,147 +1,43 @@
-import { minusSVG,
-         plusSVG
-} from '../../../components/svgs/svg.js'
 
-let reservationLockJson;
+import { minusSVG, plusSVG } from '../../../components/svgs/svg.js'
+import { FinalReservationSubmission, UserPreferencesObject } from '../dto/reservationDTO.js';
+import { submitSecondStepReservation } from '../reservationController.js';
+import { getLockReservationStorage } from '../dto/reservationDTO.js';
+
+// loading screen & darker background
+let overlayStep2;
+let screenLoadingUiStep2;
+let loadingMessage;
 
 
-export function loadStep2(){
-    initGlobalVars();
-    initReservationSummary();
-    initUserPreferences();
+function showStep2(){
     document.getElementById("step2").classList.add("show");
 }
 
+function removeStep2(){
+    document.getElementById("step2").classList.remove("show");
+}
+
+
+
+export function loadStep2(){
+    showStep2();
+    initGlobalVars();
+    initUserPreferences();
+    initSubmitBtn();
+}
+
 function initGlobalVars(){
-    reservationLockJson = JSON.parse(localStorage.getItem("reservation-lock"));
-}
 
 
-function initReservationSummary(){
-  
-    if(reservationLockJson){
-        const reservation = {
-            date: reservationLockJson.reservationDTO.date,
-            time: reservationLockJson.reservationDTO.time,
-            guests: reservationLockJson.reservationDTO.guestCount
-        }
-
-        const dateTimeString = `${reservation.date}T${reservation.time}`;
-        const dateObj = new Date(dateTimeString);
-
-        // e.g Wed, 2 Jul
-        const formattedDate = formatDate(dateObj);
-        // e.g 11:00 AM
-        const formattedTime = formatTime(dateObj);
-        // init the reservation info (date, time, guest count)
-        initReservationInfo(formattedDate, formattedTime, reservation.guests);
-
-        // init reservation lock timer
-        initTimer();
-
-
-        console.log(formattedDate);
-        console.log(formattedTime);
-    }else{
-       console.log("Reservation localstorage is empty.")
-    }
-}
-
-function initReservationInfo(formattedDate, formattedTime, guestCount){
-   const reservationInfoContainer = document.querySelector(".reservation-info");
-
-     // Clear existing children (optional but helpful for re-rendering)
-  reservationInfoContainer.innerHTML = '';
-
-   const date = document.createElement("span");
-   date.textContent = formattedDate;
-
-   const circle1 = document.createElement("div");
-   circle1.classList.add('circle');
-
-   const time = document.createElement("span");
-   time.textContent = formattedTime;
-
-   const circle2 = document.createElement("div");
-   circle2.classList.add('circle');
-
-   const guest = document.createElement("span");
-   let guestCountString;
-   if(guestCount > 1){
-    guestCountString = `${guestCount} guests`;
-   }else{
-      guestCountString = `${guestCount} guest`;
-   }
-   guest.textContent = guestCountString;
-
-
-   [date, circle1, time, circle2, guest].forEach(el => {
-    reservationInfoContainer.appendChild(el);
-   })
-
-}
-
-function formatDate(dateObj){
-    return new Intl.DateTimeFormat('en-GB', {
-        weekday: 'short',
-        day: 'numeric',
-        month: 'short'
-    }).format(dateObj);
-}
-
-function formatTime(dateObj){
-    return new Intl.DateTimeFormat('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true
-    }).format(dateObj);
+    // overlay (darker bg, screen loader, message) for step2
+    overlayStep2 = document.querySelectorAll(".overlay-bg")[1];
+    screenLoadingUiStep2 = document.querySelectorAll(".loading-modal")[1];
+    loadingMessage = screenLoadingUiStep2.querySelector("p");
 }
 
 
 
-function initTimer(){
-    const expiresAt = reservationLockJson.expiresAt;
-    const time = 5 * 1000;
-    //const expiration = new Date(Date.now()+ time);
-    const expiration = new Date(expiresAt);   
-
-    const interval = setInterval(() =>{
-        const now = new Date();
-        const diff = expiration - now;
-
-        const totalSeconds = Math.max(0, Math.floor(diff / 1000));
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = Math.floor(totalSeconds % 60);
-
-        if (totalSeconds <= 0) {
-            clearInterval(interval);
-            console.log("⏰ Timer expired");
-            // TODO: 
-            //  1. show a message or unlock the UI here
-            //  2. remove data form the localstorage
-            //  3. nagvigate user back to step 1  
-            localStorage.removeItem("reservation-lock");
-
-        }
-
-        displayTimer(minutes, seconds);
-
-    },1000)
-
-}
-
-function displayTimer(minutes, seconds){
-    console.log(`${minutes}:${seconds}`);
-    const timerDiv = document.querySelector(".timer");
-    timerDiv.classList.add("show");
-
-    const spanTimer = timerDiv.querySelector("span");
-    spanTimer.textContent = "";
-
-    spanTimer.textContent = `${minutes}:${String(seconds).padStart(2,"0")}`;
-
-    timerDiv.appendChild(spanTimer);
-}
 
 function initUserPreferences(){
     const isShowingPlus = [];
@@ -168,5 +64,135 @@ function initUserPreferences(){
     })
 
 
+    // make the button persistent wehn it is clicked
+    const [occasionButtons, dietaryButtons] = [
+        occasion.querySelectorAll("button"),
+        dieatary.querySelectorAll("button")
+    ]
 
+    occasionButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.classList.toggle("active");
+            /**
+             * TODO: add to the object the selected buttons for users preferences
+             * **/
+            saveButtonPreferences(UserPreferencesObject.occasion, btn.textContent.trim());
+            console.log(btn.textContent);
+
+        });
+    })
+
+    dietaryButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.classList.toggle("active");
+            /**
+             * TODO: add to the object the selected buttons for users preferences
+             * **/
+            saveButtonPreferences(UserPreferencesObject.dietary, btn.textContent.trim());
+            console.log(btn.textContent);
+        });
+    })
+
+}
+
+
+function saveButtonPreferences(arrayObject, buttonTxt){
+    const index = arrayObject.indexOf(buttonTxt);
+
+    if(index === -1){
+        arrayObject.push(buttonTxt);
+    }else{
+        arrayObject.splice(index, 1);
+    }
+}
+
+function initSubmitBtn(){
+    const submitSecondStepBtn = document.getElementById("Send-second-tep-btn");
+    submitSecondStepBtn.addEventListener("click", () => {
+
+        // save the message 
+        const messageEL = document.getElementById("message-input");
+
+        const messageInput = messageEL.value?.trim() || "";
+
+
+        UserPreferencesObject.message = messageInput;
+
+
+        if(messageInput.length > 0){
+            console.log("Message provided: ", messageInput);
+            UserPreferencesObject.message = messageInput
+        }else{
+            console.log("No message was written by the user.");
+            UserPreferencesObject.message = "";
+        }
+     
+        const occasions = UserPreferencesObject.occasion;
+        const dietary = UserPreferencesObject.dietary;
+        const message = UserPreferencesObject.message;
+
+        if(occasions.length === 0){
+            console.log("User didn't click any occasion preferences.")
+        }
+        if(dietary.length === 0){
+            console.log("User didn't click any dietary preferences.")
+        }
+
+        for (let index = 0; index < occasions.length; index++) {
+            console.log(`Special Occasion: ${occasions[index]}`);
+        }
+
+        for (let index = 0; index < dietary.length; index++) {
+            console.log(`Dietary Restriction: ${dietary[index]}`);
+        }
+
+
+
+        // get the reservation lock object
+        const reservationLock = getLockReservationStorage();
+
+        /**
+         * TODO:
+         *      - add check validation  for reservationLock
+         *      - if timer stopped 0:00 means reservation lock is expired button shoudl be disabled and
+         *        tell user reservation lock is no longer held and please make a new one  
+         *          
+         * **/
+
+        //console.log(reservationLock);
+        FinalReservationSubmission.date = reservationLock.reservationDTO.date;
+        FinalReservationSubmission.time = reservationLock.reservationDTO.time;
+        FinalReservationSubmission.guestCount = reservationLock.reservationDTO.guestCount;
+        FinalReservationSubmission.tableId = reservationLock.tableId;
+        FinalReservationSubmission.tableName = reservationLock.tableName;
+        FinalReservationSubmission.occasion = [...UserPreferencesObject.occasion];
+        FinalReservationSubmission.dietary = [...UserPreferencesObject.dietary];
+        FinalReservationSubmission.message = UserPreferencesObject.message;
+
+
+        submitSecondStepReservation(FinalReservationSubmission);
+
+    });
+}
+
+
+export function cleanUpStep2(){
+
+
+    // // (Optional) Clear selected preferences or reset UI if needed
+    // UserPreferencesObject.occasion = [];
+    // UserPreferencesObject.dietary = [];
+    // UserPreferencesObject.message = "";
+}
+
+export function showLoadingUiStep2(message = "Finalizing your reservation..."){
+    overlayStep2.classList.add("show");
+    screenLoadingUiStep2.classList.add("show");
+    loadingMessage.textContent = message;
+}
+
+export function removeLoadingUiStep2(){
+    overlayStep2.classList.remove("show");
+    screenLoadingUiStep2.classList.remove("show");
+    loadingMessage.textContent = ""; // Reset text
 }

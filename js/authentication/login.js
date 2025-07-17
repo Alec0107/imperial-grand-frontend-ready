@@ -11,6 +11,7 @@ import { clearServerError,
          showServerErrorResponseLogin, 
          showServerErrorEmailNotVerified,} from "../utils/authCommon.js";
 import { validateEmail, validatePassword} from "../authentication/signup.js"
+import { getLockReservationStorage } from "../reservation/dto/reservationDTO.js";
 
 
 let spinLoader;
@@ -103,19 +104,30 @@ async function submitLogin(){
   changeTextAndDisplay(textButton, loaderButton, false, "Loggin in...");
 
   try{
+    const urlParams = new URLSearchParams(window.location.search);
+
     const response = await fetch(loginUrl, requestObject);
     const result = await response.json();
     
     if(!response.ok){
       checkStatusCode(result.statusCode, result.message);
     }
+
     enableButton(loginButton);
     changeTextAndDisplay(textButton, loaderButton, true, "Log in");
+    console.log("Successful login...");
+
+    /** if url redirect is from  reservation-step3. user decides to login via email/pass. 
+     * If log in is success redirect the user back in reservation page to execute sending the 
+     * reservation final submission to the server backend*/ 
+    if(urlParams.get("redirect") === "reservation-step3"){
+      console.log("Navigating back to reservation page 2");
+      window.location.href = "../reservation/reservation.html?step=2";
+    }
 
     console.log(response);
     console.log(result);
     const rememberMe = (userObjectLogin.userAccount.rememberMe) ?  "User wanted to be remembered!" : "User doesn't wanted to be remembered!";
-    
     console.log(rememberMe);
   
 

@@ -32,7 +32,7 @@ html, body {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start; /* Each column gets its own height (don't stretch children)*/
-
+    position: relative;
 }
 
 .date-time-people.show{
@@ -253,5 +253,21 @@ html, body {
     background-color: var(--background-color-8);
  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

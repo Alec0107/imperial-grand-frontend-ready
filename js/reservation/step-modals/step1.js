@@ -2,6 +2,11 @@ import { sendFirstStepReservation } from '../../reservation/reservationControlle
 import { calendarDateFormatter } from '../../reservation/utils/formatter.js';
 import { ReservationFirstStep } from '../../reservation/dto/reservationDTO.js';
 
+// loading screen & darker background
+let overlayStep1;
+let screenLoadingUiStep1;
+let loadingMessage;
+
 // calendar global vars
 let daysContainer;
 let prevMonthSelector;
@@ -58,6 +63,11 @@ function initGlobalVars(){
 
     // button to send the first step of the reservation (date, time, number of guest) and backend process and check table and slots availability
     sendFirstStepBtn = document.getElementById("SendFirstStep-btn");
+
+    // overlay (darker bg, screen loader, message) for step1
+    overlayStep1 = document.querySelectorAll(".overlay-bg")[0];
+    screenLoadingUiStep1 = document.querySelectorAll(".loading-modal")[0];
+    loadingMessage = screenLoadingUiStep1.querySelector("p");
 }
 
 function initCurrentCalendarDate(){
@@ -222,6 +232,7 @@ function iterateListOfGuestNumber(){
         liEl.addEventListener("click", function(){
             const guest = this.getAttribute("data-value");
             ReservationFirstStep.guestCount = guest; 
+            guestSpan.textContent = liEl.textContent;
             console.log(`Guest: ${guest}`);
         })
     });
@@ -281,3 +292,18 @@ function initSendFirstStep(){
         sendFirstStepReservation(ReservationFirstStep);
     })
 }
+
+
+
+export function showLoadingUiStep1(message = "Securing your reservation..."){
+    overlayStep1.classList.add("show");
+    screenLoadingUiStep1.classList.add("show");
+    loadingMessage.textContent = message;
+}
+
+export function removeLoadingUiStep1(){
+    overlayStep1.classList.remove("show");
+    screenLoadingUiStep1.classList.remove("show");
+    loadingMessage.textContent = ""; // Reset text
+}
+

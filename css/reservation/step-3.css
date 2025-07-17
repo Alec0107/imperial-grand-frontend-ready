@@ -1,0 +1,131 @@
+.reservation-step-3{
+    display: none;
+    flex-direction: column;
+    max-width: 750px;
+    height: auto;
+    margin: 0px auto;
+}
+
+
+.reservation-step-3.show{
+    display: flex;
+}
+
+
+
+.reservation-step-3-form{
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+
+    margin: 0px auto;
+    padding: 30px 50px;
+
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+}
+
+
+.reservation-step-3-form h2{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.reservation-step-3-form p{
+    font-weight: 100;
+    margin-bottom: 15px;
+    font-size: var(--font-xsm);
+}
+
+
+
+
+.email-login-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.email-login-wrapper button{
+    width: 60%;
+    padding: 10px;
+    font-weight: 100;
+    font-size: var(--font-xsm);
+    border: none;
+    border-radius: 10px;
+    background-color: var(--background-color-3);
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.simple-divider {
+  text-align: center;
+  color: rgb(211, 209, 209);
+  margin: 15px 0;
+  position: relative;
+}
+
+.simple-divider::before,
+.simple-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: rgb(211, 209, 209);
+}
+
+.simple-divider::before {
+  left: 0;
+}
+
+.simple-divider::after {
+  right: 0;
+}
+
+
+/* runtime class of the phone number input from intltelphon*/
+
+.iti,
+.iti__country-list,
+.iti__country {
+   background-color: var(--background-color-3); 
+   color: black;
+   width: auto;
+}
+
+
+
+.iti__selected-dial-code,
+.iti__country-name,
+.iti__dial-code {
+  font-size: var(--font-xsm);
+}
+
+#submit-guest-reservation-btn{
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--button-color-3);
+}
+
+
+.reservation-step-3 .form-disclaimer {
+    font-size: 12px;  /* or whatever you want, like 0.75rem or 10px */
+    color: var(--text-color-3);
+    margin-top: 20px;
+
+}
+
+.reservation-step-3 .form-disclaimer a {
+    font-size: inherit;
+    color: var(--text-color-7);
+    text-decoration: none;
+}

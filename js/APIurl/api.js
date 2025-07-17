@@ -1,4 +1,3 @@
-
 const LOCALHOST_BASE_URL = "http://localhost:8080";
 
 export const API = {
@@ -14,7 +13,8 @@ export const API = {
     },
     reservations: {
         checkAvailability: `${LOCALHOST_BASE_URL}/api/v1/reservation/availability`,
-        checkLockStatus: `${LOCALHOST_BASE_URL}/api/v1/reservation/lock_status`
+        checkLockStatus: `${LOCALHOST_BASE_URL}/api/v1/reservation/lock_status`,
+        submitReservation: `${LOCALHOST_BASE_URL}/api/v1/reservation/submit`
         /**
          *  TODO: 
          **/
@@ -50,7 +50,7 @@ export function getDeviceIdFromCookie(){
 
 export async function authApi(url, options = {}) {
     const defaultOptions = {
-        credentials: `include`,
+        credentials: "include",
         ...options
     };
 
@@ -61,8 +61,8 @@ export async function authApi(url, options = {}) {
     if(!response.ok && response.status === 401){
         console.log("Executing refresh request...");
         const refreshResponse = await fetch(API.authentication.refreshToken,{
-            method: `POST`,
-            credentials: `include`,
+            method: "POST",
+            credentials: "include",
             headers: {
                 "Content-type" : "application/json",
                 "x-device-id" : getDeviceIdFromCookie()
@@ -70,12 +70,16 @@ export async function authApi(url, options = {}) {
         });
  
         if(refreshResponse.ok){
-            // retry the original request
-            console.log("Fething original request...")
-            response = await fetch (url, defaultOptions);
+               console.log("✅ Refresh succeeded. Waiting for cookie sync...");
+    
+                // 🛠️ Let the browser apply the new cookie (AT + RT)
+                await new Promise((res) => setTimeout(res, 2000));
+
+                console.log("🔁 Retrying original request...");
+                response = await fetch(url, defaultOptions);
         }else{
-            console.log("signup redirect");
-            window.location.replace("../../pages/authentication/auth.html?authType=signup");
+            console.log("login redirect");
+           // window.location.replace("../../pages/authentication/auth.html?authType=login");
         }
     }
 

@@ -1,31 +1,36 @@
 import { checkLockStatus } from "./reservationController.js";
 import { loadStep1 } from "./step-modals/step1.js";
-import { loadStep2 } from "./step-modals/step2.js";
+import { loadStep2, cleanUpStep2 } from "./step-modals/step2.js";
+import { loadStep3 } from "./step-modals/step3.js";
+import { initReservationSummary, showReservationHeader, removeReservationHeader } from "./utils/reservation-header.js";
+import { cleanUpTimer } from "./utils/reservation-header.js";
 
 
 export let currentStep;
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    const stepFromURL = new URLSearchParams(window.location.search).get("step");
+    const reservationLockJson = JSON.parse(localStorage.getItem("reservation-lock"));
+
+    if(stepFromURL === '2' && reservationLockJson){
+        history.replaceState({step: 2}, "", "?step=2");
+        checkLocalStorage(reservationLockJson); // fallback
+    }else if(stepFromURL === "3"){
+        history.replaceState({step: 3}, "", "?step=3"); // ✅ Replace instead of push
+        showStep(3, false); // ✅ Don't push again
+    }else{
+        history.replaceState({step: 1}, "", "?step=1");
+        showStep(1, false);
+    }
+   
+});
 
 
 
 window.addEventListener("popstate", (event) =>{
     const step = event.state?.step || 1;
     console.log("Popstate: " + step)
-    history.replaceState({ step: step }, "", "?step=" + step);
     showStep(step, false);
-});
-
-document.addEventListener("DOMContentLoaded", ()=>{
-    const stepFromURL = new URLSearchParams(window.location.search).get("step");
-    const reservationLockJson = JSON.parse(localStorage.getItem("reservation-lock"));
-
-    if(stepFromURL === "2" && reservationLockJson){
-        history.replaceState({step: 2}, "", "?step=2");
-        checkLocalStorage(reservationLockJson); // fallback
-    }else{
-        history.replaceState({step: 1}, "", "?step=1");
-        showStep(1, false);
-    }
-   
 });
 
 
@@ -66,11 +71,37 @@ export function showStep(step, push = true){
 
     if(step === 1){
         console.log("loading step 1..")
-        loadStep1();
+        removeReservationHeader();
+        // clear interval timer in step2 to avoid running in the background
+        //cleanUpStep2();
+        //cleanUpTimer();
+
+        // 💥 FIX: Reset the broken DOM before reloading
+        const old = document.getElementById("step1");
+        const fresh = old.cloneNode(true); // clone fresh
+        old.replaceWith(fresh);            // replace
+
+        loadStep1(); // now the event listeners bind cleanly
     }else if(step === 2){
         console.log("loading step 2..")
-        loadStep2();
+    
+
+        // 💥 FIX: Reset the broken DOM before reloading
+        const old = document.getElementById("step2");
+        const fresh = old.cloneNode(true); // clone fresh
+        old.replaceWith(fresh);            // replace
+
+        // show reservation timer, summary, back navigation
+      
+        loadStep2(); // now the event listeners bind cleanly
+        initReservationSummary(); // show
+    }else if(step === 3){
+        loadStep3();
+        initReservationSummary(); // show
     }
+
+
+
 
 }
 
@@ -102,3 +133,13 @@ function closeDropDownOnDocument(){
 
 
 
+
+
+
+function removeStep2(){
+
+}
+
+function removeStep3(){
+    
+}

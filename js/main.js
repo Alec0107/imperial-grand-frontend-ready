@@ -28,8 +28,6 @@ function call(){
  initSignUpJs();
  initLoginJs();
 
-
-
 }
 
 // ************************  PASSWORD EYE TOGGLE RELATED ********************* 

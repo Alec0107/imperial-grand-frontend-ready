@@ -1,29 +1,16 @@
-.timer-section{
+.reservation-step-2{
     background-color: beige;
     display: none;
-}
-
-
-.timer-section.show{
-    display: flex;
+    position: relative;
     flex-direction: column;
     max-width: 750px;
     margin: 0px auto;
 }
 
-.back-navigation{
+
+.reservation-step-2.show{
     display: flex;
-    align-items: center;
-    font-weight: 100;
-    max-width: 750px;
-    background-color: var(--background-color-2);
 }
-
-.back-navigation span{
-    font-weight: 100;
-    font-size: var(--font-nav);
-}
-
 
 .inner{
     color: white;
@@ -36,48 +23,6 @@
 }
 
 
-
-
-.reservation-summary{
-    background-color: rgb(0, 0, 0);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    gap: 10px;
-    
-    font-weight: 100;
-}
-
-.reservation-info{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-
-.circle{
-    background-color: var(--background-color-4);
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-}
-
-.reservation-timer p{
-    color: var(--text-color-error);
-}
-
-.timer{
-    display: none;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.timer.show{
-    display: flex;
-}
 
 
 
@@ -160,7 +105,7 @@
 
 .header-question h2 {
   font-weight: 100;
-
+  font-size: var(--font-xsm);
 }
 
 
@@ -196,9 +141,27 @@
   background-color: #f5f5f5;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--font-xsm);
 }
 
+
+.dietary-options button:hover, 
+.occasion-options button:hover{
+    background-color: var(--hover-bg-1);
+
+}
+
+
+.dietary-options button.active, 
+.occasion-options button.active{
+    background-color: var(--background-color-10);
+    color: var(--text-color-3);
+}
+
+.dietary-options button.active:hover, 
+.occasion-options button.active:hover{
+    background-color: var(--hover-bg-2);
+}
 
 
 .text-input{
@@ -234,6 +197,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: 100;
+    font-size: var(--font-xsm);
 }
 
 .checkboxes{
@@ -255,4 +220,17 @@
 .send-second-step-btn-div button{
     width: 100%;
     background-color: var(--button-color-3);
+}
+
+/** loading screen for step 2**/
+.overlay-bg-2{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.5);
+    z-index: 5;
+}
+.overlay-bg-2.show{
+    display: block;
 }

@@ -11,8 +11,12 @@
     --background-color-7:#611818;
     --background-color-8:#e0dfdf;
     --background-color-9:#f2f2f2;
-    --modal-background-1: #000000;
+    --background-color-10:#403e3e;
+    --modal-background-1: #2d2c2c;
     --modal-background-2: #f3e1b6;
+
+    --hover-bg-1: #d8d5d5;
+    --hover-bg-2: #191919;
 
 
     /* Font-color */
@@ -47,7 +51,9 @@
 
     /* font sizes */
     --font-base: 1rem;
+    --font-loading-ui: 0.8rem;
     --font-nav: 0.8rem;
+
     --font-xsm: 0.9rem; /* mostly used for buttons*/
     --font-sm: 1rem;    /* mostly used for p tags*/
     --font-lg: 2rem;
