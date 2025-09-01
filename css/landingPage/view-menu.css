@@ -117,3 +117,61 @@
 .dot-nav.active{
     background-color: var(--highlight-color);
 }
+
+
+@media (max-width: 768px){
+    .menu-container{
+        width: 100%;
+        max-width: 1500px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu-title{
+        color: var(--text-color-1);
+        font-family: var(--font-heading);
+        font-size: var(--font-xll-mobile);
+        letter-spacing: 1px;
+        font-weight: 400;
+        text-align: center;
+
+    }
+
+    .menu-intro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1200px;
+
+        gap: 40px;
+        text-align: center;
+
+    }
+    
+
+    .underline{
+        display: none;
+    }
+
+    .intro-heading {
+        font-family: var(--font-heading);
+        font-weight: 100;
+        font-size: var(--font-lg-mobile);
+        color: var(--text-color-1);
+        position: relative;
+        margin: 0 0 8px;
+    }
+
+
+    .intro-right p {
+        font-family: var(--font-body);
+        font-size: var(--font-sm-mobile);
+        font-weight: 100;
+        color: var(--text-color-3);
+        line-height: 1.8;
+        opacity: 0.95;
+        margin: 0 0 12px;
+    }
+}

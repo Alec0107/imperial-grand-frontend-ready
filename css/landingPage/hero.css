@@ -74,15 +74,16 @@ html, body {
 
 .buttons{
   width: 100%;
-  align-self: self-start;
+  align-self: flex-start;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 5px;
+  max-width: 760px;
 }
 
 .reusable-btn{
-    flex: 1 1 160px;
+    flex: 1 1 700px;
     width: auto;
     letter-spacing: 1px;
     padding: 10px 15px;     /* same size for all */
@@ -137,7 +138,7 @@ html, body {
 @media (max-width: 768px) {
 
   .hero-container{
-    height: 100vh;
+    height: auto;
     width: 100vw;
   }
 
@@ -152,9 +153,10 @@ html, body {
   .hero-text{
     height: auto;
     width: 100%;
-    margin-top: 20%;
+    margin: 0 auto;
+    margin-top: 70px;
     text-align: center;
-    gap: 50px;
+    gap: 30px;
   }
 
 
@@ -173,7 +175,14 @@ html, body {
     font-size: var(--font-sm-mobile);
   }
 
+  .buttons{
 
+  }
+
+  .reusable-btn{
+    background-color: transparent;
+    font-size: var(--font-xsm-mobile);
+  }
 
 
   .hero-image{

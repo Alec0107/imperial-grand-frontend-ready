@@ -61,7 +61,11 @@
     --font-xll: 6rem;
     --font-xxl: 10rem;
 
+    --font-xsm-mobile: 13.5px;
     --font-sm-mobile: 14px;
+    --font-lg-mobile: 18px;
+    --font-xl-mobile: 20px;
+    --font-xll-mobile: 30px;
     --font-xxl-mobile: 60px
 
 }
