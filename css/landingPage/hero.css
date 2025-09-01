@@ -134,6 +134,85 @@ html, body {
 
 
 
+@media (max-width: 768px) {
+
+  .hero-container{
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .hero-container-content{
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+  }
+
+  .hero-text{
+    height: auto;
+    width: 100%;
+    margin-top: 20%;
+    text-align: center;
+    gap: 50px;
+  }
+
+
+  .hero-heading{
+    font-size: var(--font-xxl-mobile);
+  }
+
+  .grand-word {
+    display: block;     /* force it to a new line */
+    position: static;   /* remove absolute positioning */
+    margin: 0;          /* reset offsets */
+  }
+
+  .hero-text p{
+    margin: 0px;
+    font-size: var(--font-sm-mobile);
+  }
+
+
+
+
+  .hero-image{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    position: absolute;
+  }
+
+  .hero-image img{
+    border-radius: 0px;
+      filter: brightness(50%); /* adjust % to control darkness */
+  }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

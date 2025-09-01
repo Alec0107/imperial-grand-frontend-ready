@@ -122,11 +122,13 @@
      flex-direction: row;
      width: 100%;
      align-items: center;
+     padding: 5px 10px;
     }
 
     #logo{
       position: static;             /* ❌ remove absolute */
            /* centers the logo */
+           
     }
 
     /* .text-container{
