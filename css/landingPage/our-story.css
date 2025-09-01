@@ -1,0 +1,89 @@
+.our-story{
+    height: auto;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 80px;
+    background-color: rgb(0, 0, 0);
+}
+
+
+
+.row{
+    height: auto;
+    max-height: 650px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+
+.text-col{
+    width: 70%;
+    max-width: 500px;
+
+      
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;   /* ← stops stretching to full width */
+    justify-content: center;
+
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    font-weight: 100;
+    color: white;
+    line-height: 2;
+    text-align: center;
+}
+
+
+.text-col h2{
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: var(--font-xl);
+    color: var(--text-color-1);
+}
+
+/* Our Story: make the button compact */
+#read-more-btn{
+    display: inline-flex;        /* instead of block */
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    height: auto;
+
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 10px 10px;         /* same size for all */
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.image-col {
+  width: 50%;
+  max-width: 500px;
+  min-width: 400px;
+  display: flex;          /* helps control the image inside */
+  align-items: center;    /* vertical alignment */
+  justify-content: center; /* horizontal alignment */
+}
+
+.image-col img {
+  width: 100%;         /* take full width of the column */
+  height: 100%;        /* take full height of the column */
+  object-fit: cover;   /* crop & fill the space without distortion */
+  border-radius: 8px;  /* optional for rounded edges */
+
+}
+
+.image-container{
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out; /* smooth fade */
+}
+

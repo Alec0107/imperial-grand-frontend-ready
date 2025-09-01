@@ -84,29 +84,34 @@ html, body {
 .reusable-btn{
     flex: 1 1 160px;
     width: auto;
+    letter-spacing: 1px;
+    padding: 10px 15px;     /* same size for all */
+    background-color: var(--background-color-2);
+
     font-family: var(--font-body);
     color: var(--text-color-3);
-    font-size: var(--font-sm);
-    background-color: var(--button-color-3);
-    letter-spacing: 1px;
-    padding: 15px 20px;     /* same size for all */
-    border-radius: 50px;
+    font-size: var(--font-xsm);
+    font-weight: 100;
+    text-align: center;
+
     cursor: pointer;
     transition: all 0.3s ease;
     min-width: 120px;           /* ✅ keeps width consistent even if text differs */
-    text-align: center;
+
     gap: 5px;
     justify-content: center;
-    border: none;
-    gap: 10px;
- 
+    border: solid 0.5px;
+    border-color: var(--button-color-3);
+
 }
 
-#menu-btn{
-    background-color: white;
-    border: 2px solid var(--button-color-3);
-    color: var(--text-color-2);
+.reusable-btn:hover{
+  color: var(--text-color-2);
+  text-decoration: underline;
+  background-color: var(--background-color-3);
+  border: none;
 }
+
 
 
 .hero-image{
@@ -134,7 +139,7 @@ html, body {
 
 /* SECTION WRAPPER BG */
 .experience-wrapper{
-  background-color: var(--background-color-7);
+  background-color: var(--background-color-2);
 }
 
 /** SECTION (EXPERIENCE) **/

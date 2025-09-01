@@ -58,7 +58,10 @@
     --font-sm: 1rem;    /* mostly used for p tags*/
     --font-lg: 2rem;
     --font-xl: 3rem;
+    --font-xll: 6rem;
     --font-xxl: 10rem;
+
+    --font-sm-mobile: 14px;
 
 }
 

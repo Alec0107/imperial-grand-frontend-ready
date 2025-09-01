@@ -6,6 +6,7 @@ export function loadStep3(){
     showStep3();
     initIntTelPhone();
     initButtons();
+    initInputs();
 }
 
 //************************************ PHONE NUMBER (INTTELPHONE RELATED) *******************************/
@@ -29,6 +30,10 @@ function initButtons(){
   });
 }
 
+
+function initInputs(){
+  
+}
 
 
 function showStep3(){

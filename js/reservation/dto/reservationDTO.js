@@ -10,7 +10,7 @@ export const UserPreferencesObject = {
     message: ``
 }
 
-export const FinalReservationSubmission = {
+export const ReservationDetailsDTO = {
     date: "",               // from reservationDTO.date
     time: "",               // from reservationDTO.time
     guestCount: 0,          // from reservationDTO.guestCount

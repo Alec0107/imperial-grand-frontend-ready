@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <link rel="icon" href="img/logo.png" type="image/png">
   <title>Imperial Grand</title>
+  <!-- in <head> -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
     
   <link rel="stylesheet" href="css/landingPage/hero.css"> 
   <link rel="stylesheet" href="css/root/variable.css"> 
@@ -12,6 +15,10 @@
   <link rel="stylesheet" href="css/landingPage/specialty-section.css">
   <link rel="stylesheet" href="css/landingPage/footer.css">
   <link rel="stylesheet" href="css/landingPage/navbar.css">
+  <link rel="stylesheet" href="css/landingPage/our-story.css">
+  <link rel="stylesheet" href="css/landingPage/view-menu.css">
+  <link rel="stylesheet" href="css/landingPage/taste-of-tradition.css">
+  <link rel="stylesheet" href="css/landingPage/contact-us.css">
 
 </head>
 
@@ -100,33 +107,37 @@
           <header class="navbar">
 
               <div id="logo">
-
                 <img class="logo-image" src="img/logo.png">
                 <div class="text-container">
                   <h1 class="title">Imperial Grand</h1>
                   <p class="subtitle">Cantonese Cuisine</p>
                 </div>
-                
               </div>
 
               <nav class="nav-links"> 
                     <ul>
-                      <li><a><span>Home</span></a></li>
-                       <li><a><span>Our Story</span></a></li>
-                       <li><a><span>Menu</span></a></li>
-                       <li><a><span>Reserve</span></a></li>
-                       <li><a><span>Contact Us</span></a></li>
+                      <li><a><span>HOME</span></a></li>
+                       <li><a><span>OUR STORY</span></a></li>
+                       <li><a><span>MENU</span></a></li>
+                       <li><a href="https://www.chope.co/singapore-restaurants/restaurant/imperial-grand-cantonese-cuisine?srsltid=AfmBOoqdSGkitmPS4whFLHiJ5J9omkFMtyPK8dv3OieXVIlrX9A_TOWb"><span>RESERVE</span></a></li>
+                       <li><a><span >CONTACT US</span></a></li>
                     </ul>
               </nav>
 
-              <div id="auth-link">
+              <!-- <div id="auth-link">
                   <a href="pages/authentication/auth.html?authType=login"><button class="auth-btn" id="login-btn">Login</button></a>
                   <a href="pages/authentication/auth.html?authType=signup"><button class="auth-btn" id="signup-btn">Sign up</button></a>
-              </div>
+              </div> -->
+
+              <nav>
+                 <div class="ham-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                 </div>
+              </nav>
+
           </header>
-
-
-
 
           <div class="hero-container">
 
@@ -145,19 +156,120 @@
                     </p>
 
                     <div class="buttons">
-                      <button class="reusable-btn">Book A Table</button>
-                      <button class="reusable-btn" id="menu-btn">View Menu</button>
+                      <button class="reusable-btn">BOOK A TABLE</button>
+                      <button class="reusable-btn" id="menu-btn">EXPLORE MENU</button>
                     </div>
                   </div>
 
                   <div class="hero-image">
-                    <img src="/img/hero.jpg" alt="Chef plating Cantonese dish" />
+                    <img src="/img/landing-page/landing-photo.png" alt="Chef plating Cantonese dish" />
                   </div>
             </div>
 
           
           </div>
 
+          <section class="menu-showcase">
+            <div class="menu-container">
+              <h2 class="menu-title">A SYMPHONY OF FLAVOURS</h2>
+
+              <div class="menu-intro">
+                <div class="intro-left">
+                  <h3 class="intro-heading">OUR CUISINE</h3>
+                  <span class="underline"></span>
+                </div>
+
+                <div class="intro-right">
+                  <p>
+                  At Imperial Grand dining is more than just a meal—it’s an experience. 
+                  We bring together the richness of tradition and the innovation of modern gastronomy, 
+                  crafting dishes that highlight the purity of seasonal produce and the artistry of culinary passion. 
+                  Every plate tells a story, meticulously curated to awaken the senses and create moments worth savoring.
+                  </p>
+                  <p>
+                  Whether you’re joining us for a quiet evening, a special celebration, or simply to 
+                  indulge your love for fine cuisine, our menu promises to enchant, inspire, and leave a 
+                  lasting impression.
+                  </p>
+
+                  <button class="reusable-btn menu-cta">VIEW MENU</button>
+                </div>
+              </div>
+
+              <div class="menu-grid">
+
+              </div>
+
+            </div>
+          </section>
+
+          <section class="taste-of-tradition">
+              <!-- Overlay div -->
+            <div class="overlay"></div>
+
+            <!-- Content -->
+            <div class="container-taste-tradition">
+              <h2>A TASTE OF TRADITION</h2>
+              <p>
+                Every dish is crafted with passion, blending tradition, craftsmanship, <br>
+                and the joy of dining. Sit back, relax, and savor a memorable experience.
+              </p>
+            </div>
+          </section>
+
+          <section class="our-story">
+            <div class="container">
+              <div class="row">
+                
+                <!-- Left Column: Image -->
+                <div class="col image-col">
+                  <img class="image-container"  alt="Chef preparing Cantonese dishes">
+                  <div class="dot-container-our-story">
+                    <!-- span little circles will be loaded in javascript based on the size of array -->
+                  </div>
+                </div>
+
+                <!-- Right Column: Text -->
+                <div class="col text-col">
+                  <h2>OUR STORY</h2>
+                  <p>
+                      At Imperial Grand Cantonese Cuisine, we blend generations of 
+                      culinary mastery with a deep passion for authentic flavors. 
+                      Each dish is prepared with care, honoring timeless traditions 
+                      while welcoming fresh ideas and innovation.<br><br>
+                      Our philosophy is simple — to bring people together through 
+                      food that is refined, balanced, and full of character. From 
+                      classic favorites to signature creations, we craft every meal 
+                      to celebrate the richness of Cantonese heritage while offering 
+                      a dining experience that feels elegant, warm, and truly memorable.
+                  </p>
+                  <!-- <button id="read-more-btn">Read More → </button> -->
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <section class="contact-section">
+
+              <div class="container-c">
+                  <h2>CONTACT US </h2>
+                  <div class="contact-container">
+                    <div class="contact-card">
+                      <img src="/img/contact-us/contactus1.jpg" alt="Dish sample">
+                      <button class="reusable-btn">CALL US</button>
+                    </div>
+                    <div class="contact-card">
+                      <img src="/img/contact-us/contactus2.jpg" alt="Restaurant exterior">
+                      <button class="reusable-btn">MAKE A RESERVATION</button>
+                    </div>
+                    <div class="contact-card">
+                      <img src="/img/contact-us/contactus3.jpg" alt="Dessert sample">
+                      <button class="reusable-btn">WHATSAPP US</button>
+                    </div>
+                  </div>
+              </div>
+          </section>
 
 
 
@@ -167,6 +279,12 @@
 
 
 
+
+
+
+
+
+<!-- 
           <div class="experience-wrapper">
               <section class="experience-section">
 
@@ -218,12 +336,12 @@
 
                 </div>
               </section>
-          </div>
+          </div> -->
 
 
-          <div id="modal-backdrop" class="modal-backdrop hidden"></div>
-          
-
+          <!-- <div id="modal-backdrop" class="modal-backdrop hidden"></div>
+           -->
+<!-- 
           <div id="experience-modal" class="experience-modal">
             
             <svg class="close-modal-btn" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / Close_LG"> <path id="Vector" d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#000000" stroke-width="1.08" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>
@@ -233,7 +351,7 @@
               <div class="image-wrapper">
                  <img class="modal-image">
                  <div class="dot-container">
-                    <!-- span little circles will be loaded in javascript based on the size of array -->
+                    span little circles will be loaded in javascript based on the size of array 
                  </div>
               </div>
 
@@ -244,11 +362,9 @@
 
             </div>
 
-          </div>
+          </div> -->
 
-
-
-          <section class="about-us-section">
+          <!-- <section class="about-us-section">
 
               <div class="about-us">
                 <div class="text-info">
@@ -259,7 +375,7 @@
                 </div>
               </div>
         
-          </section>
+          </section> -->
 
 
 
@@ -281,17 +397,17 @@
             <div class="information-div" >
                 <div class="address indiv-div">
                   <h2>ADDRESS</h1>
-                  <p class="footer-font">Level 3<br>The Ritz-Carlton, Millenia <br>Singapore<br>7 Raffles Avenue<br>Singapore, 039799</p>
+                  <p class="footer-font">11 Sam Leong Rd,<br>#03-01 TRIO BUILDING,<br>Singapore 207903</p>
                 </div>
               
                 <div class="contact indiv-div">
                   <h2>CONTACT US</h1>
-                   <p class="footer-font">+(65) 6434-5286<br>rc.sinrz.summerpavilion@ritzcarlton.com</p> 
+                   <p class="footer-font">+(65) 87574622<br>imperialgrand.com</p> 
                 </div>
 
                 <div class="hours indiv-div">
                   <h2>HOURS</h1>
-                   <p class="footer-font">Daily<br><br>Lunch: 11.30 a.m. to 2.30 p.m.<br>Dinner: 6.30 p.m. to 10.30 p.m. </p> 
+                   <p class="footer-font">Daily<br><br>Lunch: 11.00 a.m. to 3.00 p.m.<br>Dinner: 6.00 p.m. to 10.30 p.m. </p> 
                 </div>
             </div>
 
@@ -303,7 +419,9 @@
 
 
         
-     <script src="/js/landingPage/landing-page.js"></script>     
+    <script src="/js/landingPage/about-us.js"></script>     
+    <script src="/js/landingPage/our-story.js"></script>     
+    <script src="/js/landingPage/landing-page.js"></script>     
     </body>
  
 </html>

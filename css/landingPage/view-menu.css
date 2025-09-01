@@ -1,0 +1,119 @@
+.menu-showcase{
+    height: auto;
+    background-color: rgb(0, 0, 0);
+}
+
+
+.menu-container{
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.menu-title{
+  color: var(--text-color-1);
+  font-family: var(--font-heading);
+  font-size: var(--font-xl);
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.menu-intro{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 1200px;
+
+    gap: 40px;
+    align-self: flex-end;
+}
+
+
+.intro-left { 
+    display: flex; 
+    justify-content: flex-end; 
+    position: relative;
+}
+.intro-heading {
+  font-family: var(--font-heading);
+  font-weight: 100;
+  font-size: var(--font-xl);
+  color: var(--text-color-1);
+  position: relative;
+  margin: 0 0 8px;
+}
+
+
+.intro-right p {
+  font-family: var(--font-body);
+  font-size: var(--font-sm);
+  font-weight: 100;
+  color: var(--text-color-3);
+  line-height: 1.8;
+  opacity: 0.95;
+  margin: 0 0 12px;
+}
+
+.underline{
+    position: absolute;
+    height: 2px;
+    width: 35%;
+    top: 60px;
+    left: 20%;
+    background-color:var(--background-color-4)
+}
+
+.menu-cta{
+    min-width: 20%;
+    background-color: var(--button-color-3);
+}
+
+.menu-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;                              /* spacing between photos */
+    max-width: 1500px;                      /* optional, to center */
+    margin: 0 auto;
+}   
+.menu-grid img {
+  width: 100%;        /* make images scale to their cell */
+  height: auto;       /* keep aspect ratio */
+  object-fit: cover;  /* crop nicely if needed */
+  border-radius: 4px; /* optional */
+}
+
+
+.image-col{
+  position: relative;
+}
+
+.dot-container-our-story{
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left:0;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.dot-nav{
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7); /* visible on any image */
+    border-radius: 50%;
+    cursor: pointer; /* show they’re interactive */
+    transition: background-color 0.3s ease;
+}
+
+.dot-nav.active{
+    background-color: var(--highlight-color);
+}

@@ -110,10 +110,21 @@ export async function checkLockStatus(lockStatusDTO){
 }
 
 // 
-export async function submitSecondStepReservation(finalReservationSubmission, authIntent = "user"){
+export async function submitSecondStepReservation(ReservationDetailsDTO, authIntent = "user"){
     const APIUrl = API.reservations.submitReservation;
     console.log("2ND STEP RESERVATION:")
-    console.log(finalReservationSubmission);
+   
+
+    const submissionPayload = {
+        reservationDetails: ReservationDetailsDTO
+    }
+     console.log(submissionPayload);
+
+    if(authIntent === "guest"){
+        submissionPayload.guestInfo = {
+
+        }
+    }
 
     try{
 
@@ -130,7 +141,7 @@ export async function submitSecondStepReservation(finalReservationSubmission, au
                 "Content-Type": "application/json",
                 "x-auth-intent": `${authIntent}`
             },
-            body: JSON.stringify(finalReservationSubmission)
+            body: JSON.stringify(submissionPayload)
         })
 
         let result;
@@ -170,7 +181,7 @@ export async function submitSecondStepReservation(finalReservationSubmission, au
                                 "Content-type" : "application/json",
                                 "x-device-id" : getDeviceIdFromCookie()
                             },
-                            body: JSON.stringify(finalReservationSubmission)
+                            body: JSON.stringify(submissionPayload)
                         });
                     }else{
                         console.warn("🚫 Refresh failed. Redirecting to login...");

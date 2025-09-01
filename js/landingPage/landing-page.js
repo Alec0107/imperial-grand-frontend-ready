@@ -45,7 +45,8 @@ const experienceData = [
     ];
 
 document.addEventListener("DOMContentLoaded", function(){
-    initScrollNavbar();
+    //initScrollNavbar();
+    initHamburgerMenu();
     initGlobalVar();
     initModalContent();
     initThreeCardImages();
@@ -145,10 +146,12 @@ function renderDots(length){
         document.querySelector(".modal-image").src = images[currentImageIndex];
         renderDots(length);
     });
+    
     dotContainer.appendChild(dot);
  }
 
 }
+
 
 function updateImageShown(){
     const data = experienceData[currentDataIndex];
@@ -250,19 +253,30 @@ function removeModalUI(){
     backDrop.classList.add("hidden");
 }
 
-function initScrollNavbar(){
-    // capture lastScrolledY
-    let lastScrolledY = window.scrollY;
-    const navbar = document.querySelector(".navbar");
+// function initScrollNavbar(){
+//     // capture lastScrolledY
+//     let lastScrolledY = window.scrollY;
+//     const navbar = document.querySelector(".navbar");
 
-    window.addEventListener(`scroll`, () => {
-        let currentScrollY = window.scrollY;
-        if(currentScrollY > lastScrolledY){
-            navbar.classList.add("hidden");
-        }else{
-            navbar.classList.remove("hidden");
-        }
-        lastScrolledY = currentScrollY;
-    });
+//     window.addEventListener(`scroll`, () => {
+//         let currentScrollY = window.scrollY;
+//         if(currentScrollY > lastScrolledY){
+//             navbar.classList.add("hidden");
+//         }else{
+//             navbar.classList.remove("hidden");
+//         }
+//         lastScrolledY = currentScrollY;
+//     });
+
+// }
+
+function initHamburgerMenu(){
+    const hamMenu = document.querySelector(".ham-menu");
+    const navLinks = document.querySelector(".nav-links");
+
+    hamMenu.addEventListener("click", () => {
+        hamMenu.classList.toggle("active")
+        navLinks.classList.toggle("active");
+    })
 
 }

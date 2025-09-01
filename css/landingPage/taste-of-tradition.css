@@ -1,0 +1,43 @@
+.taste-of-tradition{
+    height: 70vh;
+    width: 100%;
+    position: relative; /* parent is the "reference" */
+    background-image: url("/img/landing-page/taste-of-tradition.jpg");
+    background-size: cover;
+    background-position: center;
+
+}
+
+.overlay{
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); /* black overlay at 50% */
+    z-index: 0;          /* sits "below" the text */
+}
+
+.container-taste-tradition{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    z-index: 1;
+    top: 30%;
+    right: 10%;
+
+    text-align: end;
+}
+
+.container-taste-tradition h2{
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: var(--font-xll);
+    color: var(--text-color-1);
+}
+
+.container-taste-tradition p{
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    font-weight: 100;
+    color: white;
+    line-height: 2;
+}

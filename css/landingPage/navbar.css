@@ -1,14 +1,17 @@
 .navbar{
   position: sticky;
   top: 0;
+  max-width: 1450px;
+  margin: 0 auto;
   z-index: 1000;
   background-color: var(--background-color-2);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 20px 50px;
   color: rgb(255, 255, 255);
   transition: transform 0.3s ease-in-out;
+  width: 100%;
 }
 
 
@@ -42,19 +45,36 @@
 }
 
 
+.nav-links{
+    margin-left: auto;
+    margin-right: 10px;
+
+}
+
 .nav-links ul{
     list-style: none;
     display: flex;
     gap: 30px;
 }
 
-
-.nav-links li a span{
-    font-size: var(--font-sm);
-    font-family: var(--font-body);
-    cursor: pointer;
+.nav-links a {
+  text-decoration: none;
 }
 
+.nav-links li a span{
+    color: var(--text-color-3);
+    text-decoration: none;  /* remove this line if you don’t want underline at all */
+    
+    font-size: var(--font-nav);
+    font-family: var(--font-body);
+    cursor: pointer;
+    font-weight: 100;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links li a span:hover{
+    color: var(--text-color-1);
+}
 
 
 .auth-btn{
@@ -80,4 +100,111 @@
     background-color: white;
     border: 2px solid var(--button-color-3);
     color: var(--text-color-2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    .navbar{
+     position: fixed;
+     display: flex;
+     flex-direction: row;
+     width: 100%;
+     align-items: center;
+    }
+
+    #logo{
+      position: static;             /* ❌ remove absolute */
+           /* centers the logo */
+    }
+
+    /* .text-container{
+        display: none;
+    } */
+
+    .text-container h1{
+    font-size: var(--font-sm-mobile);
+    }
+
+    .text-container p{
+        font-size: var(--font-sm-mobile);
+    }
+
+
+    .nav-links{
+        height: 100vh;
+        display: none;
+        background-color: var(--background-color-7);
+        flex-direction: column;
+        position: fixed;
+        width: 100%;
+        max-width: 450px;
+        top: 0;
+        right: 0;
+       
+    }
+
+    .nav-links.active{
+        display: flex;
+    }
+
+    .nav-links ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+
+.nav-links a:hover span {     /* <-- key change */
+  color: rgb(255, 145, 0);
+}
+
+    .ham-menu{
+        height: 20px;
+        width: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;   /* keep your layout */
+        cursor: pointer;
+        top: 35%;
+        left: 13%;
+    }
+
+    .ham-menu span{
+    height: 4px;
+    width: 100%;
+    background-color: var(--text-color-1);
+    border-radius: 2px;
+    display: block;                   /* ensure block for transform */
+    transition: transform .25s ease, opacity .2s ease;
+    transform-origin: center;         /* rotate around the middle */
+    }
+
+    /* turn into an "X" using translateY so we don't need absolute positioning */
+    .ham-menu.active span:nth-child(1){
+    transform: translateY(10px) rotate(45deg);
+    }
+
+    .ham-menu.active span:nth-child(2){
+    opacity: 0;
+    }
+
+    .ham-menu.active span:nth-child(3){
+    transform: translateY(-6px) rotate(-45deg);
+    }
+
+
+
 }

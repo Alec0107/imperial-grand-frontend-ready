@@ -1,6 +1,6 @@
 
 import { minusSVG, plusSVG } from '../../../components/svgs/svg.js'
-import { FinalReservationSubmission, UserPreferencesObject } from '../dto/reservationDTO.js';
+import { ReservationDetailsDTO, UserPreferencesObject } from '../dto/reservationDTO.js';
 import { submitSecondStepReservation } from '../reservationController.js';
 import { getLockReservationStorage } from '../dto/reservationDTO.js';
 
@@ -160,17 +160,17 @@ function initSubmitBtn(){
          * **/
 
         //console.log(reservationLock);
-        FinalReservationSubmission.date = reservationLock.reservationDTO.date;
-        FinalReservationSubmission.time = reservationLock.reservationDTO.time;
-        FinalReservationSubmission.guestCount = reservationLock.reservationDTO.guestCount;
-        FinalReservationSubmission.tableId = reservationLock.tableId;
-        FinalReservationSubmission.tableName = reservationLock.tableName;
-        FinalReservationSubmission.occasion = [...UserPreferencesObject.occasion];
-        FinalReservationSubmission.dietary = [...UserPreferencesObject.dietary];
-        FinalReservationSubmission.message = UserPreferencesObject.message;
+        ReservationDetailsDTO.date = reservationLock.reservationDTO.date;
+        ReservationDetailsDTO.time = reservationLock.reservationDTO.time;
+        ReservationDetailsDTO.guestCount = reservationLock.reservationDTO.guestCount;
+        ReservationDetailsDTO.tableId = reservationLock.tableId;
+        ReservationDetailsDTO.tableName = reservationLock.tableName;
+        ReservationDetailsDTO.occasion = [...UserPreferencesObject.occasion];
+        ReservationDetailsDTO.dietary = [...UserPreferencesObject.dietary];
+        ReservationDetailsDTO.message = UserPreferencesObject.message;
 
 
-        submitSecondStepReservation(FinalReservationSubmission);
+        submitSecondStepReservation(ReservationDetailsDTO);
 
     });
 }
