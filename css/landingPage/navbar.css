@@ -129,9 +129,10 @@
            
     }
 
-    /* .text-container{
-        display: none;
-    } */
+    .logo-image{
+        width: 70px;
+    }
+
 
     .text-container h1{
         font-size: var(--font-sm-mobile);
@@ -153,6 +154,10 @@
         top: 0;
         right: 0;
     }
+
+
+    
+
 
     .nav-links.active{
         display: flex;
@@ -179,6 +184,7 @@
         cursor: pointer;
         top: 35%;
         left: 13%;
+        margin-right: 20px;
     }
 
     .ham-menu span{
