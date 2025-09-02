@@ -20,7 +20,7 @@ html, body {
 .contact-us{
     height: auto;
     background-color: var(--background-color-7);
-    padding: 100px;
+    padding: 80px;
 }
 
 .contact-us-content{

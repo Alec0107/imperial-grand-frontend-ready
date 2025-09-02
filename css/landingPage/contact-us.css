@@ -42,7 +42,7 @@
 
 .contact-card button{
   position: absolute;
-  width: 65%;
+  width: 60%;
   bottom: 10%;        /* distance from bottom */
   left: 50%;           /* place it halfway across */
   transform: translateX(-50%); /* shift back half its own width */

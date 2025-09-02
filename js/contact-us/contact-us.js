@@ -21,6 +21,10 @@ const contactUs = {
 
 let isOpen = false; // to toggle dropdown button open/close
 
+window.addEventListener("include-loaded", ()=>{
+    
+})
+
 document.addEventListener("DOMContentLoaded", ()=>{
     initGlobalVar();
     initSubjectDropdown();

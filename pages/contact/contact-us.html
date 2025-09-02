@@ -13,34 +13,10 @@
 
     <body>
 
-            <header class="navbar contact-us-navbar">
 
-                    <div id="logo">
-                        <img class="logo-image" src="/img/logo.png">
-                        <div class="text-container">
-                        <h1 class="title">Imperial Grand</h1>
-                        <p class="subtitle">Cantonese Cuisine</p>
-                        </div>
-                    </div>
-
-                    <nav class="nav-links"> 
-                            <ul>
-                            <li><a><span>Home</span></a></li>
-                            <li><a><span>About</span></a></li>
-                            <li><a><span>Menu</span></a></li>
-                            <li><a><span>Reserve</span></a></li>
-                            <li><a><span>Contact</span></a></li>
-                            </ul>
-                    </nav>
-
-                    <div id="auth-link">
-                        <a href="pages/authentication/auth.html?authType=login"><button class="auth-btn" id="login-btn">Login</button></a>
-                        <a href="pages/authentication/auth.html?authType=signup"><button class="auth-btn" id="signup-btn">Sign up</button></a>
-                    </div>
-            </header>
+            <div data-include="../partial/navbar.html"></div>
 
          
-
             <div class="contact-us">
 
                 <div class="contact-us-content">
@@ -87,40 +63,14 @@
 
             </div>
 
-            <footer class="footer-section">
-            
-                    <div class="contact-us-div">
-                    <h1>Do you have <br>any questions?</h1>
-                    <button>Contact Us</button>
-                    </div>
-                
-                    <span></span>
-            
-                    <div class="information-div" >
-                        <div class="address indiv-div">
-                        <h2>ADDRESS</h1>
-                        <p class="footer-font">Level 3<br>The Ritz-Carlton, Millenia <br>Singapore<br>7 Raffles Avenue<br>Singapore, 039799</p>
-                        </div>
-                    
-                        <div class="contact indiv-div">
-                        <h2>CONTACT US</h1>
-                        <p class="footer-font">+(65) 6434-5286<br>rc.sinrz.summerpavilion@ritzcarlton.com</p> 
-                        </div>
 
-                        <div class="hours indiv-div">
-                        <h2>HOURS</h1>
-                        <p class="footer-font">Daily<br><br>Lunch: 11.30 a.m. to 2.30 p.m.<br>Dinner: 6.30 p.m. to 10.30 p.m. </p> 
-                        </div>
-                    </div>
-
-                    <p class="footer-font" style="margin-bottom: 30px;">Copyright © 2025 Imperial Grand. All Rights Reserved.</p>
-                    
-          </footer>
+            <div data-include="/pages/partial/footer.html"></div>
 
 
 
 
    
+    <script src="/js/partialsJs/include-partials.js"></script>        
     <script type="module" src="/js/contact-us/contact-us.js"></script>      
     </body>
   

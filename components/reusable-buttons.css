@@ -12,7 +12,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 120px;           /* ✅ keeps width consistent even if text differs */
+    min-width: 200px;           /* ✅ keeps width consistent even if text differs */
     text-align: center;
     gap: 5px;
     justify-content: center;

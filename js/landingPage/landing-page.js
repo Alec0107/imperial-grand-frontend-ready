@@ -47,10 +47,10 @@ const experienceData = [
 // ✅ Run after partials are injected
 window.addEventListener("includes-loaded", ()=>{
     initHamburgerMenu();
+    //initScrollNavbar();
 })
 
 document.addEventListener("DOMContentLoaded", function(){
-    //initScrollNavbar();
     initGlobalVar();
     // initModalContent();
     // initThreeCardImages();
@@ -257,22 +257,22 @@ function removeModalUI(){
     backDrop.classList.add("hidden");
 }
 
-// function initScrollNavbar(){
-//     // capture lastScrolledY
-//     let lastScrolledY = window.scrollY;
-//     const navbar = document.querySelector(".navbar");
+function initScrollNavbar(){
+    // capture lastScrolledY
+    let lastScrolledY = window.scrollY;
+    const navbar = document.querySelector(".navbar");
 
-//     window.addEventListener(`scroll`, () => {
-//         let currentScrollY = window.scrollY;
-//         if(currentScrollY > lastScrolledY){
-//             navbar.classList.add("hidden");
-//         }else{
-//             navbar.classList.remove("hidden");
-//         }
-//         lastScrolledY = currentScrollY;
-//     });
+    window.addEventListener(`scroll`, () => {
+        let currentScrollY = window.scrollY;
+        if(currentScrollY > lastScrolledY){
+            navbar.classList.add("hidden");
+        }else{
+            navbar.classList.remove("hidden");
+        }
+        lastScrolledY = currentScrollY;
+    });
 
-// }
+}
 
 function initHamburgerMenu(){
     const hamMenu = document.querySelector(".ham-menu");
