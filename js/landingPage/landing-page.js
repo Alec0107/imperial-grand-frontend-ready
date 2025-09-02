@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function(){
     //initScrollNavbar();
     initHamburgerMenu();
     initGlobalVar();
-    initModalContent();
-    initThreeCardImages();
+    // initModalContent();
+    // initThreeCardImages();
 });
 
 
@@ -146,7 +146,7 @@ function renderDots(length){
         document.querySelector(".modal-image").src = images[currentImageIndex];
         renderDots(length);
     });
-    
+
     dotContainer.appendChild(dot);
  }
 
