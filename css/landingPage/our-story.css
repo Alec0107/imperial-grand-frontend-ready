@@ -119,6 +119,8 @@
         font-weight: 100;
         font-size: var(--font-xl-mobile);
         color: var(--text-color-1);
+        text-align: left;
+        width: 100%;
     }
 
     .text-col p{

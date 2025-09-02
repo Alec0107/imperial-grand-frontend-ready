@@ -44,9 +44,13 @@ const experienceData = [
         }
     ];
 
+// ✅ Run after partials are injected
+window.addEventListener("includes-loaded", ()=>{
+    initHamburgerMenu();
+})
+
 document.addEventListener("DOMContentLoaded", function(){
     //initScrollNavbar();
-    initHamburgerMenu();
     initGlobalVar();
     // initModalContent();
     // initThreeCardImages();

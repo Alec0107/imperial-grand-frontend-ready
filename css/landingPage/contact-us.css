@@ -42,10 +42,31 @@
 
 .contact-card button{
   position: absolute;
-  min-width: 50%;
+  width: 65%;
   bottom: 10%;        /* distance from bottom */
   left: 50%;           /* place it halfway across */
   transform: translateX(-50%); /* shift back half its own width */
 
   background-color: var(--button-color-3);
+}
+
+
+@media (max-width: 768px) {
+
+    .contact-section{
+        padding: 40px;
+    }
+
+
+    .container-c{
+        gap: 20px;
+    }
+
+    .container-c h2{
+        font-family: var(--font-heading);
+        font-weight: 100;
+        font-size: var(--font-xl-mobile);
+        color: var(--text-color-1);
+        text-align: center;
+    }
 }

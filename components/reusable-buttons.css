@@ -2,7 +2,7 @@
 
 .reusable-btn{
     display: flex;
-    width: 150px;
+    width: auto;
     align-self: start;
     font-family: var(--font-body);
     color: white;

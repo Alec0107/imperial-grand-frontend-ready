@@ -44,13 +44,23 @@ function preLoadImages(srcs, done){
 
 
 function startSlideShow(){
+    renderDotIndicator();
+    markCurrentDot();
     imageEl.src = SOURCE[0];
     imageEl.style.opacity = 1;
     imagePointer = 1;
-
-    //  renderDotIndicator();
-
     setInterval (nextSlide, INTERVAL);
+}
+
+
+function renderDotIndicator(){
+    const dotContainer = document.querySelector(".dot-container-our-story");
+    for(let i = 0; i < SOURCE.length; i++){
+        const span = document.createElement("span");
+        span.classList.add("dot-nav");
+        span.dataset,index = i;
+        dotContainer.appendChild(span);
+    }
 }
 
 function nextSlide(){
@@ -64,10 +74,17 @@ function nextSlide(){
         imageEl.style.opacity = 1;
     }, 1000)
 
+    markCurrentDot();
 }
 
 
-
+function markCurrentDot(){
+    const dots = document.querySelectorAll(".dot-nav");
+    dots.forEach(el => { el.classList.remove("active")})
+    if(dots[imagePointer]){
+        dots[imagePointer].classList.add("active");
+    }
+}
 
 
 
