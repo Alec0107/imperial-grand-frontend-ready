@@ -28,7 +28,7 @@
 
           <div data-include="/pages/partial/navbar.html"></div>
 
-          <div class="hero-container">
+          <div id="home" class="hero-container">
 
             <div class="hero-container-content">
 
@@ -92,7 +92,21 @@
             </div>
           </section>
 
-          <section class="our-story">
+          <section class="taste-of-tradition">
+                <!-- Overlay div -->
+              <div class="overlay"></div>
+
+              <!-- Content -->
+              <div class="container-taste-tradition">
+                <h2>A TASTE OF TRADITION</h2>
+                <p>
+                  Every dish is crafted with passion, blending tradition, craftsmanship, <br>
+                  and the joy of dining. Sit back, relax, and savor a memorable experience.
+                </p>
+              </div>
+          </section>
+
+          <section id="our-story" class="our-story">
             <div class="container">
               <div class="row">
                 
@@ -130,23 +144,27 @@
               <div class="container-c">
                   <h2>CONTACT US </h2>
                   <div class="contact-container">
+                    
                     <div class="contact-card">
                       <img src="/img/contact-us/contactus1.jpg" alt="Dish sample">
-                      <button class="reusable-btn" onclick="location.href='/pages/contact/contact-us.html'">CONTACT US</button>
+                      <button class="reusable-btn" onclick="window.location.href='/pages/contact/contact-us.html'">CONTACT US</button>
                     </div>
+
                     <div class="contact-card">
                       <img src="/img/contact-us/contactus2.jpg" alt="Restaurant exterior">
-                      <button class="reusable-btn">MAKE A RESERVATION</button>
+                      <button class="reusable-btn" onclick="window.location.href='/pages/reservation/book-a-table.html'">MAKE A RESERVATION</button>
                     </div>
+
                     <div class="contact-card">
                       <img src="/img/contact-us/contactus3.jpg" alt="Dessert sample">
-                      <button class="reusable-btn">WHATSAPP US</button>
+                       <button class="reusable-btn" onclick="window.open('https://wa.me/6587574622?text=Hi%2C%20I%20would%20like%20to%20make%20a%20reservation', '_blank')">WHATSAPP US </button>
                     </div>
+
                   </div>
               </div>
           </section>
           
-    
+  
           <div data-include="/pages/partial/footer.html"></div>
 
 

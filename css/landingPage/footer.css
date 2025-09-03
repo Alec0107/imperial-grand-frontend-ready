@@ -125,10 +125,14 @@
     padding: 20px 30px;
 }
 
+.copyright-section P{
+    margin-bottom: 0px;
+}
+
 .footer-font{
     color: var(--text-color-3);
     font-weight: 100;
-    line-height: 2;
+    line-height: 1;
     font-size: var(--font-sm);
     margin-bottom: 20px;
     width: 100%;
@@ -179,7 +183,6 @@
     .footer-font{
         color: var(--text-color-3);
         font-weight: 100;
-        line-height: 2;
         font-size: var(--font-xsm-mobile);
     }
 
@@ -188,4 +191,9 @@
         text-decoration: none;
         font-size: var(--font-sm-mobile);
     }
+
+    .copyright-section p{
+        line-height: 2;
+    }
+
 }

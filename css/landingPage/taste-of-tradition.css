@@ -41,3 +41,9 @@
     color: white;
     line-height: 2;
 }
+
+@media (max-width: 768px) {
+    .taste-of-tradition{
+        display: none;
+    }
+}
