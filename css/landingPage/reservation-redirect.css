@@ -18,26 +18,24 @@ html, body {
     height: 100vh;
     width: 100%;
     padding: 80px;
+
     background-image: url(/img/landing-page/landing-photo.png);
+    background-color: rgba(0, 0, 0, 0.5); /* overlay color */
+    background-blend-mode: darken; /* or multiply, overlay, soft-light */
 
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 
-    position: relative;
+    display: flex;
+
 }
 
-.overlay{
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.55); /* dark overlay */
-}
+
 
 .hero-content{
 
     width: 100%;
-    padding: 80px;
 
     display: flex;
     flex-direction: column;
@@ -46,11 +44,6 @@ html, body {
     align-items: center;
     text-align: center;
     
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
 
     color: var(--text-color-3);
 }
@@ -135,6 +128,11 @@ html, body {
 
 
 @media (max-width: 768px) {
+
+    .reservation-hero{
+        margin-top: 70px;
+        padding: 40px;
+    }
 
     .hero-content{
         top: 50%;
