@@ -11,6 +11,10 @@ let iti;
 let inputs;
 let messageBox;
 
+// modals
+let successModal;
+let loadingModal;
+
 const contactUs = {
     valid: false,
     ContactUs:{
@@ -44,6 +48,8 @@ function initGlobalVar(){
     dropdownArrow = document.querySelector(".dropdown-arrow");
     inputs = document.querySelectorAll(".border");
     messageBox = document.getElementById("message-input");
+    successModal = document.getElementById("success");
+    loadingModal = document.getElementById("loading");
 }
 
 
@@ -150,41 +156,42 @@ function initSendMessageBtn(){
         console.log("sending..")
         console.log(`Phone Number: ${iti.getNumber()}`);
 
-  
-
         sendContactMessage();
     });
 }
 
 
-async function sendContactMessage(){
+async function sendContactMessage() {
+            openLoading();
 
-    const sendMessageUrl = API.contactUs.sendMsg;
-    const options = {
-        headers: {
-        "Content-Type" : "application/json",
-        },
-        body: JSON.stringify(contactUs.ContactUs)
+    try {
+            const sendMessageUrl = API.contactUs.sendMsg;
+            const response = await fetch("imperialgrand-backend-ready-production.up.railway.app/api/v1/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contactUs.ContactUs),
+            });
+
+            console.log("response::: ")
+            console.log(response);
+
+            if (!response.ok) {
+                throw new Error("Failed to send");
+            }
+
+            const result = await response.text();
+            console.log(result);
+
+            hideLoading();
+            showSuccess(); // ✅ show success modal
+    } catch (err) {
+        console.error("Error:", err);
+        hideLoading();
+        alert("Something went wrong. Please try again.");
     }
-
-    const response = await fetch(sendMessageUrl, {
-        method : "POST",
-        ...options
-    });
-
-    if(!response.ok){
-        console.log("Error");
-        return;
-    }
-
-    const result = await response.text();
-
-    console.log(result);
-
-
-
 }
-
 
 
 
@@ -229,13 +236,16 @@ function validateMessageBox(message){
         return { valid : false, message: "Message is required." };
     }
 
-    if(!message.trim().length < 10){
+    if(message.trim().length < 10){
         return { valid : false, message: "Message should be at least 10 characters long."};
     }
 
-      if(!message.trim().length > 1000){
+    if(message.trim().length > 1000){
         return { valid : false, message: "Message cannot exceed 1000 characters."};
     }
+
+    console.log("MESSAGE: VALID");
+    return { valid: true };
 }
 
 function initPhoneNumber(){
@@ -250,7 +260,7 @@ function initPhoneNumber(){
 function showError(input, errMsg){
    console.log(errMsg);
    input.style.border = "2px solid var(--border-3)";
-   
+
 }
 
 function clearError(input){
@@ -263,4 +273,39 @@ function inputCleanUp(){
         clearError(el);
        })
     })
+}
+
+
+
+function openLoading(){
+    loadingModal.classList.remove("hidden");
+    lockScroll()
+}
+
+function hideLoading(){
+    loadingModal.classList.add("hidden");
+    unlockScroll();
+}
+
+function showSuccess(){
+    successModal.classList.remove("hidden");
+    document.getElementById("close-btn").addEventListener("click", ()=>{
+        hideSuccess();
+    })
+    lockScroll();
+}
+
+function hideSuccess(){
+    successModal.classList.add("hidden");
+    unlockScroll();
+}
+
+
+
+function lockScroll() {
+  document.body.style.overflow = "hidden";  // stop background scroll
+}
+
+function unlockScroll() {
+  document.body.style.overflow = "";        // restore default scroll
 }

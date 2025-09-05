@@ -45,7 +45,7 @@
                              </ul>
                         </div>
                         <textarea class="font border" id="message-input" placeholder="Message*"></textarea>
-                        <button class="font reusable-btn" id="send-msg-btn">Send Message</button>
+                        <button class="font reusable-btn" id="send-msg-btn">SUBMIT</button>
                     </form>
 
 
@@ -71,16 +71,37 @@
 
                 </div>
 
-
-                
-
             </div>
 
 
             <div data-include="/pages/partial/footer.html"></div>
 
 
+            <!-- Full-page overlay + modal (outside .contact-us) -->
+            <div id="success" class="overlay hiddn">
+                <div class="modal">
 
+                    <div class="modal-container">
+                        <!-- your success/loading content -->
+                       <svg fill="#000000" viewBox="0 0 256 256" id="close-btn" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="4.608"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"></path> </g></svg>
+                        <svg fill="#00d636" width="64px" height="64px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#00d636" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12zm16.28-2.72a.75.75 0 00-1.06-1.06l-5.97 5.97-2.47-2.47a.75.75 0 00-1.06 1.06l3 3a.75.75 0 001.06 0l6.5-6.5z"></path></g></svg>
+                        <h3>Thank You!</h3>
+                        <p>Your message has been received. <br>We’ll get back to you soon.</p>
+                        <button class="reusable-btn" id="modal-ok" onclick="window.location.href='/index.html'">Back to home</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Full-page loading overlay -->
+            <!-- Loader -->
+            <div id="loading" class="overlay hidden">
+            <div class="loader-card">
+                <div class="spinner"></div>
+                <p class="font">Sending your message…</p>
+            </div>
+            </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
