@@ -166,7 +166,7 @@ async function sendContactMessage() {
 
     try {
             const sendMessageUrl = API.contactUs.sendMsg;
-            const response = await fetch("imperialgrand-backend-ready-production.up.railway.app/api/v1/contact", {
+            const response = await fetch("https://imperialgrand-backend-ready-production.up.railway.app/api/v1/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
