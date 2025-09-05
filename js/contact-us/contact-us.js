@@ -5,17 +5,19 @@ let dropdownBtn;
 let subjectOption;
 let sendMsgBtn;
 let dropdownArrow;
+let phoneInput;
+let iti;
+
+let inputs;
+let messageBox;
 
 const contactUs = {
     valid: false,
-    contactUsObject:{
+    ContactUs:{
         name: "",
         email: "",
         subject: "",
         message: "",
-        toString: function(){
-            return (`${this.name}\n${this.email}\n${this.subject}\n${this.message}`);
-        }
     }
 }
 
@@ -29,14 +31,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
     initGlobalVar();
     initSubjectDropdown();
     initSendMessageBtn();
+    initPhoneNumber();
+    inputCleanUp();
 });
 
 
 function initGlobalVar(){
     dropdownBtn = document.getElementById("subject-btn");
     subjectOption = document.querySelector(".subject-options");
+    phoneInput = document.querySelector("#phone-input");
     sendMsgBtn = document.getElementById("send-msg-btn");
     dropdownArrow = document.querySelector(".dropdown-arrow");
+    inputs = document.querySelectorAll(".border");
+    messageBox = document.getElementById("message-input");
 }
 
 
@@ -67,11 +74,11 @@ function initSubjectDropdown(){
     subjectOption.querySelectorAll("li").forEach((li) => {
         li.addEventListener("click", () =>{
             // save the option to the obejct 
-            contactUs.contactUsObject.subject = li.textContent;
+            contactUs.ContactUs.subject = li.textContent;
             // change text of the button based on the clicked option
             const labelSpan = dropdownBtn.querySelector("span");
             labelSpan.textContent = li.textContent;
-            console.log(contactUs.contactUsObject.subject);
+            console.log(contactUs.ContactUs.subject);
             closeDropDown();
         });
     });
@@ -104,26 +111,46 @@ function initSendMessageBtn(){
         // input validation before submitting to backend
         const nameValidation = validateFirstName(name);
         const emailValidation = validateEmail(email);
+        const messageValidation = validateMessageBox(message);
 
         if(!nameValidation.valid){
-            console.log(nameValidation.message);
+            showError(inputs[0], nameValidation.message)
+            isValid = false;
+        }
+
+        if(!iti.isValidNumber()){
+            showError(inputs[1], "Invalid phone number");
             isValid = false;
         }
 
         if(!emailValidation.valid){
-            console.log(emailValidation.message);
+            showError(inputs[2], emailValidation.message);
             isValid = false;
         }
+
+        if(!contactUs.ContactUs.subject){
+            showError(dropdownBtn, "Please select a subject or category.");
+            isValid = false;
+        }
+
+        if(!messageValidation.valid){
+            showError(messageBox, messageValidation.message);
+            isValid = false;
+        }
+
+
 
         if(!isValid) return;
 
         // All good, update object
-        contactUs.contactUsObject.name = name;
-        contactUs.contactUsObject.email = email;
-        contactUs.contactUsObject.message = message;
+        contactUs.ContactUs.name = name;
+        contactUs.ContactUs.email = email;
+        contactUs.ContactUs.message = message;
 
         console.log("sending..")
-        console.log(contactUs.contactUsObject.toString());
+        console.log(`Phone Number: ${iti.getNumber()}`);
+
+  
 
         sendContactMessage();
     });
@@ -137,7 +164,7 @@ async function sendContactMessage(){
         headers: {
         "Content-Type" : "application/json",
         },
-        body: JSON.stringify(contactUs.contactUsObject)
+        body: JSON.stringify(contactUs.ContactUs)
     }
 
     const response = await fetch(sendMessageUrl, {
@@ -194,4 +221,46 @@ function validateEmail(email){
 
   console.log("EMAIL: VALID")
   return { valid: true }
+}
+
+
+function validateMessageBox(message){
+    if(!message.trim()){
+        return { valid : false, message: "Message is required." };
+    }
+
+    if(!message.trim().length < 10){
+        return { valid : false, message: "Message should be at least 10 characters long."};
+    }
+
+      if(!message.trim().length > 1000){
+        return { valid : false, message: "Message cannot exceed 1000 characters."};
+    }
+}
+
+function initPhoneNumber(){
+    iti = window.intlTelInput(phoneInput, {
+    initialCountry: "sg", // default to Singapore for you
+    separateDialCode: true, // show +65 outside input
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+  });
+}
+
+
+function showError(input, errMsg){
+   console.log(errMsg);
+   input.style.border = "2px solid var(--border-3)";
+   
+}
+
+function clearError(input){
+  input.style.border = ""; // fallback to CSS default
+}
+
+function inputCleanUp(){
+    inputs.forEach(el => {
+       el.addEventListener("click", () =>{
+        clearError(el);
+       })
+    })
 }

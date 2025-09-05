@@ -53,6 +53,7 @@ html, body {
     flex-direction: column;
     align-content: flex-start;
     justify-content: flex-start;
+    align-self: flex-end;
     height: 500px;
 
     padding: 30px;
@@ -92,7 +93,7 @@ html, body {
 }
 
 .border{
-    border: 1px solid hsl(0, 1%, 72%);
+    border: 1px solid hsl(0, 0%, 100%);
 }
 
 .map-container{
@@ -226,24 +227,69 @@ html, body {
 
 
 #send-msg-btn{
-  width: auto;
-  align-self: flex-start; /* center it inside the flex column */
-  padding: 15px 30px;
-  background-color: var(--button-color-3);
-  border: none;
-  cursor: pointer;
-  border-radius: 50px;
-  transition: background-color 0.3s ease-in-out;
+    flex: 1 1 auto;
+    width: auto;
+    letter-spacing: 1px;
+    padding: 10px 15px;     /* same size for all */
+    background-color: transparent;
+
+    font-family: var(--font-body);
+    color: var(--text-color-3);
+    font-size: var(--font-xsm);
+    font-weight: 100;
+    text-align: center;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;           /* ✅ keeps width consistent even if text differs */
+
+    gap: 5px;
+    justify-content: center;
+    border: none;
+    background-color: var(--button-color-3);
 }
 
 #send-msg-btn:hover{
     background-color: var( --button-color-hover);
+    text-decoration: underline;
+    color: var(--hover-bg-2);
 }
+
 
 
 
 @media (max-width: 768px) {
+ 
+    .contact-us{
+        padding: 40px;
+        margin-top: 70px;
+    }
+
     .contact-us-content{
-        flex-direction: column-reverse;
-    } 
+        gap: 20px;
+    }
+
+    .contact-us-form{
+        padding: 0px;
+    }
+
+
+    .contact-us-header{
+        padding: 0px;
+    }
+
+    .h3-font{
+        text-align: center;
+    }
+
+    .font{
+        font-family: var(--font-body);
+        font-size: var(--font-sm-mobile);
+        font-weight: 100;
+    }
+
+    .subject-options li{
+        font-size: var(--font-sm-mobile);
+    }
 }
+
