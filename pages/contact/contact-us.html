@@ -27,16 +27,12 @@
 
                     <form id="contact-form" class="contact-us-form" action="https://api.web3forms.com/submit" method="POST">
 
+
                         <input type="hidden" name="access_key" value="8b568f90-d8cb-4d59-b701-3688ef9edeb1">
-
-                        <!-- Form-level subject (what you see in your inbox) -->
                         <input type="hidden" name="subject" id="subject-input" value="General inquiry">
-
-                        <!-- Honeypot for spam protection -->
                         <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+                        <input type="hidden" name="_replyto" value="">
 
-                        <!-- Reply-to (user email) -->
-                        <input type="hidden" name="replyto" value="email">
 
                         <h3 class="h3-font">CONTACT US</h3>
 
@@ -56,9 +52,6 @@
                              </ul>
                         </div>
                         <textarea class="font border" id="message-input" name="message" placeholder="Message*"></textarea>
-
-                        <!-- hCaptcha widget -->
-                        <div class="h-captcha" data-sitekey="ebc6be6e-ee8c-4012-8e90-a58eb6766c30"></div>
 
                         <button class="font reusable-btn" id="send-msg-btn">SUBMIT</button>
                     </form>
@@ -120,7 +113,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"></script>
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
 
     <script src="/js/partialsJs/include-partials.js"></script>    
     <script src="/js/partialsJs/navbar.js"></script>    

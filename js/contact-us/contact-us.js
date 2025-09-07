@@ -163,44 +163,43 @@ function initSendMessageBtn(){
 
 
 async function sendContactMessage() {
-        openLoading();
+    openLoading();
     try {
-        // ✅ check hCaptcha response first
-            const captchaResponse = document.querySelector('[name="h-captcha-response"]').value;
-            if (!captchaResponse) {
-                hideLoading();
-                alert("Please complete the captcha first!");
-                return;
-            }
-
-            // update hidden subject before submit
-        
-            if (iti && phoneInput.value) phoneInput.value = iti.getNumber();
-
-            const formEl = document.getElementById("contact-form");
-            const formData = new FormData(formEl);
-
-            const res = await fetch(formEl.action, {
-                method: "POST",
-                body: formData
-            });
-
-            if (res.ok) {
-                formEl.reset();
-                hideLoading();
-                showSuccess();
-            } else {
-                console.error("Web3Forms error:", await res.text());
-                hideLoading();
-                alert("Something went wrong. Please try again.");
-            }
-        } catch (err) {
-            console.error("Error:", err);
-            hideLoading();
-            alert("Network error. Please try again.");
+        // Update phone number if exists
+        if (iti && phoneInput.value) {
+            phoneInput.value = iti.getNumber();
         }
-}
+        // Set the reply-to email
+        document.querySelector('[name="_replyto"]').value = document.getElementById("email-input").value;
 
+        const formEl = document.getElementById("contact-form");
+        const formData = new FormData(formEl);
+
+        const res = await fetch(formEl.action, {
+            method: "POST",
+            body: formData
+        });
+
+        if (res.ok) {
+            formEl.reset();
+            hideLoading();
+            showSuccess();
+            
+            // Reset dropdown
+            const labelSpan = dropdownBtn.querySelector("span");
+            labelSpan.textContent = "Subject/Category";
+            contactUs.ContactUs.subject = "";
+        } else {
+            console.error("Web3Forms error:", await res.text());
+            hideLoading();
+            alert("Something went wrong. Please try again.");
+        }
+    } catch (err) {
+        console.error("Error:", err);
+        hideLoading();
+        alert("Network error. Please try again.");
+    }
+}
 
 
 
