@@ -1,5 +1,4 @@
 
-import { API } from "../APIurl/api.js";
 
 let dropdownBtn;
 let subjectOption;
@@ -14,6 +13,7 @@ let messageBox;
 // modals
 let successModal;
 let loadingModal;
+
 
 const contactUs = {
     valid: false,
@@ -81,6 +81,7 @@ function initSubjectDropdown(){
         li.addEventListener("click", () =>{
             // save the option to the obejct 
             contactUs.ContactUs.subject = li.textContent;
+             document.getElementById("subject-input").value = li.textContent; // ✅ keep hidden input updated
             // change text of the button based on the clicked option
             const labelSpan = dropdownBtn.querySelector("span");
             labelSpan.textContent = li.textContent;
@@ -124,7 +125,7 @@ function initSendMessageBtn(){
             isValid = false;
         }
 
-        if(!iti.isValidNumber()){
+        if(phoneInput.value && iti && !iti.isValidNumber()){
             showError(inputs[1], "Invalid phone number");
             isValid = false;
         }
@@ -162,35 +163,42 @@ function initSendMessageBtn(){
 
 
 async function sendContactMessage() {
-            openLoading();
-
+        openLoading();
     try {
-            const sendMessageUrl = API.contactUs.sendMsg;
-            const response = await fetch("https://imperialgrand-backend-ready-production.up.railway.app/api/v1/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(contactUs.ContactUs),
-            });
-
-            console.log("response::: ")
-            console.log(response);
-
-            if (!response.ok) {
-                throw new Error("Failed to send");
+        // ✅ check hCaptcha response first
+            const captchaResponse = document.querySelector('[name="h-captcha-response"]').value;
+            if (!captchaResponse) {
+                hideLoading();
+                alert("Please complete the captcha first!");
+                return;
             }
 
-            const result = await response.text();
-            console.log(result);
+            // update hidden subject before submit
+        
+            if (iti && phoneInput.value) phoneInput.value = iti.getNumber();
 
+            const formEl = document.getElementById("contact-form");
+            const formData = new FormData(formEl);
+
+            const res = await fetch(formEl.action, {
+                method: "POST",
+                body: formData
+            });
+
+            if (res.ok) {
+                formEl.reset();
+                hideLoading();
+                showSuccess();
+            } else {
+                console.error("Web3Forms error:", await res.text());
+                hideLoading();
+                alert("Something went wrong. Please try again.");
+            }
+        } catch (err) {
+            console.error("Error:", err);
             hideLoading();
-            showSuccess(); // ✅ show success modal
-    } catch (err) {
-        console.error("Error:", err);
-        hideLoading();
-        alert("Something went wrong. Please try again.");
-    }
+            alert("Network error. Please try again.");
+        }
 }
 
 

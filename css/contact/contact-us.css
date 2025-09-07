@@ -264,6 +264,10 @@ html, body {
     color: var(--hover-bg-2);
 }
 
+.h-captcha{
+    height: 100px;
+}
+
 
 
 
