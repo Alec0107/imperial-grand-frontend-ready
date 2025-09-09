@@ -5,7 +5,7 @@ import { truncate } from "./setMenu.js";
 
 export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12){
 
-    const url = "https://imperialgrand-backend-ready-production.up.railway.app"; // <-- items endpoint
+    const url = "https://imperialgrand-backend-ready-production.up.railway.app/api/menu/items"; // <-- items endpoint
     const qs = new URLSearchParams({ categoryId, page, size });
     if (subcategoryId) qs.append("subcategoryId", subcategoryId);
     const payload = {

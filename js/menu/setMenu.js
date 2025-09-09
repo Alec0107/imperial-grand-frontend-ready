@@ -5,7 +5,7 @@ let currentPage = 0;
 
 
 export async function loadSetMenus(page = 0){
-    const url = "https://imperialgrand-backend-ready-production.up.railway.app";
+    const url = "https://imperialgrand-backend-ready-production.up.railway.app/api/menu/set-menu/fetch_set_menu";
     const payload = {
         method: "GET",
         headers: {
