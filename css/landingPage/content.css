@@ -1,0 +1,126 @@
+.content{
+    padding: 30px;
+    height: 450px;
+    min-height: 700px;
+    max-height: 700px;
+    overflow-y: scroll;
+    margin: 20px;
+
+}
+
+#content-grid {
+  display: grid;                  /* turn it into a grid */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; 
+                       /* space between cards */
+}
+
+.card {
+
+  padding: 16px;
+
+  border-radius: 8px;
+  height:300px;       /* fixed height for each card */
+  box-sizing: border-box; /* makes padding included in height */
+  overflow: hidden;    /* optional: hides overflow text/images */
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+
+
+.img-div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.img{
+    height: 120px;
+    width: 120px;
+    margin: 0 auto;
+}
+
+.txt-details-div{
+    display: flex;
+    flex-direction: column;
+
+
+    padding: 0px 20px;
+    gap: 10px;
+
+
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    line-height: 1;
+    text-align: center;
+}
+
+
+.txt-details-div h4{
+}
+
+.txt-details-div p{
+    font-family: var(--font-body);
+    font-size: var(--font-sxm);
+    font-weight: 200;
+
+}
+
+
+.view-details-btn{
+    width: auto;
+    letter-spacing: 1px;
+    padding: 10px 15px;     /* same size for all */
+    background-color: var(--button-color-3);
+
+    font-family: var(--font-body);
+    color: var(--text-color-3);
+    font-size: var(--font-xsm);
+    font-weight: 100;
+    text-align: center;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;           /* ✅ keeps width consistent even if text differs */
+
+    gap: 5px;
+    justify-content: center;
+    border: solid 0.5px;
+    
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+
+
+#pager{
+    height: auto;
+    width: 100%;
+    margin: 50px 20px 0px;
+    padding: 20px;
+
+    color: var(--text-color-2);
+    font-family: var(--font-body);
+    font-size: var(--font-xxsm);
+    font-weight: 100;
+
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#pager button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

@@ -1,0 +1,99 @@
+/* page scroll lock when modal is open */
+.no-scroll { overflow: hidden; }
+
+/* overlay container */
+.modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; /*toggled via JS*/
+}
+
+.modal.open{
+    display: block;
+}
+
+/* dim background */
+.modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.55);
+}
+
+/* the black card */
+.modal__card {
+  position: relative;
+  margin: 8vh auto;
+  width: 100%;
+  max-width: 500px;
+  min-width: 200px;
+  padding: 40px;
+  background: #0f0f0f;
+  color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  max-height: 84vh;
+  overflow: auto;           /* list scrolls if long */
+  text-align: center;       /* like your screenshot */
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* close button */
+.modal__close {
+  position: absolute; top: 8px; right: 10px;
+  border: 0; background: transparent; color: #fff;
+  font-size: 22px; cursor: pointer; line-height: 1;
+  opacity: .7;
+}
+.modal__close:hover { opacity: 1; }
+
+
+/* ===== Header ===== */
+.modal__title{
+    color: var(--text-color-1);
+    font-family: var(--font-body);
+    letter-spacing: 1px;
+    font-weight: 100;
+    font-size: var(--font-lg);
+    position: static;
+    z-index: 3;
+    margin: 4px 36px 2px; /* leave space for the close button */
+}
+
+.modal__meta{
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    font-weight: 400;
+    color: var(--text-color-3);
+    line-height: 2;
+    list-style-type: none;
+}
+
+/* ===== Body: courses list ===== */
+.courses { 
+  list-style: none; margin: 10px 0 0; padding: 0;
+  display: grid; 
+  gap: 10px;
+  
+}
+
+.course{
+    line-height: 2;
+    border-bottom: 1px dashed rgba(255,255,255,0.08);
+}
+
+.course:last-child{
+    border-bottom: none;
+}
+
+.course .cn{
+    font-family: var(--font-body);
+    font-size: var(--font-cn);
+    font-weight: 100;
+}
+
+.course .en{
+    font-family: var(--font-body);
+    font-size: var(--font-en);
+    font-weight: 100;
+}

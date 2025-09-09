@@ -55,6 +55,10 @@
     --font-loading-ui: 0.8rem;
     --font-nav: 0.8rem;
 
+    --font-cn: 0.8rem;
+    --font-en: 0.7rem;
+
+    --font-xxsm: 0.8rem;
     --font-xsm: 0.9rem; /* mostly used for buttons*/
     --font-sm: 0.9rem;    /* mostly used for p tags*/
     --font-lg: 2rem;

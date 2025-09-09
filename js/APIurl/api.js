@@ -1,4 +1,5 @@
 const LOCALHOST_BASE_URL = "http://localhost:8080";
+const LOCALHOST_BASE_URL2 = "http://127.0.0.1:8080"
 
 export const API = {
     authentication: {
@@ -27,6 +28,16 @@ export const API = {
         /**
          *  TODO: 
          **/
+    },
+    categories:{
+        fetchAllProduct: `${LOCALHOST_BASE_URL2}/api/menu/categories/fetch_category`
+    },
+    setmenus: {
+         fetchAll: `${LOCALHOST_BASE_URL2}/api/menu/set-menu/fetch_set_menu`
+    },
+    menuItems: { 
+        fetchMenuItems: `${LOCALHOST_BASE_URL2}/api/menu/items`
+
     }
 
 
