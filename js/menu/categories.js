@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 async function fetchAllCategories(){
-
+    
       const url = "https://imperialgrand-backend-ready-production.up.railway.app/api/menu/categories/fetch_category"
       const payload = {
         method: "GET",
