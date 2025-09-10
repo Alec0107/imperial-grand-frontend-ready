@@ -3,8 +3,9 @@
     height: 450px;
     min-height: 700px;
     max-height: 700px;
-    overflow-y: scroll;
-    margin: 20px;
+  overflow-y: scroll; 
+  overflow-x: hidden; /* prevents bottom scrollbar */
+    margin: 0px 20px;
 
 }
 
@@ -13,6 +14,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px; 
                        /* space between cards */
+                       
 }
 
 .card {
@@ -20,7 +22,7 @@
   padding: 16px;
 
   border-radius: 8px;
-  height:300px;       /* fixed height for each card */
+  height: auto;       /* fixed height for each card */
   box-sizing: border-box; /* makes padding included in height */
   overflow: hidden;    /* optional: hides overflow text/images */
  
@@ -34,23 +36,36 @@
 
 .img-div{
     width: 100%;
+    max-width: 240px;
     display: flex;
     align-items: center;
     padding: 10px;
 }
 
+/* this oen is a separate img design for set menu*/
 .img{
     height: 120px;
     width: 120px;
     margin: 0 auto;
 }
 
+
+/* this oen is a separate img design for menu item*/
+.img-menu-item{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+
 .txt-details-div{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 240px;
 
 
-    padding: 0px 20px;
+    padding: 0px 10px;
     gap: 10px;
 
 
@@ -59,7 +74,7 @@
     font-weight: 400;
     color: rgb(0, 0, 0);
     line-height: 1;
-    text-align: center;
+    text-align: left;
 }
 
 
@@ -75,7 +90,7 @@
 
 
 .view-details-btn{
-    width: auto;
+    width: 100%;
     letter-spacing: 1px;
     padding: 10px 15px;     /* same size for all */
     background-color: var(--button-color-3);
@@ -94,7 +109,6 @@
     justify-content: center;
     border: solid 0.5px;
     
-    margin: 0 auto;
     margin-top: 10px;
 }
 
@@ -124,3 +138,5 @@
     border: none;
     cursor: pointer;
 }
+
+

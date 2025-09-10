@@ -5,7 +5,7 @@ import { truncate } from "./setMenu.js";
 
 export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12){
 
-    const url = "https://imperialgrand-backend-ready-production.up.railway.app/api/menu/items"; // <-- items endpoint
+    const url = API.menuItems.fetchMenuItems; // <-- items endpoint
     const qs = new URLSearchParams({ categoryId, page, size });
     if (subcategoryId) qs.append("subcategoryId", subcategoryId);
     const payload = {
@@ -25,10 +25,28 @@ export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, 
             }
 
         const data = await res.json();
-
+        console.log(data);
 
         renderMenuItemsCard(data.content || []);
         renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
+
+        // get the images and put in an array
+        // const imgUrlArr = data.content.map(it => it.imageUrl);
+
+        // console.log(imgUrlArr);
+        // preloadMenuItemImages(imgUrlArr, ()=>{
+        //     console.log("Done initializing images.")
+        //     renderMenuItemsCard(data.content || []);
+        //     renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
+        // })
+
+
+        /**TODO:
+         * 
+         * if catid === 2 (which is the ala carte render a diff card)
+         * 
+         */
+
     }catch(err){
         console.log("err fetching menu item: " + err);
     }
@@ -37,8 +55,7 @@ export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, 
 }
 
 
-
-function renderMenuItemsCard(items){
+function renderMenuItemsCardAlaCarte(items){
     const grid = document.getElementById("content-grid");
     grid.innerHTML = "";
 
@@ -50,12 +67,43 @@ function renderMenuItemsCard(items){
             <div class="card">
             
                 <div class="img-div">
-                    <img src="${img}" alt="menu image" class="img">
+                    <img src="${img}" alt="menu image" class="img-menu-item">
                 </div>
 
                 <div class="txt-details-div">
                     <h4>${item.nameEn}</h4>
                     <p class="meta">${price ? ` S$ ${price}` : ""}</p>
+                    <p class="meta">${item.blurbEn}</p>
+                    
+                </div>
+
+            </div>
+        `;
+        grid.innerHTML += cardHTML;
+
+     });
+}
+
+
+function renderMenuItemsCard(items){
+    const grid = document.getElementById("content-grid");
+    grid.innerHTML = "";
+
+     items.forEach(item => {
+        const price = (item.priceCents / 100).toFixed(2);
+        const img = item.imageUrl || ""; //fallback in dev 
+        const priceSuffix = checkPriceSuffix(price, item.priceSuffix);
+        
+        const cardHTML = `
+            <div class="card">
+            
+                <div class="img-div">
+                    <img src="${img}" alt="menu image" class="img-menu-item">
+                </div>
+
+                <div class="txt-details-div">
+                    <h4>${item.nameEn}</h4>
+                    ${priceSuffix}
                     <p class="meta">${item.blurbEn}</p>
                     
                 </div>
@@ -91,3 +139,40 @@ function renderMenuItemsPager(page, totalPages, catId, subCat, size){
 }
 
 
+
+function preloadMenuItemImages(items, done){
+    let counter = 0;
+
+    items.forEach(imgUrl => {
+        const img = new Image();
+        img.onload = () => {
+            counter++;
+            if(counter === items.length) done();
+        }
+        img.src = imgUrl;
+    });
+
+}
+
+
+
+
+function checkPriceSuffix(price, priceSuffix){
+    let txt;
+    console.log(priceSuffix)
+
+    if(priceSuffix === `""`){
+        txt =  
+        `<p class="meta">
+          ${price ? `S$ ${price}` : ""} 
+        </p>`
+    }else if(priceSuffix !== `""`){
+       txt =
+        `<p class="meta">
+          ${price ? `S$ ${price}` : ""} 
+          ${priceSuffix}
+        </p>`
+    }
+
+    return txt;
+}

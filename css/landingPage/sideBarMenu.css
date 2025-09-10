@@ -1,6 +1,7 @@
 .menu-container{
     height: auto;
     background-color: #FFF8E1;
+    padding: 50px;
 }
 
 .menu-header{
@@ -39,6 +40,8 @@
     flex-direction: row;
 }
 
+/* Hide the filter button on desktop */
+.filter-btn { display: none; }
 
 .sidebar{
     height: auto;
@@ -175,4 +178,102 @@
   text-decoration: underline;
   background-color: var(--background-color-3);
   border: none;
+}
+
+
+
+
+
+/** for mobile **/
+
+/* Backdrop (hidden by default) */
+
+@media (max-width: 768px) {
+
+    .backdrop{
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,.45);
+        opacity: 0; pointer-events: none;
+        transition: opacity .2s ease;
+        z-index: 999;
+    }
+
+    .menu-container{
+        padding: 80px 20px;
+    }
+
+    .menu-header{
+        height: auto;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+
+    .menu-header h1{
+        font-family: var(--font-heading);
+        letter-spacing: 1px;
+        font-weight: 100;
+        font-size: var(--font-xl);
+        position: static;
+        z-index: 3;
+    }
+
+
+
+    
+    .filter-btn { 
+        display: inline-flex;
+        gap: .5rem;
+        align-self: flex-end;
+        padding: 8px 12px;
+        border: 1px solid var(--button-color-3);
+        background: transparent;
+        font: inherit;
+        cursor: pointer;
+
+    } 
+
+
+    .menu-body{
+        flex-direction: column;
+    }
+
+
+    .sidebar{
+        position: fixed;
+        top: 0; left: 0;
+        height: 100dvh;           /* full height */
+        width: 85vw;              /* drawer width */
+        max-width: 360px;
+        background: #fff8e1;      /* your theme bg */
+        border-right: 1px solid rgba(0,0,0,.12);
+        box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        transform: translateX(-100%);/* hidden off-screen */
+        transition: transform .25s ease;
+        z-index: 10000;
+        padding: 24px;            /* keep your spacing */
+        overflow-y: auto;
+    }
+
+      /* when open, slide the drawer in */
+    body.filter-open .sidebar {
+        transform: translateX(0);
+    }
+
+    body.filter-open .backdrop {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* prevent page scroll when drawer is open */
+    body.filter-open {
+        overflow: hidden;
+    }
+
 }

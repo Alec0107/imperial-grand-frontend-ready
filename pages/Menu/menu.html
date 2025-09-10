@@ -27,6 +27,11 @@
             <div class="menu-header">
                 <h1>Our Menu</h1>
                 <a href="/pdf/Imperial-Grand-Menu.pdf" target="_blank" class="pdf-btn">See Full Menu</a>
+
+                <!-- mobile-only trigger -->
+                <button id="filter-open" class="filter-btn" aria-haspopup="dialog" aria-controls="sidebar" aria-expanded="false">
+                    ☰ Filter
+                </button>
             </div>
 
             <!-- Main body: sidebar (20%) + content (80%) -->
@@ -118,48 +123,20 @@
                     <h3 id="setModalTitle" class="modal__title">10 Pax Set (S$538++)</h3>
                     <div class="modal__meta">Premium Cantonese set • 10 pax</div>
                 </div>
+                
 
                 <div class="modal__body">
-                    <!-- One course item = CN line + EN line -->
                     <ul class="courses">
-                        <li class="course">
-                        <div class="cn">北京片皮鸭</div>
-                        <div class="en">Peking Duck</div>
-                        </li>
-                        <li class="course">
-                        <div class="cn">红烧竹笙干贝蟹肉翅</div>
-                        <div class="en">Braised Shark’s Fin Soup with Crab Meat, Conpoy and Bamboo Pith</div>
-                        </li>
-                        <li class="course">
-                        <div class="cn">京酱露笋鸡腿菇爆腰果</div>
-                        <div class="en">Stir-fried Prawn Balls with King Oyster Mushroom</div>
-                        </li>
-                        <li class="course">
-                        <div class="cn">烟骨汤浸香脆顺胶鱼</div>
-                        <div class="en">Deep Fried Marble Goby in Shark’s Bone Cartilage Soup</div>
-                        </li>
-                        <li class="course">
-                        <div class="cn">古早葱油甘榜鸡</div>
-                        <div class="en">Kampong Chicken with Onion</div>
-                        </li>
-                        <li class="course">
-                        <div class="cn">十头鲍鱼、天白花菇扒时蔬</div>
-                        <div class="en">Stewed 10 Head Abalone and Mushroom with Seasonal Greens</div>
-                        </li>
-                        <li class="course">
-                        <div class="cn">金菇鸭丝焖伊面</div>
-                        <div class="en">Braised Ee-fu Noodles with Enoki Mushrooms</div>
-                        </li>
-                        <li class="course">
-                        <div class="cn">时日甜品</div>
-                        <div class="en">Dessert Of The Day</div>
-                        </li>
+                        <!-- courses injected here -->
                     </ul>
                 </div>
+                
             </div>
         </div>
 
 
+        <!-- backdrop for filter in mobile -->
+        <div id="filter-backdrop" class="backdrop" ></div>
 
    
 

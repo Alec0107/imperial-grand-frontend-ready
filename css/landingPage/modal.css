@@ -20,7 +20,8 @@
 /* the black card */
 .modal__card {
   position: relative;
-  margin: 8vh auto;
+  margin: 0 auto;
+  margin-top: 130px;
   width: 100%;
   max-width: 500px;
   min-width: 200px;

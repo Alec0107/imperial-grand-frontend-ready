@@ -4,18 +4,30 @@ import { loadMenuItems} from "../menu/MenuItem.js";
 
 let categoriesState = []
 
+// drawer for mobile
+let backdrop;
+let openBtn;
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Fetching Categories...");
+    initGlobalVar();
+    initMobileDrawerAndBackdrop(); /// init sidebar this is for mobile
     fetchAllCategories();
     loadSetMenus(0);
     initSideBarButons();
 });
 
 
+function initGlobalVar(){
+    backdrop = document.querySelector(".backdrop");
+    openBtn = document.getElementById("filter-open");
+}
+
+
 
 async function fetchAllCategories(){
-    
-      const url = "https://imperialgrand-backend-ready-production.up.railway.app/api/menu/categories/fetch_category"
+
+      const url = API.categories.fetchAllProduct;
       const payload = {
         method: "GET",
         headers: {
@@ -157,6 +169,7 @@ function initSideBarButons(){
 
             console.log(`${catSlug} : ${subSlug}`);
             const { categoryId, subcategoryId } = mapSlugsToIds(catSlug, subSlug);
+            closeDrawer();
             loadMenuItems(categoryId, subcategoryId, 0, 12);
             return;
         }
@@ -167,6 +180,7 @@ function initSideBarButons(){
             const catSlug = catBtn.parentElement.dataset.catSlug;
 
             if (catSlug === "set-menus") {
+            closeDrawer();
             loadSetMenus(0);
             return;
             }
@@ -179,6 +193,7 @@ function initSideBarButons(){
             if (hasSubs) return; // let your toggle handler just open/close
 
             const { categoryId } = mapSlugsToIds(catSlug, null);
+            closeDrawer();
             loadMenuItems(categoryId, null, 0, 12);
         }
 
@@ -202,4 +217,22 @@ function mapSlugsToIds(catSlug, subSlug) {
   }
 
   return { categoryId, subcategoryId };
+}
+
+function initMobileDrawerAndBackdrop(){
+    openBtn.addEventListener("click", ()=>{
+        const isOpen = document.body.classList.contains('filter-open');
+        if(isOpen) closeDrawer(); else openDrawer();
+    });
+
+    backdrop.addEventListener("click", ()=> closeDrawer());
+}
+
+
+function openDrawer(){
+    document.body.classList.add('filter-open');
+}
+
+function closeDrawer(){
+    document.body.classList.remove('filter-open');
 }
