@@ -200,6 +200,10 @@
 
     .menu-container{
         padding: 80px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
     .menu-header{
@@ -207,7 +211,7 @@
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 40px 20px 0px 20px;
         
         display: flex;
         flex-direction: column;
@@ -225,6 +229,17 @@
     }
 
 
+    .menu-body{
+        height: auto;
+        width: 100%;
+
+        max-width: 300px;
+        margin: 20px auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
     
     .filter-btn { 
@@ -242,6 +257,7 @@
 
     .menu-body{
         flex-direction: column;
+        margin: 0px;
     }
 
 
