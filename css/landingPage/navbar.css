@@ -12,12 +12,10 @@
   color: rgb(255, 255, 255);
   transition: transform 0.3s ease-in-out;
   width: 100%;
+
+  
 }
 
-
-.navbar.hidden{
-    transform: translateY(-100%);
-}
 
 #logo{
     display: flex;
