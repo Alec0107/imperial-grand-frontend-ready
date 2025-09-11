@@ -279,7 +279,6 @@ html, body {
   "header header"
   "portrait image-1"
   "portrait image-2";
-
 }
 
 .header    { grid-area: header; }
