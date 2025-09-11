@@ -1,5 +1,5 @@
 .content{
-    padding: 30px;
+    padding: 30px 30px;
     height: 450px;
     min-height: 700px;
     max-height: 700px;
@@ -11,8 +11,7 @@
 #content-grid {
   display: grid;                  /* turn it into a grid */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px; 
-                       /* space between cards */
+  gap: 20px; /* space between cards */
                        
 }
 
@@ -27,6 +26,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
 }
 
 
@@ -39,7 +39,6 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    margin: 0 auto;
 }
 
 /* this oen is a separate img design for set menu*/
@@ -128,7 +127,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-
+    align-items: center;
 
 }
 
@@ -138,11 +137,18 @@
     cursor: pointer;
 }
 
+#pager span{
+    font-family: var(--font-body);
+    font-size: var(--font-xxsm);
+}
+
+
 
 @media (max-width: 768px) {
     .content{
         margin: 0px;
         max-width: 300px;
+        padding: 30px 30px;
     }
 
 
@@ -150,7 +156,14 @@
         max-width: 300px;
     }
 
+
     .card{
-        border: 1px solid black;
+   
     }
+
+
+    #pager{
+
+    }
+
 }

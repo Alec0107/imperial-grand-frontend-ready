@@ -1,4 +1,4 @@
-
+import { initAnimationOurStory } from "../animations/landingpageanimation.js";
 
 const SOURCE = [
     "/img/our-story/story1.jpeg",
@@ -23,7 +23,7 @@ function initGlobalVars(){
 document.addEventListener("DOMContentLoaded", function(){
     initGlobalVars();
     preLoadImages(SOURCE, startSlideShow)
-
+    initAnimationOurStory();
 })
 
 
@@ -58,7 +58,7 @@ function renderDotIndicator(){
     for(let i = 0; i < SOURCE.length; i++){
         const span = document.createElement("span");
         span.classList.add("dot-nav");
-        span.dataset,index = i;
+        span.dataset.index = i;
         dotContainer.appendChild(span);
     }
 }
@@ -85,6 +85,11 @@ function markCurrentDot(){
         dots[imagePointer].classList.add("active");
     }
 }
+
+
+
+
+
 
 
 

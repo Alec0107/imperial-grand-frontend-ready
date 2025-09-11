@@ -123,7 +123,7 @@ function renderMenuItemsPager(page, totalPages, catId, subCat, size){
     const el = document.getElementById("pager");
     el.innerHTML = `
         <button id="prev-page" type="button" ${page <= 0 ? "disabled" : ""} aria-label="Previous page">Prev</button>
-        <span>Page ${totalPages ? page + 1 : 0} of ${totalPages}</span>
+        <span class="pager-font">Page ${totalPages ? page + 1 : 0} of ${totalPages}</span>
         <button id="next-page" type="button" ${page >= totalPages - 1 ? "disabled" : ""} aria-label="Next page">Next</button>
     `;
     const prevBtn = el.querySelector("#prev-page");

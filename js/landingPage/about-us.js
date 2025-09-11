@@ -18,6 +18,7 @@ function initMenuFeaturedImages(){
 
     menuFeaturedImages.forEach(imgPath => {
         const img = document.createElement("img");
+        img.classList.add("imgs")
         img.src = imgPath;
         gridContainer.appendChild(img);
     });

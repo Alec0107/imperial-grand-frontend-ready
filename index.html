@@ -39,9 +39,9 @@
                     </h1>
                     
                     <p>
-                      Welcome to Imperial Grand Cantonese — where timeless Cantonese flavors meet modern dining. 
-                      Experience handcrafted dim sum, signature seafood, and exquisite banquet dishes prepared 
-                      by our master chefs. From family gatherings to elegant events, we serve tradition with a touch of luxury.
+                    Imperial Grand Cantonese Cuisine offers classic flavors with refined style. 
+                    Savor handcrafted dim sum, fresh seafood, and elegant banquets in a 
+                    setting of tradition and luxury.
                     </p>
 
                     <div class="buttons">
@@ -81,7 +81,7 @@
                   lasting impression.
                   </p>
 
-                  <button class="reusable-btn menu-cta">VIEW MENU</button>
+                  <button class="reusable-btn menu-cta" onclick="window.location.href='/pages/Menu/menu.html'">VIEW MENU</button>
                 </div>
               </div>
 
@@ -169,12 +169,15 @@
 
 
 
+
     <script src="/js/partialsJs/include-partials.js"></script>    
     <script src="/js/partialsJs/navbar.js"></script>
     
     <script src="/js/landingPage/about-us.js"></script>     
-    <script src="/js/landingPage/our-story.js"></script>     
+    <script type="module" src="/js/landingPage/our-story.js" defer></script>     
     <script src="/js/landingPage/landing-page.js"></script>     
+
+    <!-- for animation js (intersection observer) -->
     </body>
  
 </html>

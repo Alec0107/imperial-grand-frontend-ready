@@ -1,7 +1,7 @@
 .menu-container{
     height: auto;
     background-color: #FFF8E1;
-    padding: 50px;
+    padding: 0px 50px 50px;
 }
 
 .menu-header{
@@ -34,14 +34,19 @@
     width: 100%;
 
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 0px auto;
 
     display: flex;
     flex-direction: row;
 }
 
 /* Hide the filter button on desktop */
-.filter-btn { display: none; }
+.filter-btn { 
+    display: none;
+    font-family: var(--font-body);
+    color: black;
+    font-size: var(--font-xsm);
+}
 
 .sidebar{
     height: auto;
@@ -247,11 +252,11 @@
         gap: .5rem;
         align-self: flex-end;
         padding: 8px 12px;
-        border: 1px solid var(--button-color-3);
+        border: none;
         background: transparent;
         font: inherit;
         cursor: pointer;
-
+        font-family: var(--font-body);
     } 
 
 
