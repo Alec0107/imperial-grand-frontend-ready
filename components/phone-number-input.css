@@ -1,8 +1,5 @@
 /* ---- intl-tel-input final fixes ---- */
-.iti { 
-  position: relative; 
-  display: block; 
-  width: 100%; }
+.iti { position: relative; display: block; width: 100%; }
 
 /* Keep the flag + dial code sitting INSIDE the input, not above it */
 .iti__flag-container {
@@ -24,34 +21,24 @@
 /* Make sure the dial code sits inline, not as a block on a new line */
 .iti__selected-dial-code { display: inline-block !important; }
 
-.iti__country-list {
-  font-size: 14px !important;
-  font-weight: normal;
+.iti__country-list{
+
 }
 
 /* Country list behavior */
 .iti__country-list.iti__hide { display: none !important; }
-.iti__flag-container {
+.iti__country-list {
   position: absolute !important;
-  top: 0;
-  left: 10px;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-  z-index: 1000000 !important; /* bring above */
-  width: 60px !important;      /* tap target size */
-  height: 100% !important;
-  -webkit-tap-highlight-color: transparent; /* iOS tap fix */
-}
-
-
-.iti, 
-.contact-us-form, 
-.contact-us-content {
-  overflow: visible !important;
+  z-index: 9999;
+  background: #fff;
+  border: 1px solid #ddd;
+  max-height: 220px;
+  overflow-y: auto;
+  font-family: var(--font-body);
+  font-size: 100px;
+  font-weight: 100;
+  padding: 10px;
+  list-style: none;
 }
 
 .iti__country-name, .iti__dial-code{
@@ -67,6 +54,5 @@
 #phone-input {
   padding-left: 50px !important;  /* was 92px, increase until it clears */
 }
-
 
 

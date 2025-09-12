@@ -256,16 +256,11 @@ function validateMessageBox(message){
 }
 
 function initPhoneNumber(){
-  const phoneInput = document.querySelector("#phone-input");
-  if (!phoneInput) return;
-
-  iti = window.intlTelInput(phoneInput, {
-    initialCountry: "sg",        // default to Singapore
-    separateDialCode: true,      // show +65 outside
-    dropdownContainer: document.body, // ✅ fixes mobile dropdown cutoff
+    iti = window.intlTelInput(phoneInput, {
+    initialCountry: "sg", // default to Singapore for you
+    separateDialCode: true, // show +65 outside input
     utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
   });
-  
 }
 
 
