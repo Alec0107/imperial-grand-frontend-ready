@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     initGlobalVar();
     initMobileDrawerAndBackdrop(); /// init sidebar this is for mobile
     fetchAllCategories();
+    
     loadSetMenus(0);
     initSideBarButons();
+
 });
 
 
