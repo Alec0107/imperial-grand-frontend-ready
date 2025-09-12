@@ -1,0 +1,184 @@
+.t-slider{
+    height: auto;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    margin: 0 auto;
+    padding: 40px;
+    max-width: 1500px;
+}
+
+.t-viewport{
+    overflow: hidden;
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 2) Track: horizontal row that will move with transform */
+.t-track {
+  display: flex;          /* slides line up horizontally */
+  transition: transform .45s ease; /* smooth slide animation */
+  will-change: transform; /* hint to browser for performance */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 3) Slide: take full viewport width */
+.t-slide {
+  flex: 0 0 100%;         /* exactly one slide per view */
+  padding: 24px;          /* inner breathing room */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+
+
+/* Card content */
+.t-card {
+  max-width: 650px;
+  background-color: #FFF8E1;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.06);
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* ✨ make it animate smoothly */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.t-card:hover {
+  transform: scale(1.05); /* zoom slightly */
+  box-shadow: 0 12px 36px rgba(0,0,0,.15); /* stronger shadow */
+}
+
+.t-quote {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.t-author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+
+.t-author img {
+  width: 44px; 
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+
+
+
+
+
+
+
+
+.rating-star{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.font{
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    font-weight: 100;
+}
+
+.name-date-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.name{
+    font-weight: 700;
+}
+
+.date{
+    font-size: var(--font-en);
+}
+
+
+
+
+/* HEADER PART **/
+
+.header{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header h2{
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: var(--font-xl);
+    color: var(--text-color-1);
+}
+
+.header p{
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    font-weight: 100;
+}
+
+
+@media (max-width: 768px) {
+
+    .t-slider{
+        padding: 40px;
+    }
+
+
+    .container-c{
+        gap: 20px;
+    }
+
+    .header h2{
+        font-family: var(--font-heading);
+        font-weight: 100;
+        font-size: var(--font-xl-mobile);
+        color: var(--text-color-1);
+        text-align: center;
+    }
+
+    .header p{
+
+    }
+
+    .t-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .t-slide {
+        padding: 0px;          /* inner breathing room */
+        margin-top: 20px;
+    }
+}

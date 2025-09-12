@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="css/landingPage/view-menu.css">
   <link rel="stylesheet" href="css/landingPage/taste-of-tradition.css">
   <link rel="stylesheet" href="css/landingPage/contact-us.css">
+  <link rel="stylesheet" href="css/landingPage/testimonials.css">
 
 </head>
 
@@ -163,6 +164,67 @@
                   </div>
               </div>
           </section>
+
+
+          <section class="t-slider" aria-label="Testimonials">
+
+            <!-- 1) Viewport -->
+            <div class="t-viewport">
+              
+              <!-- 2) Track (we’ll slide this left/right later with JS) -->
+
+              <div class="header">
+                   <h2>TESTIMONIALS</h2>
+                   <p>"What our guests are saying about Imperial Grand Cantonese Cuisine"</p>
+              </div>
+
+
+
+              <ul class="t-track" role="list">
+
+                <!-- 3) Slides (one per testimonial) -->
+                <li class="t-slide">
+                  <figure class="t-card">
+
+                    <blockquote class="t-quote font">
+                      "The food and service here have been consistently excellent over the years. 
+                      We recently celebrated a birthday in a private room with karaoke, 
+                      and everyone—from young to old—had a fantastic time. Highly recommended 
+                      for family gatherings!"
+                    </blockquote>
+
+                    <div class="rating-star">
+                      <svg width="25px" height="25px" viewBox="0 0 33.00 33.00" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#DBB741" stroke="#DBB741"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools --> <title>star</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Vivid.JS" stroke-width="0.00033" fill="none" fill-rule="evenodd"> <g id="Vivid-Icons" transform="translate(-903.000000, -411.000000)" fill="#DBB741"> <g id="Icons" transform="translate(37.000000, 169.000000)"> <g id="star" transform="translate(858.000000, 234.000000)"> <g transform="translate(7.000000, 8.000000)" id="Shape"> <polygon points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22"> </polygon> </g> </g> </g> </g> </g> </g></svg>
+                    <svg width="25px" height="25px" viewBox="0 0 33.00 33.00" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#DBB741" stroke="#DBB741"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools --> <title>star</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Vivid.JS" stroke-width="1.584" fill="none" fill-rule="evenodd"> <g id="Vivid-Icons" transform="translate(-903.000000, -411.000000)" fill="#ffffff"> <g id="Icons" transform="translate(37.000000, 169.000000)"> <g id="star" transform="translate(858.000000, 234.000000)"> <g transform="translate(7.000000, 8.000000)" id="Shape"> <polygon points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22"> </polygon> </g> </g> </g> </g> </g> </g></svg>
+                    </div>
+
+                    <figcaption class="t-author">
+
+                      <img src="/img/testimonials/CTY.JPEG">
+
+                      <div class="">
+                        <strong class="font">Jamie Lee</strong>
+                        <div class="t-meta font">September 21, 2025</div>
+                      </div>
+
+                    </figcaption>
+
+                  </figure>
+                </li>
+
+            
+
+                <!-- Add more .t-slide items as needed -->
+              </ul>
+            </div>
+
+            <!-- Optional controls (we’ll wire later) -->
+            <!-- <div class="t-controls">
+              <button class="t-btn" data-prev aria-label="Previous">‹</button>
+              <div class="t-dots" aria-label="Slide dots"></div>
+              <button class="t-btn" data-next aria-label="Next">›</button>
+            </div> -->
+        </section>
           
   
           <div data-include="/pages/partial/footer.html"></div>
@@ -175,7 +237,9 @@
     
     <script src="/js/landingPage/about-us.js"></script>     
     <script type="module" src="/js/landingPage/our-story.js" defer></script>     
-    <script src="/js/landingPage/landing-page.js"></script>     
+    <script src="/js/landingPage/landing-page.js"></script>  
+    
+    <script src="/js/landingPage/testimonials.js"></script>
 
     <!-- for animation js (intersection observer) -->
     </body>
