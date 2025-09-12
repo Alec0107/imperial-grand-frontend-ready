@@ -103,9 +103,19 @@
 @media (max-width: 768px) {
   
   .modal__card{
-      margin-top: 70px;
-      max-height: 100vh;
-      padding: 20px;
-      max-width: 360px;
+    position: absolute;   /* take it out of normal flow */
+    top: 50%;             /* push it down halfway */
+    left: 50%;            /* push it right halfway */
+    transform: translate(-50%, -50%); /* pull it back by half its own size */
+
+    margin: 0;            /* reset desktop margin */
+    padding: 20px;
+    max-width: 315px;
+    max-height: 85%;      /* still scrollable inside */
+    width: 90%;           /* so it doesn’t stretch edge-to-edge */
+  }
+
+  #pager span{
+    font-size: 10px;
   }
 }
