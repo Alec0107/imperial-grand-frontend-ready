@@ -25,21 +25,27 @@
 .iti__selected-dial-code { display: inline-block !important; }
 
 .iti__country-list {
-  position: absolute !important;
-  z-index: 999999 !important;
-  background: #fff;
-  border: 1px solid #ddd;
-  max-height: 220px;
-  overflow-y: auto;
-  font-family: var(--font-body);
   font-size: 14px !important;
-  line-height: 1.4;
-  padding: 10px;
-  list-style: none;
+  font-weight: normal;
 }
 
 /* Country list behavior */
 .iti__country-list.iti__hide { display: none !important; }
+.iti__flag-container {
+  position: absolute !important;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  z-index: 1000000 !important; /* bring above */
+  width: 60px !important;      /* tap target size */
+  height: 100% !important;
+  -webkit-tap-highlight-color: transparent; /* iOS tap fix */
+}
 
 
 .iti, 
@@ -64,10 +70,3 @@
 
 
 
-@media (max-width: 768px) {
-  .iti__country-list {
-    max-height: 300px;     /* scrollable but contained */
-    overflow-y: auto;
-    font-size: 14px !important;
-  }
-}
