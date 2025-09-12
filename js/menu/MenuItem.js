@@ -1,10 +1,12 @@
 import { API } from "../APIurl/api.js";
 import { truncate } from "./setMenu.js";
+import { openContentLoader, closeContentLoader } from "./categories.js";
 
 
 
 export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12){
 
+    openContentLoader();
     const url = API.menuItems.fetchMenuItems; // <-- items endpoint
     const qs = new URLSearchParams({ categoryId, page, size });
     if (subcategoryId) qs.append("subcategoryId", subcategoryId);
@@ -27,18 +29,20 @@ export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, 
         const data = await res.json();
         console.log(data);
 
-        renderMenuItemsCard(data.content || []);
-        renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
+        // renderMenuItemsCard(data.content || []);
+        // renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
 
         // get the images and put in an array
-        // const imgUrlArr = data.content.map(it => it.imageUrl);
+        const imgUrlArr = data.content.map(it => it.imageUrl);
 
-        // console.log(imgUrlArr);
-        // preloadMenuItemImages(imgUrlArr, ()=>{
-        //     console.log("Done initializing images.")
-        //     renderMenuItemsCard(data.content || []);
-        //     renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
-        // })
+
+        console.log(imgUrlArr);
+        preloadMenuItemImages(imgUrlArr, ()=>{
+            console.log("Done initializing images.")
+            closeContentLoader();
+            renderMenuItemsCard(data.content || []);
+            renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
+        })
 
 
         /**TODO:
@@ -49,6 +53,7 @@ export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, 
 
     }catch(err){
         console.log("err fetching menu item: " + err);
+        closeContentLoader();
     }
 
 

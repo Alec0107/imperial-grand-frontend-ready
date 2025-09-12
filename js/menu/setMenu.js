@@ -1,10 +1,12 @@
 import { API } from "../APIurl/api.js";
+import { openContentLoader, closeContentLoader } from "./categories.js";
 
 let cacheBySlug = new Map();
 let currentPage = 0;
 
 
 export async function loadSetMenus(page = 0){
+    openContentLoader();
     const url = API.setmenus.fetchAll;
     const payload = {
         method: "GET",
@@ -29,6 +31,8 @@ export async function loadSetMenus(page = 0){
         // cache the page's items
         result.content.forEach(it => cacheBySlug.set(it.slug, it));
 
+        closeContentLoader();
+
         renderSetMenuCard(result.content)
         renderPager(result.number, result.totalPages);
 
@@ -44,6 +48,7 @@ export async function loadSetMenus(page = 0){
 
     }catch(err){
         console.log("Error " + err);
+        closeContentLoader();
     }
 }
 

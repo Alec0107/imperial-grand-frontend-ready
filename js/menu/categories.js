@@ -8,6 +8,8 @@ let categoriesState = []
 let backdrop;
 let openBtn;
 
+let contentLoader;
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Fetching Categories...");
     initGlobalVar();
@@ -21,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initGlobalVar(){
     backdrop = document.querySelector(".backdrop");
     openBtn = document.getElementById("filter-open");
+    contentLoader = document.querySelector(".content-loader");
 }
 
 
@@ -181,6 +184,7 @@ function initSideBarButons(){
 
             if (catSlug === "set-menus") {
             closeDrawer();
+            
             loadSetMenus(0);
             return;
             }
@@ -194,6 +198,7 @@ function initSideBarButons(){
 
             const { categoryId } = mapSlugsToIds(catSlug, null);
             closeDrawer();
+
             loadMenuItems(categoryId, null, 0, 12);
         }
 
@@ -235,4 +240,19 @@ function openDrawer(){
 
 function closeDrawer(){
     document.body.classList.remove('filter-open');
+}
+
+
+
+
+
+
+export function openContentLoader(){
+    console.log("Loading..")
+    contentLoader.classList.add("show");
+}
+
+export function closeContentLoader(){
+    console.log("CLosing laoding screen...")
+    contentLoader.classList.remove("show");
 }
