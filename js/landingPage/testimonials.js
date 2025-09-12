@@ -11,8 +11,8 @@ const testimonials = [
 },
 
   { text:
-    `A hidden gem in the Farrer Park area. Every dish we tried was a hit, and 
-    the prices are very reasonable for the quality. Definitely worth discovering!`, 
+    `"A hidden gem in the Farrer Park area. Every dish we tried was a hit, and 
+    the prices are very reasonable for the quality. Definitely worth discovering!"`, 
     name: "Chia T.Y.",
     ratings: 5,
     date: "September 2025",
@@ -20,9 +20,9 @@ const testimonials = [
 },
 
   { text: `
-    We celebrated a birthday here and were so impressed. The Peking Duck was 
+    "We celebrated a birthday here and were so impressed. The Peking Duck was 
     outstanding, and the staff gave wonderful recommendations. The service, food, 
-    and atmosphere were all top-notch—perfect for family celebrations!`, 
+    and atmosphere were all top-notch—perfect for family celebrations!"`, 
     name: "Sky S.",
     ratings: 5,
     date: "April 2025",

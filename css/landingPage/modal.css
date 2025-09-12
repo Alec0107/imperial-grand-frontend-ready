@@ -42,8 +42,8 @@
 /* close button */
 .modal__close {
   position: absolute; top: 8px; right: 10px;
-  border: 0; background: transparent; color: #fff;
-  font-size: 22px; cursor: pointer; line-height: 1;
+  border: 0; background: transparent; color: var(--text-color-1);
+  font-size: 30px; cursor: pointer; line-height: 1;
   opacity: .7;
 }
 .modal__close:hover { opacity: 1; }
@@ -97,4 +97,15 @@
     font-family: var(--font-body);
     font-size: var(--font-en);
     font-weight: 100;
+}
+
+
+@media (max-width: 768px) {
+  
+  .modal__card{
+      margin-top: 70px;
+      max-height: 100vh;
+      padding: 20px;
+      max-width: 360px;
+  }
 }
