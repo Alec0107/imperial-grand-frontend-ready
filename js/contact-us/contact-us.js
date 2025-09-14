@@ -1,3 +1,4 @@
+import { API } from "../APIurl/api";
 
 
 let dropdownBtn;
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     initSendMessageBtn();
     initPhoneNumber();
     inputCleanUp();
+
 });
 
 
@@ -316,3 +318,5 @@ function lockScroll() {
 function unlockScroll() {
   document.body.style.overflow = "";        // restore default scroll
 }
+
+

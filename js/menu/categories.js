@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadSetMenus(0);
     initSideBarButons();
 
+    fetchMenuById();
 });
 
 
@@ -257,4 +258,32 @@ export function openContentLoader(){
 export function closeContentLoader(){
     console.log("CLosing laoding screen...")
     contentLoader.classList.remove("show");
+}
+
+
+async function fetchMenuById(){
+    console.log("Fetching id....")
+    const url = API.menuItems.fetchMenuById;
+
+    const payload = {
+        method: "GET",
+        headers: {
+            Accept: "application/json"
+        }
+    }
+
+    try{
+
+        const response = await fetch(`${url}?id=${2}`, payload);
+        const result  = await response.json();
+        console.log(response);
+        console.log(result);
+
+        // if(!response.ok){
+        //     throw new Error()
+        // }
+
+    }catch(err){
+        console.log(err)
+    }
 }
