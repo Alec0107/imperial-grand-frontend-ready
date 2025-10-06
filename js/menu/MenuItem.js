@@ -28,7 +28,7 @@ export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, 
             }
 
         const data = await res.json();
-        console.log(data);
+        console.log(data);  
         
         closeContentLoader();
         renderMenuItemsCard(data.content || []);

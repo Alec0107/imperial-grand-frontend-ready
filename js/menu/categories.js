@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadSetMenus(0);
     initSideBarButons();
 
-    fetchMenuById();
+    // fetchMenuById();
 });
 
 

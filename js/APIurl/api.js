@@ -1,6 +1,6 @@
 const LOCALHOST_BASE_URL = "http://localhost:8080";
 const LOCALHOST_BASE_URL2 = "https://imperialgrand-backend-ready-production.up.railway.app"
-// const LOCALHOST_BASE_URL2 = "http://127.0.0.1:8080"
+//const LOCALHOST_BASE_URL2 = "http://127.0.0.1:8080"
 export const API = {
     authentication: {
         login: `${LOCALHOST_BASE_URL}/api/v1/auth/login`,
