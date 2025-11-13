@@ -129,3 +129,19 @@
     color: var(--text-color-7);
     text-decoration: none;
 }
+
+
+.overlay-bg{
+  top: 0;
+  left: 0;
+}
+
+.loading-modal{
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+
+  
+}

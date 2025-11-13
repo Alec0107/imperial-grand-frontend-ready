@@ -1,0 +1,116 @@
+:root{
+  --ig-bg:#f7f7f8;
+  --ig-card:#ffffff;
+  --ig-text:#1f1f1f;
+  --ig-muted:#6b6b6b;
+  --ig-border:#e8e8e8;
+  --ig-accent:#d4b300;
+  --ig-radius:16px;
+  --ig-shadow:0 14px 40px rgba(0,0,0,.08);
+}
+
+/* Center the content nicely within the right pane */
+.acc-shell{
+  min-height: calc(100vh - 120px);
+  display: grid;
+  place-items: start center;
+  padding: 36px 20px 64px;
+  background: transparent; /* your page bg shows */
+}
+
+/* Card */
+.acc-card{
+  width: min(720px, 92vw);
+  background: var(--ig-card);
+  border-radius: var(--ig-radius);
+  box-shadow: var(--ig-shadow);
+  padding: 26px 28px 22px;
+  border: 1px solid var(--ig-border);
+}
+
+.acc-h2{
+  margin: 0 0 16px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing:.2px;
+  color: var(--ig-text);
+}
+
+/* Two-column info grid */
+.acc-grid{
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  row-gap: 14px;
+  column-gap: 18px;
+  align-items: center;
+}
+
+.acc-label{
+  color: var(--ig-muted);
+  font-weight: 600;
+}
+
+.acc-value{
+  color: var(--ig-text);
+  font-size: 15px;
+}
+
+/* Divider spanning both columns */
+.acc-divider{
+  grid-column: 1 / -1;
+  height: 1px;
+  background: var(--ig-border);
+  margin: 6px 0;
+}
+
+/* Date input */
+.acc-input{
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--ig-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--ig-text);
+  background: #fff;
+  outline: none;
+  transition: box-shadow .15s, border-color .15s;
+}
+.acc-input:focus{
+  border-color: var(--ig-accent);
+  box-shadow: 0 0 0 3px rgba(212,179,0,.16);
+}
+.acc-hint{
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ig-muted);
+}
+
+/* Button */
+.acc-btn{
+  margin-top: 18px;
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: var(--ig-accent);
+  color: #1b1807;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform .05s ease, filter .15s ease;
+}
+.acc-btn:hover{ filter: brightness(.97); }
+.acc-btn:active{ transform: translateY(1px); }
+
+.acc-msg{
+  margin-top: 10px;
+  font-size: 13px;
+  color: #2e7d32; /* green success */
+}
+
+/* Responsive tweak */
+@media (max-width: 560px){
+  .acc-grid{ grid-template-columns: 1fr; }
+  .acc-label{ margin-top: 6px; }
+}

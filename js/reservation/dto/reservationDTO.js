@@ -1,7 +1,7 @@
 export const ReservationFirstStep = {
     date: "",
     time: "",
-    guestCount: 0
+    partySize: 0
 }
 
 export const UserPreferencesObject = {

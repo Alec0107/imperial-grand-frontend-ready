@@ -187,7 +187,6 @@ function initSideBarButons(){
 
             if (catSlug === "set-menus") {
             closeDrawer();
-            
             loadSetMenus(0);
             return;
             }

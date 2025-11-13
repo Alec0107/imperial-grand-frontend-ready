@@ -1,38 +1,64 @@
+
+
 /* ---- intl-tel-input final fixes ---- */
-.iti { position: relative; display: block; width: 100%; }
+.iti { 
+  position: relative; 
+  display: block; 
+  width: 100%; 
+}
 
 /* Keep the flag + dial code sitting INSIDE the input, not above it */
 .iti__flag-container {
-  position: absolute !important;
-  top: 0; left: 10px; bottom: 0;
+  width: 100%;
+
+  position: absolute 
+  !important;
+  top: 0; 
+  left: 0; 
+  bottom: 0;
+  right: 0;
   display: flex;
   align-items: center;     /* vertically center flag/dial code */
   cursor: pointer;
+
 }
 
 /* Give the input space on the left for flag + dial code */
-.iti--separate-dial-code input[type="tel"],
-.iti input[type="tel"] {
-  padding-left: 92px !important;   /* adjust if it feels tight */
+.iti--separate-dial-code input[type="tel"], .iti input[type="tel"] {
+  padding-left: 40px !important;   /* adjust if it feels tight */
   height: 44px;                     /* match your input height */
   line-height: 44px;                /* keeps text vertically centered */
+      font-size: 0.7rem;
+}
+
+.iti__selected-flag{
+  width: 100%;
+  max-width: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Make sure the dial code sits inline, not as a block on a new line */
-.iti__selected-dial-code { display: inline-block !important; }
-
-.iti__country-list{
-
+.iti__selected-dial-code { 
+  display: inline-block !important; 
+  font-size: 0.7rem;
+  border-right: 1px solid black;
+  width: 100%;
+  margin-left: 15px;
 }
 
 /* Country list behavior */
-.iti__country-list.iti__hide { display: none !important; }
+.iti__country-list.iti__hide { 
+  display: none; 
+}
 .iti__country-list {
   position: absolute !important;
   z-index: 9999;
   background: #fff;
   border: 1px solid #ddd;
   max-height: 220px;
+  width: 100%;
   overflow-y: auto;
   font-family: var(--font-body);
   font-size: 100px;
@@ -51,8 +77,8 @@
 
 
 /* Adjust only the phone input */
-#phone-input {
-  padding-left: 50px !important;  /* was 92px, increase until it clears */
+#phone{
+  max-height: 30px;
+  min-height: 30px;
+
 }
-
-

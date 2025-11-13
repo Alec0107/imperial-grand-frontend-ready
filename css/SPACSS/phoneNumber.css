@@ -1,0 +1,13 @@
+.iti {
+  width: 100%;
+  height: auto;
+}
+
+
+.iti__country-list, .iti__country-list--dropup, .iti__hide{
+    display: hidden;
+}
+
+.iti__flag-container{
+    display: hidden;
+}

@@ -4,63 +4,93 @@ import { openContentLoader, closeContentLoader } from "./categories.js";
 
 
 
-export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12){
+// export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12){
 
-    openContentLoader();
+//     openContentLoader();
 
-    const url = API.menuItems.fetchMenuItems; // <-- items endpoint
-    const qs = new URLSearchParams({ categoryId, page, size });
-    if (subcategoryId) qs.append("subcategoryId", subcategoryId);
-    const payload = {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-        },
-    }
+//     const url = API.menuItems.fetchMenuItems; // <-- items endpoint
+//     const qs = new URLSearchParams({ categoryId, page, size });
+//     if (subcategoryId) qs.append("subcategoryId", subcategoryId);
+//     const payload = {
+//         method: "GET",
+//         headers: {
+//             "Accept": "application/json",
+//         },
+//     }
 
 
 
-    try{
-        const res = await fetch(`${url}?${qs.toString()}`, { headers: { Accept: "application/json" } });
-        if (!res.ok) {
+//     try{
+//         const res = await fetch(`${url}?${qs.toString()}`, { headers: { Accept: "application/json" } });
+//         if (!res.ok) {
            
-             return; 
-            }
+//              return; 
+//             }
 
-        const data = await res.json();
-        console.log(data);  
+//         const data = await res.json();
+//         console.log(data);  
         
-        closeContentLoader();
-        renderMenuItemsCard(data.content || []);
-        renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
+//         closeContentLoader();
+//         renderMenuItemsCard(data.content || []);
+//         renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
 
-        // get the images and put in an array
-        // const imgUrlArr = data.content.map(it => it.imageUrl);
-
-
-        // console.log(imgUrlArr);
-        // preloadMenuItemImages(imgUrlArr, ()=>{
-        //     console.log("Done initializing images.")
-        //     closeContentLoader();
-        //     renderMenuItemsCard(data.content || []);
-        //     renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
-        // })
+//         // get the images and put in an array
+//         // const imgUrlArr = data.content.map(it => it.imageUrl);
 
 
-        /**TODO:
-         * 
-         * if catid === 2 (which is the ala carte render a diff card)
-         * 
-         */
+//         // console.log(imgUrlArr);
+//         // preloadMenuItemImages(imgUrlArr, ()=>{
+//         //     console.log("Done initializing images.")
+//         //     closeContentLoader();
+//         //     renderMenuItemsCard(data.content || []);
+//         //     renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 1, categoryId, subcategoryId, size);
+//         // })
 
-    }catch(err){
-        console.log("err fetching menu item: " + err);
-        closeContentLoader();
+
+//         /**TODO:
+//          * 
+//          * if catid === 2 (which is the ala carte render a diff card)
+//          * 
+//          */
+
+//     }catch(err){
+//         console.log("err fetching menu item: " + err);
+//         closeContentLoader();
+//     }
+
+
+// }
+
+
+export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12) {
+  openContentLoader();
+
+  try {
+    const qs = new URLSearchParams({ categoryId, page, size });
+    // only append if truly present
+    if (subcategoryId !== null && subcategoryId !== undefined && subcategoryId !== "" && subcategoryId !== "null") {
+      qs.append("subcategoryId", subcategoryId);
     }
 
+    const res = await fetch(`${API.menuItems.fetchMenuItems}?${qs.toString()}`, {
+      headers: { Accept: "application/json" }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
+    // safe parse
+    const txt = await res.text();
+    const data = txt ? JSON.parse(txt) : { content: [], totalPages: 0, number: 0 };
+
+    renderMenuItemsCard(data.content || []);
+    renderMenuItemsPager(data.number ?? 0, data.totalPages ?? 0, categoryId, subcategoryId, size);
+  } catch (err) {
+    console.error("Error fetching menu items:", err);
+    renderMenuItemsCard([]); // show empty state
+    renderMenuItemsPager(0, 0, categoryId, subcategoryId, size);
+  } finally {
+    closeContentLoader();
+  }
 }
-
 
 function renderMenuItemsCardAlaCarte(items){
     const grid = document.getElementById("content-grid");

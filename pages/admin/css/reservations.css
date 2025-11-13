@@ -1,0 +1,50 @@
+/* ===== Reservations Page (scoped) ===== */
+.reservations-page{max-width:1100px;margin:0 auto;}
+.res-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.res-header h1{font-size:24px;font-weight:700;margin:0;}
+.res-header .actions{display:flex;gap:8px;}
+.res-header .actions button{background:#fff;border:1px solid #ddd;border-radius:10px;padding:8px 12px;font-size:14px;cursor:pointer;}
+.res-header .actions button:hover{background:#f5f5f5;}
+
+.res-tabs{display:flex;gap:8px;margin:12px 0 16px;}
+.res-tabs .tab{border:1px solid #ddd;background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;}
+.res-tabs .tab:hover{background:#f7f7f7;}
+.res-tabs .tab.active{background:#111;color:#fff;border-color:#111}
+
+/* ===== Grouped by Date ===== */
+.res-day{margin-bottom:18px;}
+.res-day__title{font-weight:700;font-size:16px;margin:0 0 8px;}
+.res-day__grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:12px;
+}
+
+/* ===== Reservation Card ===== */
+.res-card{
+  background:#fff;border-radius:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  padding:14px;transition:transform .15s ease, box-shadow .15s ease;
+}
+.res-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08);}
+.res-card__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.res-card__title{font-size:15px;font-weight:600;}
+.res-badge{
+  font-size:11px;text-transform:uppercase;letter-spacing:.3px;
+  padding:4px 8px;border-radius:999px;background:#eef4ff;color:#214497;
+}
+.res-card__row{font-size:13px;color:#333;margin:4px 0;}
+
+/* Actions */
+.res-card__actions{display:flex;gap:8px;margin-top:10px;}
+.res-card__actions .btn-view,
+.res-card__actions .btn-cancel{
+  border:1px solid #ddd;background:#fff;border-radius:10px;
+  padding:6px 10px;font-size:13px;cursor:pointer;
+}
+.res-card__actions .btn-view:hover{background:#f5f5f5;}
+.res-card__actions .btn-cancel{border-color:#f1c9c9;color:#b32121;background:#fff5f5;}
+.res-card__actions .btn-cancel:hover{background:#ffe9e9;}
+
+/* Empty state */
+#res-list .empty{text-align:center;padding:40px 0;color:#777;}

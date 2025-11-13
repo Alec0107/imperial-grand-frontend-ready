@@ -2,6 +2,7 @@
 <html>
     <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="img/logo.png" type="image/png">
     <title>Imperial Grand</title>
         
@@ -14,10 +15,10 @@
     <link rel="stylesheet" href="../../components/reusable-buttons.css">
     <link rel="stylesheet" href="../../css/reservation/step-2.css">
     <link rel="stylesheet" href="../../css/reservation/step-3.css">
+     <link rel="stylesheet" href="../../css/reservation/success.css">
     <link rel="stylesheet" href="../../css/reservation/loading-screen-ui/loading-ui.css">
     <link rel="stylesheet" href="../../css/authentication/auth-common.css">  <!-- used for login as guest fields -->
     <link rel="stylesheet" href="../../css/reservation/reservation-header__back-nav.css">
-
 
       <!-- CSS plugin -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
@@ -27,35 +28,7 @@
 
     <body>
 
-            <header class="navbar">
-
-              <div id="logo">
-
-                <img class="logo-image" src="../../img/logo.png">
-                <div class="text-container">
-                  <h1 class="title">Imperial Grand</h1>
-                  <p class="subtitle">Cantonese Cuisine</p>
-                </div>
-                
-              </div>
-
-              <nav class="nav-links"> 
-                    <ul>
-                      <li><a><span>Home</span></a></li>
-                       <li><a><span>Our Story</span></a></li>
-                       <li><a><span>Menu</span></a></li>
-                       <li><a><span>Reserve</span></a></li>
-                       <li><a><span>Contact Us</span></a></li>
-                    </ul>
-              </nav>
-
-              <div id="auth-link">
-                  <a href="pages/authentication/auth.html?authType=login"><button class="auth-btn" id="login-btn">Login</button></a>
-                  <a href="pages/authentication/auth.html?authType=signup"><button class="auth-btn" id="signup-btn">Sign up</button></a>
-              </div>
-          </header>
-
-
+          <div data-include="/pages/partial/navbar.html"></div>
 
           <div class="reservation">
 
@@ -343,7 +316,14 @@
             <!-- Step 3: Optional (if user isn't logged in)-->
             <section class="reservation-step reservation-step-3" id="step3">
 
-              <form class="reservation-step-3-form font">
+              <div class="overlay-bg"></div>
+
+              <div class="loading-modal font">
+                  <div class="spin-loader-reservation"></div>
+                  <p></p>
+              </div>
+
+              <form class="reservation-step-3-form font" id="reservation-form-step3">
 
                   <h2>Your Information</h2>
                   <p>Log in for faster checkout:</p>
@@ -359,29 +339,29 @@
                   <div class="simple-divider font">Or continue as a guest</div>
 
                   <div class="input-group">
-                    <label for="firstName">First Name*</label>
-                    <input id="firstName" type="text" placeholder="First Name" />
+                    <label for="guest-firstName">First Name*</label>
+                    <input id="guest-firstName" type="text" placeholder="First Name" />
                     <svg class="error-icon" width="15px" height="15px" viewBox="0 0 48.00 48.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000" stroke-width="2.496"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M23.0886 4.55328C23.457 3.81558 24.5096 3.81557 24.878 4.55327L43.86 42.5692C44.192 43.234 43.7084 44.0159 42.9653 44.0159H5.00129C4.25814 44.0159 3.77464 43.234 4.10662 42.5692L23.0886 4.55328ZM21 18C21 16.3431 22.3431 15 24 15C25.6569 15 27 16.3431 27 18V29C27 30.6569 25.6569 32 24 32C22.3431 32 21 30.6569 21 29V18ZM23.9663 34C22.3281 34 21 35.3281 21 36.9663C21 38.6045 22.3281 39.9326 23.9663 39.9326H24.0337C25.6719 39.9326 27 38.6045 27 36.9663C27 35.3281 25.6719 34 24.0337 34H23.9663Z" fill="#ff0000"></path> </g></svg>
                     <span class="error-message" id="firstName-error" class="error-message"></span>
                   </div>
 
                   <div class="input-group">
-                    <label for="lastName">Last Name*</label>
-                    <input id="lastName" type="text" placeholder="Last Name" />
+                    <label for="guest-lastName">Last Name*</label>
+                    <input id="guest-lastName" type="text" placeholder="Last Name" />
                     <svg class="error-icon" width="15px" height="15px" viewBox="0 0 48.00 48.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000" stroke-width="2.496"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M23.0886 4.55328C23.457 3.81558 24.5096 3.81557 24.878 4.55327L43.86 42.5692C44.192 43.234 43.7084 44.0159 42.9653 44.0159H5.00129C4.25814 44.0159 3.77464 43.234 4.10662 42.5692L23.0886 4.55328ZM21 18C21 16.3431 22.3431 15 24 15C25.6569 15 27 16.3431 27 18V29C27 30.6569 25.6569 32 24 32C22.3431 32 21 30.6569 21 29V18ZM23.9663 34C22.3281 34 21 35.3281 21 36.9663C21 38.6045 22.3281 39.9326 23.9663 39.9326H24.0337C25.6719 39.9326 27 38.6045 27 36.9663C27 35.3281 25.6719 34 24.0337 34H23.9663Z" fill="#ff0000"></path> </g></svg>
                     <span class="error-message" id="lastName-error" class="error-message"></span>
                   </div>
 
                   <div class="input-group">
-                    <label for="email">Email Address*</label>
-                    <input id="email" type="text" placeholder="Email Address" />
+                    <label for="guest-email">Email Address*</label>
+                    <input id="guest-email" type="text" placeholder="Email Address" />
                     <svg class="error-icon" width="15px" height="15px" viewBox="0 0 48.00 48.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000" stroke-width="2.496"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M23.0886 4.55328C23.457 3.81558 24.5096 3.81557 24.878 4.55327L43.86 42.5692C44.192 43.234 43.7084 44.0159 42.9653 44.0159H5.00129C4.25814 44.0159 3.77464 43.234 4.10662 42.5692L23.0886 4.55328ZM21 18C21 16.3431 22.3431 15 24 15C25.6569 15 27 16.3431 27 18V29C27 30.6569 25.6569 32 24 32C22.3431 32 21 30.6569 21 29V18ZM23.9663 34C22.3281 34 21 35.3281 21 36.9663C21 38.6045 22.3281 39.9326 23.9663 39.9326H24.0337C25.6719 39.9326 27 38.6045 27 36.9663C27 35.3281 25.6719 34 24.0337 34H23.9663Z" fill="#ff0000"></path> </g></svg>
                     <span class="error-message" id="email-error" class="error-message"></span>
                   </div>
 
                   <div class="input-group">
-                    <label for="phoneNo">Phone Number*</label>
-                    <input id="phoneNo" type="text" placeholder="Phone Number" />
+                    <label for="guest-phoneNo">Phone Number*</label>
+                    <input id="guest-phoneNo" type="text" placeholder="Phone Number" />
                     <svg  class="error-icon" id="phoneNo-icon" width="15px" height="15px" viewBox="0 0 48.00 48.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000" stroke-width="2.496"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M23.0886 4.55328C23.457 3.81558 24.5096 3.81557 24.878 4.55327L43.86 42.5692C44.192 43.234 43.7084 44.0159 42.9653 44.0159H5.00129C4.25814 44.0159 3.77464 43.234 4.10662 42.5692L23.0886 4.55328ZM21 18C21 16.3431 22.3431 15 24 15C25.6569 15 27 16.3431 27 18V29C27 30.6569 25.6569 32 24 32C22.3431 32 21 30.6569 21 29V18ZM23.9663 34C22.3281 34 21 35.3281 21 36.9663C21 38.6045 22.3281 39.9326 23.9663 39.9326H24.0337C25.6719 39.9326 27 38.6045 27 36.9663C27 35.3281 25.6719 34 24.0337 34H23.9663Z" fill="#ff0000"></path> </g></svg>
                     <span class="error-message" id="phoneNo-error" class="error-message"></span>
                   </div>
@@ -402,6 +382,19 @@
 
             </section>  
 
+            <div class="overlay-bg" id="success-overlay"></div>
+
+          <div class="success-modal show font" id="reservation-success" role="dialog" aria-modal="true" aria-labelledby="success-title" aria-describedby="success-desc">
+            <div class="success-card">
+               <svg class="success-icon" width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#23a121"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#23a121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#23a121" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+              <h2 id="success-title">Reservation Confirmed</h2>
+              <p id="success-desc">We’ve sent your reservation details to your email.</p>
+              <!-- Optional tiny line: <p class="muted">Ref: #123456</p> -->
+              <button id="success-ok" >OK</button>
+            </div>
+          </div>
+
+
 
           </div>
 
@@ -410,7 +403,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
 
-        <script type="module" src="../../js/reservation/reservation.js" defer></script>
+        <script src="/js/partialsJs/include-partials.js"></script>    
+        <script type="module" src="/js/partialsJs/navbar.js"></script>
+
+        <script type="module" src="../../js/reservation/reservation.js" defer></script> 
     </body>
 
 </html>

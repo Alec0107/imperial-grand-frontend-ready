@@ -215,6 +215,7 @@ function initNumberOfGuestSelector(){
 
 
 function openGuestDropdown(){
+    guestDropdown.querySelector(".dropdown-arrow").classList.add("rotate");
     const ulOptionsGuest = guestDropdown.querySelector(".options");
     ulOptionsGuest.classList.add("open");
     iterateListOfGuestNumber();
@@ -222,6 +223,7 @@ function openGuestDropdown(){
 }
 
 function closeGuestDropdown(){
+    guestDropdown.querySelector(".dropdown-arrow").classList.remove("rotate");
     const ulOptionsGuest = guestDropdown.querySelector(".options");
     ulOptionsGuest.classList.remove("open");
     isGuestDropDownOpen = false;
@@ -231,7 +233,7 @@ function iterateListOfGuestNumber(){
     guestOptions.querySelectorAll("li").forEach((liEl) => {
         liEl.addEventListener("click", function(){
             const guest = this.getAttribute("data-value");
-            ReservationFirstStep.guestCount = guest; 
+            ReservationFirstStep.partySize = guest; 
             guestSpan.textContent = liEl.textContent;
             console.log(`Guest: ${guest}`);
         })
@@ -253,6 +255,7 @@ function initTimeSelector(){
 
 
 function openTimeDropdown(){
+    timeDropdown.querySelector(".dropdown-arrow").classList.add("rotate");
     const ulOptionsGuest = timeDropdown.querySelector(".options");
     ulOptionsGuest.classList.add("open");
     iterateListOfTime();
@@ -260,6 +263,7 @@ function openTimeDropdown(){
 }
 
 function closeTimeDropdown(){
+     timeDropdown.querySelector(".dropdown-arrow").classList.remove("rotate");
     const ulOptionsGuest = timeDropdown.querySelector(".options");
     ulOptionsGuest.classList.remove("open");
     isTimeDropDownOpen = false;

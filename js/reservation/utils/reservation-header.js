@@ -8,26 +8,32 @@ let timeInterval = null;
 export function initReservationSummary(){
 showReservationHeader();
 const reservationLockJson = JSON.parse(localStorage.getItem("reservation-lock"));
+
+console.log(reservationLockJson.data)
+
+
+
+
   
     if(reservationLockJson){
-        const reservation = {
-            date: reservationLockJson.reservationDTO.date,
-            time: reservationLockJson.reservationDTO.time,
-            guests: reservationLockJson.reservationDTO.guestCount
-        }
-
-        const dateTimeString = `${reservation.date}T${reservation.time}`;
-        const dateObj = new Date(dateTimeString);
+        // const reservation = {
+        //     date: reservationLockJson.reservationDTO.date,
+        //     time: reservationLockJson.reservationDTO.time,
+        //     guests: reservationLockJson.reservationDTO.guestCount
+        // }
+        const dateObj = new Date(reservationLockJson.data.reservationStart);
 
         // e.g Wed, 2 Jul
+        // e.g 11:00 AM
+        // e.g 2 guests
         const formattedDate = formatDate(dateObj);
         // e.g 11:00 AM
         const formattedTime = formatTime(dateObj);
         // init the reservation info (date, time, guest count)
-        initReservationInfo(formattedDate, formattedTime, reservation.guests);
+        initReservationInfo(formattedDate, formattedTime, reservationLockJson.data.partySize);
 
         // init reservation lock timer
-        initTimer(reservationLockJson);
+        //initTimer(reservationLockJson);
       
 
 
@@ -88,6 +94,15 @@ function formatTime(dateObj){
     }).format(dateObj);
 }
 
+
+// // Format for UI:
+// const date = new Date(lock.reservationStart);
+// const formattedDate = date.toLocaleDateString('en-US', {
+//   weekday: 'short', day: 'numeric', month: 'short'
+// });
+// const formattedTime = date.toLocaleTimeString('en-US', {
+//   hour: 'numeric', minute: '2-digit', hour12: true
+// });
 
 
 function initTimer(reservationLockJson){

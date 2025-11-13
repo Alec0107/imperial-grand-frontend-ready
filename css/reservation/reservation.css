@@ -178,8 +178,15 @@ html, body {
 
 .dropdown-arrow{
     position: absolute;
-    top: 10%;
+    top: 5%;
     right: 0%;
+    transform: rotate(0deg);
+      transition: transform 0.5s ease; /* smooth effect */
+}
+
+
+.dropdown-arrow.rotate{
+    transform: rotate(180deg);
 }
 
 .book-btn-div{
@@ -256,9 +263,33 @@ html, body {
 
 
 
+@media (max-width: 1115px) {
+
+    .people-time-section{
+        margin-top: 0px;
+    }
+
+    .reservation{
+        margin-top: 120px;
+    }
+
+
+}
 
 
 
+
+@media (max-width: 768px) {
+
+    .reservation{
+        margin-top: 20px;
+    }
+
+    .date-time-people{
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
 
 
 

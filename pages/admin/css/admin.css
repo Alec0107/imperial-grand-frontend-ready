@@ -1,0 +1,295 @@
+/* global reset */
+* { box-sizing:border-box; margin:0; padding:0; }
+
+/* page root */
+html, body {
+  width:100%;
+  min-height:100%;
+  background:#F5F5F5;
+  overflow-x:hidden;
+}
+
+/* shell */
+.user-dashboard{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;
+  background:#fff;
+  border-radius:10px;
+}
+
+/* RIGHT pane (content) */
+.content{
+  flex:1;
+  min-width:0;
+  padding:32px 24px;
+  background:#fff;
+  height:100%;
+  overflow:auto;
+  box-shadow:-2px 0 5px rgba(0,0,0,.06);
+}
+
+
+
+/* --- Drawer --- */
+.cust-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.3);
+  z-index: 40;
+}
+
+.cust-drawer {
+  position: fixed; top: 0; right: 0;
+  height: 100vh; width: 420px;
+  background: #fff;
+  box-shadow: -6px 0 18px rgba(0,0,0,.2);
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  z-index: 41;
+}
+.cust-drawer.show { transform: translateX(0); }
+
+.cust-drawer__header,
+.cust-drawer__footer {
+  padding: 14px 18px; border-bottom: 1px solid #eee;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.cust-drawer__body {
+  padding: 16px 18px; overflow-y:auto;
+  display:grid; gap:12px;
+}
+.cust-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.cust-field label { font-size:12px; color:#555; margin-bottom:4px; display:block; }
+.cust-field input, .cust-field select {
+  width:100%; padding:8px 10px;
+  border:1px solid #ccc; border-radius:6px;
+}
+
+.cust-btn { padding:8px 14px; border:none; border-radius:6px; cursor:pointer; }
+.cust-btn { background:#111; color:#fff; }
+.cust-btn.ghost { background:#fff; color:#111; border:1px solid #111; }
+.cust-btn.light { background:#f6f6f6; color:#111; }
+.cust-x { background:#fff; border:1px solid #ddd; border-radius:6px; width:32px; height:28px; cursor:pointer; }
+
+
+
+
+
+
+
+/* Overlay for reservation drawer */
+.res-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 50;
+}
+
+/* Drawer shell */
+.res-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(520px, 92vw);
+  height: 100vh;
+  background: #fff;
+  box-shadow: -12px 0 30px rgba(0,0,0,.12);
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform .2s ease, opacity .2s ease;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(0,0,0,.06);
+}
+
+/* When JS adds .show */
+.res-drawer.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Header / body / footer */
+.res-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.res-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.res-x {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.res-drawer__body {
+  padding: 16px 18px 10px;
+  overflow: auto;
+  flex: 1;
+}
+
+.res-drawer__footer {
+  padding: 12px 18px 16px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  display: flex;
+  gap: 10px;
+}
+
+/* Buttons */
+.res-btn {
+  appearance: none;
+  border: 1px solid #d0d5dd;
+  background: #111827;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.res-btn.light {
+  background: #f9fafb;
+  color: #111827;
+}
+.res-btn:hover { filter: brightness(0.95); }
+
+/* Reuse your existing field grid */
+.cust-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.cust-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cust-field > label {
+  font-size: 12px;
+  color: #6b7280;
+}
+.cust-field > input,
+.cust-field > textarea,
+.cust-field > select {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  background: #fff;
+}
+
+#res-modal, #res-modal-overlay {
+  z-index: 200;
+}
+
+.res-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 200;
+}
+
+.res-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(0,0,0,0.25);
+  width: 380px;
+  max-width: 95%;
+  padding: 20px;
+  z-index: 201;
+}
+
+.res-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.res-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Fix invisible modal content */
+#res-detail-body {
+  display: block;
+  padding: 12px 0;
+  min-height: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  line-height: 1.4;
+  color: #222;
+}
+
+/* Optional polish */
+.res-modal-body .res-field {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.res-modal {
+  min-width: 320px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+  padding: 20px;
+  z-index: 201;
+}
+
+.res-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.res-modal-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+
+.page-btn,
+.cust-btn,
+.customer-table button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  line-height: 1.2;
+  white-space: nowrap;     /* no wrapping */
+  word-break: keep-all;    /* never split a word */
+  overflow-wrap: normal;
+  min-height: 28px;        /* optional: nicer tap target */
+  border-radius: 8px;      /* optional: nicer look */
+}
+

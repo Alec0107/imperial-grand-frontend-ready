@@ -1,7 +1,7 @@
 
 import { minusSVG, plusSVG } from '../../../components/svgs/svg.js'
 import { ReservationDetailsDTO, UserPreferencesObject } from '../dto/reservationDTO.js';
-import { submitSecondStepReservation } from '../reservationController.js';
+import { submitConfirmation } from '../reservationController.js';
 import { getLockReservationStorage } from '../dto/reservationDTO.js';
 
 // loading screen & darker background
@@ -150,6 +150,7 @@ function initSubmitBtn(){
 
         // get the reservation lock object
         const reservationLock = getLockReservationStorage();
+        const dt = reservationLock.data.reservationStart.split("T")
 
         /**
          * TODO:
@@ -160,17 +161,18 @@ function initSubmitBtn(){
          * **/
 
         //console.log(reservationLock);
-        ReservationDetailsDTO.date = reservationLock.reservationDTO.date;
-        ReservationDetailsDTO.time = reservationLock.reservationDTO.time;
-        ReservationDetailsDTO.guestCount = reservationLock.reservationDTO.guestCount;
-        ReservationDetailsDTO.tableId = reservationLock.tableId;
-        ReservationDetailsDTO.tableName = reservationLock.tableName;
+        ReservationDetailsDTO.date = dt[0];
+        ReservationDetailsDTO.time = dt[1];
+        ReservationDetailsDTO.guestCount = reservationLock.data.partySize;
+        ReservationDetailsDTO.tableId = reservationLock.data.tableId;
+        ReservationDetailsDTO.tableName = reservationLock.data.tableName;
         ReservationDetailsDTO.occasion = [...UserPreferencesObject.occasion];
         ReservationDetailsDTO.dietary = [...UserPreferencesObject.dietary];
         ReservationDetailsDTO.message = UserPreferencesObject.message;
 
 
-        submitSecondStepReservation(ReservationDetailsDTO);
+        localStorage.setItem("pendingReservation", JSON.stringify(ReservationDetailsDTO))
+        submitConfirmation(ReservationDetailsDTO);
 
     });
 }

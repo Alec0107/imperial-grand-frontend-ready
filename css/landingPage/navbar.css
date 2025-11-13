@@ -1,7 +1,10 @@
 .navbar{
   position: sticky;
   top: 0;
-  max-width: 1450px;
+  max-width: 1500px;
+  max-height: 100px;
+  height: 100px;
+  width: 100%;
   margin: 0 auto;
   z-index: 1000;
   background-color: var(--background-color-2);
@@ -9,11 +12,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 50px;
-  color: rgb(255, 255, 255);
+  color: rgb(208, 155, 155);
   transition: transform 0.3s ease-in-out;
-  width: 100%;
 
-  
 }
 
 
@@ -73,33 +74,103 @@
 }
 
 
-.auth-btn{
-    align-self: start;
-    font-family: var(--font-body);
-    font-size: var(--font-xsm);
-    color: var(--text-color-3);
-    background-color: var(--button-color-3);
-    letter-spacing: 1px;
-    padding: 10px 20px;     /* same size for all */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 120px;           /* ✅ keeps width consistent even if text differs */
-    text-align: center;
-    gap: 5px;
-    border-radius: 50px;
+
+
+
+
+.auth-state-div{
+    width: 50px;
+    height: 25px;
+
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
-    border: none;
-    gap: 10px;
+    cursor: pointer;
 }
 
-#login-btn{
-    background-color: white;
-    border: 2px solid var(--button-color-3);
+
+
+.auth-state-circle{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-state-circle svg{
+    width: 100%;
+    height: 80%;
+}
+
+
+.auth-state-circle p{
+    font-weight: 100;
+    font-size: 1rem;
+    font-family: var(--font-body);
     color: var(--text-color-2);
+    
+
+}
+
+.profile-menu{
+    width: 250px;
+    position: absolute;
+    top: 130%;
+    left: 50%;
+
+  
+    border-radius: 10px;
+    background-color: #131313;
+    /* 👇 makes it look like a glowing border */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+   
+
+    transform: translateX(-90%) translateY(-20px); /* start a bit higher */
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease; /* smooth transition */
+}
+
+.profile-menu.show{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-90%) translateY(0); /* drop down */
+}
+.profile-menu ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 30px;
 }
 
 
+.profile-menu li{
+    width: 100%;
+    list-style: none;
+    font-weight: 100;
+}
 
+
+.profile-menu li a{
+    text-decoration: none;
+    width: 100%;
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    font-weight: 100;
+    color: var(--text-color-3);
+}
+
+.profile-menu li a span{
+    font-size: 0.8rem;
+}
 
 
 

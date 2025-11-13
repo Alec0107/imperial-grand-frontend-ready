@@ -1,0 +1,387 @@
+
+*{
+  box-sizing: border-box;
+  width: 100vw;
+  height: auto;
+
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #F5F5F5;
+}
+
+
+#app{
+    padding: 80px;
+     
+}
+
+
+.register-container{
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    min-width: 400px;
+    margin: 0px auto;
+    padding: 20px 50px 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    background-color: white;
+    border-radius: 10px;
+}
+
+.logo-image{
+    height: 60px;
+    width: 70px;
+}
+
+.heading{
+    height: auto;
+    width: auto;
+    margin-bottom: 15px;
+
+    font-weight: 300;
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+}
+
+
+
+
+.auth-form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+
+
+    font-family: var(--font-body);
+    border-radius: 7px;
+}
+
+.form-group{
+    width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+
+.form-group label, input, button{
+    font-size: 0.7rem;
+}
+
+.form-group label{
+    font-weight: 500;
+}
+
+.form-group input{
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid #D2D0D0;
+    border-radius: 5px;
+
+}
+
+.password-container{
+    position: relative;
+}
+
+/* Input errors */
+.error-div{
+    display: block;
+    width: 100%;
+    height: 5px;
+
+
+    font-size: 0.6rem;
+    color: var(--text-color-error);
+}
+
+.error-div.show{
+    display: block;
+}
+
+
+.toggle-password{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-15%);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.toggle-password.fade-out{
+    opacity: 0;
+}
+
+
+/* Server error response to frontend */
+.error-div-server{
+    display: none;
+    width: 100%;
+    padding: 10px 10px 10px 20px;
+    margin: 10px 0px 10px 0px;
+    background-color: var(--server-error-div-1);
+    border-radius: 5px;
+    position: relative;
+
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.error-div-server div{
+    width: 10px;
+    background-color: var(--server-error-bg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px 0px 0px 5px;
+
+}
+
+.error-div-server svg{
+    width: 20px;
+}
+
+.error-div-server p{
+    width: 100%;
+    font-weight: 400;
+    font-size: 0.6rem;
+    font-family: var(--font-body);
+    color: var(--text-color-error-1);
+}
+
+.error-div-server.show{
+    display: flex;
+}
+
+
+
+.btn-submit{
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-top: 10px;
+
+
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-color-3);
+
+    color: white;
+    align-items: center;
+
+}
+
+.btn-submit:hover{
+    cursor: pointer;
+}
+
+.terms-privacy-p{
+    width: 100%;
+    font-weight: 100;
+    font-size: 0.5rem;
+    font-family: var(--font-body);
+    line-height: 10px;
+}
+
+.terms-privacy-p a{
+    width: 100%;
+    font-weight: 100;
+    font-size: 0.5rem;
+    font-family: var(--font-body);
+}
+
+.login-div{
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    text-align: center;
+
+    border: 1px solid #D2D0D0;
+    border-radius: 7px;
+}
+
+.login-div p, a{
+    font-weight: 100;
+    font-size: 0.7rem;
+    font-family: var(--font-body);
+}
+
+
+
+
+/*OTP PAGE CSS*/
+.OTP-container{
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    min-width: 400px;
+    margin: 0px auto;
+    padding: 50px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.heading{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.heading h1{
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.heading p{
+    width: 100%;
+    font-weight: 100;
+    font-size: 0.7rem;
+    font-family: var(--font-body);
+    color: grey;
+}
+
+
+.otp-main-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.otp-input-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.otp-input-container input{
+    width: 35px;
+    height: 40px;
+    padding: 5px;
+
+    font-size: 1.5rem;
+    text-align: center;
+
+    border: 1px solid #D2D0D0;
+    background-color: #D2D0D0;
+    border-radius: 7px;
+}
+
+.otp-input-container input.active{
+    background-color: white;
+}
+
+
+.resend-button-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.resend-button-div p, span{
+    width: 100%;
+
+    color: grey;
+    font-weight: 100;
+    font-size: 0.6rem;
+    font-family: var(--font-body);
+}
+
+.resend-button-div span{
+    color: var( --text-color-1);
+    cursor: pointer;
+}
+
+.resend-button-div span.disabled{
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.resend-button-div span:hover{
+    text-decoration: underline;
+}
+
+
+.btn-cancel{
+    background-color: white;
+    border: 1px solid var(--button-color-3);
+    border-radius: 5px ;
+    color: black;
+}
+
+
+/*EMAIL VERIFIED AFTER OTP PAGE CSS*/
+.email-verified-container{
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    min-width: 400px;
+    margin: 0px auto;
+    padding: 20px 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    background-color: white;
+    border-radius: 15px;
+}
+
+.check-svg{
+    height: 60px;
+    width: 70px;
+}
+
+.email-verified-container div{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.email-verified-container div h1{
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.email-verified-container div p{
+    width: 100%;
+    font-weight: 100;
+    font-size: 0.7rem;
+    font-family: var(--font-body);
+}

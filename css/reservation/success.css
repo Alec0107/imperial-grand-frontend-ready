@@ -1,0 +1,56 @@
+/* You can move this to ../../css/reservation/success.css */
+.success-modal { 
+  position: fixed; inset: 0; 
+  display: none; 
+  place-items: center; 
+  z-index: 9999; 
+}
+.success-modal.show { display: grid; }
+
+#success-overlay { 
+  position: fixed; inset: 0; 
+  background: rgba(0,0,0,.5); 
+  display: none; 
+  z-index: 9998; 
+}
+#success-overlay.show { display: block; }
+
+.success-card {
+  width: min(92vw, 420px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 210px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  text-align: center;
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#success-title{
+    font-size: 1.2rem;
+}
+
+#success-desc{
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+#success-ok{
+    width: 60%;
+    padding: 10px;
+    border: none;
+    color: white;
+    background-color: var(--button-color-3);;
+}
+
+#success-ok:hover{
+    background-color: var(--button-color-hover);
+}
+
+.success-icon { font-size: 28px; margin-bottom: 8px; }
+.muted { color: #666; font-size: .92rem; }

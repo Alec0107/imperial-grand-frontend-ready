@@ -1,37 +1,67 @@
-import { checkLockStatus } from "./reservationController.js";
+import { checkLockStatus, submitConfirmation } from "./reservationController.js";
 import { loadStep1 } from "./step-modals/step1.js";
 import { loadStep2, cleanUpStep2 } from "./step-modals/step2.js";
 import { loadStep3 } from "./step-modals/step3.js";
 import { initReservationSummary, showReservationHeader, removeReservationHeader } from "./utils/reservation-header.js";
 import { cleanUpTimer } from "./utils/reservation-header.js";
 
+// === guard: only run on the reservation page ===
+const onReservationPage =
+  window.location.pathname.includes("/pages/reservation/") ||
+  window.location.pathname.endsWith("reservation.html") ||
+  document.querySelector(".reservation") !== null;
+
+
+
+
+
 
 export let currentStep;
 
-document.addEventListener("DOMContentLoaded", ()=>{
+if (onReservationPage) {
+  document.addEventListener("DOMContentLoaded", () => {
+
     const stepFromURL = new URLSearchParams(window.location.search).get("step");
     const reservationLockJson = JSON.parse(localStorage.getItem("reservation-lock"));
 
-    if(stepFromURL === '2' && reservationLockJson){
-        history.replaceState({step: 2}, "", "?step=2");
-        checkLocalStorage(reservationLockJson); // fallback
-    }else if(stepFromURL === "3"){
-        history.replaceState({step: 3}, "", "?step=3"); // ✅ Replace instead of push
-        showStep(3, false); // ✅ Don't push again
-    }else{
-        history.replaceState({step: 1}, "", "?step=1");
-        showStep(1, false);
+    if (stepFromURL === "2" && reservationLockJson) {
+      history.replaceState({ step: 2 }, "", "?step=2");
+      checkLocalStorage(reservationLockJson);
+      showStep(2, false);
+    } else if (stepFromURL === "3") {
+      history.replaceState({ step: 3 }, "", "?step=3");
+      showStep(3, false);
+    } else {
+      history.replaceState({ step: 1 }, "", "?step=1");
+      showStep(1, false);
     }
-   
-});
+  });
 
-
-
-window.addEventListener("popstate", (event) =>{
+  window.addEventListener("popstate", (event) => {
     const step = event.state?.step || 1;
-    console.log("Popstate: " + step)
+    console.log("Popstate:", step);
     showStep(step, false);
-});
+  });
+}
+
+
+
+// async function checkIfComingFromLogin(){
+//     if(sessionStorage.getItem("resumeReservation") === "true"){
+//         const pr = localStorage.getItem("pendingReservation");
+//         if (pr) {
+//             const dto = JSON.parse(pr);
+//             try {
+//                 console.log("sendingggggg")
+//             //await submitConfirmation(dto);
+//             } finally {
+
+//             }
+//         } else {
+//           sessionStorage.removeItem("resumeReservation");
+//         }
+//     }
+// }
 
 
 function checkLocalStorage(reservationLockJson){
@@ -40,14 +70,7 @@ function checkLocalStorage(reservationLockJson){
             send a get request to the server to recheck the lock status of the current reservation
         */
         console.log("Rendering step 2 modal...");
-
-        const lockStatusDTO = {
-            tableId: reservationLockJson.tableId,
-            date: reservationLockJson.reservationDTO.date,
-            time: reservationLockJson.reservationDTO.time
-        }
-        checkLockStatus(lockStatusDTO);
-
+        checkLockStatus(reservationLockJson.data.tableId, reservationLockJson.data.reservationStart);
 
     // }else{
     //     /* TODO: 
@@ -61,6 +84,7 @@ function checkLocalStorage(reservationLockJson){
 
 
 export function showStep(step, push = true){
+    if (!onReservationPage) return;   // ⬅️ THIS stops ?step=1 on SPA.html
     if(push){
         history.pushState({step}, "", `/pages/reservation/reservation.html?step=${step}`);
     }
@@ -78,6 +102,7 @@ export function showStep(step, push = true){
 
         // 💥 FIX: Reset the broken DOM before reloading
         const old = document.getElementById("step1");
+        if (!old) return;      
         const fresh = old.cloneNode(true); // clone fresh
         old.replaceWith(fresh);            // replace
 
@@ -88,6 +113,7 @@ export function showStep(step, push = true){
 
         // 💥 FIX: Reset the broken DOM before reloading
         const old = document.getElementById("step2");
+        if (!old) return;  
         const fresh = old.cloneNode(true); // clone fresh
         old.replaceWith(fresh);            // replace
 
