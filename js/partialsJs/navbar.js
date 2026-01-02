@@ -41,6 +41,12 @@ const DropdownState= {
                         <span>Rewards</span>
                     </a>
                 </li>   
+
+                <li>
+                    <a href="/pages/SPA/SPA.html#my_rewards">
+                        <span style="color:red;">Log out</span>
+                    </a>
+                </li>   
             </ul>
         </div>
 

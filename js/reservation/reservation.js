@@ -12,10 +12,6 @@ const onReservationPage =
   document.querySelector(".reservation") !== null;
 
 
-
-
-
-
 export let currentStep;
 
 if (onReservationPage) {
@@ -44,8 +40,6 @@ if (onReservationPage) {
   });
 }
 
-
-
 // async function checkIfComingFromLogin(){
 //     if(sessionStorage.getItem("resumeReservation") === "true"){
 //         const pr = localStorage.getItem("pendingReservation");
@@ -62,7 +56,6 @@ if (onReservationPage) {
 //         }
 //     }
 // }
-
 
 function checkLocalStorage(reservationLockJson){
         console.log(reservationLockJson);
@@ -130,20 +123,6 @@ export function showStep(step, push = true){
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function closeDropDownOnDocument(){

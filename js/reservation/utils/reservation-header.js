@@ -11,10 +11,6 @@ const reservationLockJson = JSON.parse(localStorage.getItem("reservation-lock"))
 
 console.log(reservationLockJson.data)
 
-
-
-
-  
     if(reservationLockJson){
         // const reservation = {
         //     date: reservationLockJson.reservationDTO.date,
@@ -35,8 +31,6 @@ console.log(reservationLockJson.data)
         // init reservation lock timer
         //initTimer(reservationLockJson);
       
-
-
         console.log(formattedDate);
         console.log(formattedTime);
     }else{

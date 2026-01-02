@@ -64,20 +64,10 @@ export async function sendFirstStepReservation(ReservationFirstStep){
 
 }
 
-// function ot save reservation lock object json in localstorage after the step1 request
+// function to save reservation lock object json in localstorage after the step1 request
 function saveDataInLocalStorage(key, value){
     localStorage.setItem(key, value);
 }
-
-
-
-
-
-
-
-
-
-
 
 // function to check the lock status in redis (user refreshes the step2 page)
 export async function checkLockStatus(tableId, start){
@@ -113,8 +103,6 @@ export async function checkLockStatus(tableId, start){
 
 }
 
-
-
 export async function submitGuestConfirmation(reservationDto, guestInfo){
     let payload = {
         reservationDetails: reservationDto,
@@ -141,11 +129,7 @@ export async function submitGuestConfirmation(reservationDto, guestInfo){
     }finally{
         removeLoadingUiStep3();
     }
-
-
 }
-
-
 
 
 export async function submitConfirmation(reservationDto, guestInfo = null){
@@ -154,8 +138,6 @@ export async function submitConfirmation(reservationDto, guestInfo = null){
         reservationDetails: reservationDto,
         guestInfo: guestInfo ?? null
     };
-
-
 
     const deviceId = getDeviceIdFromCookie()
     const API = {
@@ -172,7 +154,6 @@ export async function submitConfirmation(reservationDto, guestInfo = null){
     console.log("Auth Pre-flight check")
     let isLoggedIn = false;
     let meResp = await fetch(API.me, {method: "GET", credentials: "include", headers: { "Content-Type" : "application/json"}});
-
 
     if(!meResp.ok){
         // try refresh once
@@ -266,12 +247,6 @@ async function safeJson(res) {
     }
 }
 
-
-
-
-
-
-// 
 export async function submitSecondStepReservation(ReservationDetailsDTO, authIntent = "user"){
     const APIUrl = NewAPI.reservations.submitSecondStep;
     console.log("2ND STEP RESERVATION:")

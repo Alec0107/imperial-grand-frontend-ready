@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../../css/authentication/auth-common.css">  <!-- used for login as guest fields -->
     <link rel="stylesheet" href="../../css/reservation/reservation-header__back-nav.css">
 
+
       <!-- CSS plugin -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
 
@@ -282,14 +283,24 @@
                     <!-- check boxes and submit button -->
                     <div class="policy-consent-submit-group font">
 
-                      <label>
-                         <input class="checkboxes" type="checkbox" id="cancel-policy" name="cancel-policy">
-                          I agree to the Cancellation Policy*
-                      </label>
+                     
 
                       <label>
-                          <input class="checkboxes" type="checkbox" id="cancel-policy" name="cancel-policy">
-                           Receive news and offers via email for Imperial Grand
+                            <input
+                              class="checkboxes"
+                              type="checkbox"
+                              id="data-consent"
+                              name="data-consent"
+                              required
+                            />
+
+                            <span class="font">
+                              I agree to the use of my personal data for reservation management,
+                              confirmations, and customer support. Read our
+                              <a href="/pages/privacy_policy/privacy-policy.html" target="_blank" class="policy-link">
+                                Privacy Policy
+                              </a>.
+                            </span>
                       </label>
 
                       <div class="send-second-step-btn-div">

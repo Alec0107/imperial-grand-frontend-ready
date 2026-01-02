@@ -67,10 +67,10 @@ export const AuthPages = {
                 <button type="submit" class="btn-submit" id="signupBtn">Create Account</button>
             </form>
 
-            <p class="terms-privacy-p">By creating an account, you agree to the 
-                <a href="/terms" class="terms-of-service-link">Terms of Service.</a>
-                For more information about Imperial Grand’s privacy practices, see the
-                <a href="/privacy" class="privacy-link">Imperial Grand Privacy Statement.</a>.
+            <p class="terms-privacy-p">By creating an account, you agree to our
+                <a href="/pages/privacy_policy/terms-of-services.html" class="terms-of-service-link">Terms of Service.</a>
+                  and
+                <a href="/pages/privacy_policy/privacy-policy.html" class="privacy-link">Privacy Policy</a>.
             </p>
 
 
@@ -219,6 +219,12 @@ export const AuthPages = {
                 <li data-page="rewards">
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" width="64px" height="64px" fill="#a1a1a1" stroke="#a1a1a1"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polyline style="fill:none;stroke:#a1a1a1;stroke-width:0.8320000000000001;stroke-miterlimit:10;" points="26,14 26,27 6,27 6,14 "></polyline> <rect x="5" y="10" style="fill:none;stroke:#a1a1a1;stroke-width:0.8320000000000001;stroke-miterlimit:10;" width="22" height="4"></rect> <path style="fill:none;stroke:#a1a1a1;stroke-width:0.8320000000000001;stroke-miterlimit:10;" d="M16,10c0,0,2.895,0,4,0s2-0.895,2-2s-0.895-2-2-2 C17.625,6,16,10,16,10z"></path> <path style="fill:none;stroke:#a1a1a1;stroke-width:0.8320000000000001;stroke-miterlimit:10;" d="M16,10c0,0-2.895,0-4,0s-2-0.895-2-2s0.895-2,2-2 C14.375,6,16,10,16,10z"></path> <line style="fill:none;stroke:#a1a1a1;stroke-width:0.8320000000000001;stroke-miterlimit:10;" x1="16" y1="27" x2="16" y2="16"></line> <line style="fill:none;stroke:#a1a1a1;stroke-width:0.8320000000000001;stroke-miterlimit:10;" x1="16" y1="14" x2="16" y2="12"></line> </g></svg>
                     <span class="font-nav">Rewards/Vouchers</span>    
+                </li>
+                <li data-page="rewards">
+                    <span class="font-nav"></span>    
+                </li>
+                <li data-page="rewards">
+                    <span style="color:red;" class="font-nav">Logout</span>    
                 </li>
             </ul>
         </div>

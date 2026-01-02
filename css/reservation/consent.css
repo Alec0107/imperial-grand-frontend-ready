@@ -1,0 +1,88 @@
+
+.policy-link {
+  color: #bfa46f;            /* gold tone – fits Imperial Grand vibe */
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  font-family: var(--font-body);
+}
+
+html, body {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  scroll-behavior: smooth;
+}
+
+.main-container{
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+main{
+    height: 100%;
+    padding: 50px;
+}
+
+/* 
+.display-inline{
+    margin: 0px auto;
+    display: inline-block;
+} */
+
+
+.header{
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0px auto 50px auto;
+    text-align: center;
+}
+
+.header h1{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+
+section{
+    max-width: 700px;
+    margin: 0px auto;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    margin: 10px auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+section p{
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+section ul li{
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+section ul{
+    margin-left: 20px;
+}

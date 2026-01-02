@@ -42,7 +42,7 @@ const SetMenuAPI = {
 
 // ========= drawer element refs (set inside showSetMenusPage) =========
 let smOverlay, smDrawer;
-let smTitle, smName, smPrice, smPax, smOrder, smActive, smDesc;
+let smTitle, smName, smNameCn, smPrice, smPriceSuffix, smPax, smOrder, smActive, smDesc, smImgUrl;
 let smDishes, smAddDish, smSaveBtn;
 
 // ========= main entry (called from goToPage("setMenus")) =========
@@ -61,16 +61,19 @@ export async function showSetMenusPage() {
   smOverlay = document.getElementById("setmenu-overlay");
   smDrawer  = document.getElementById("setmenu-drawer");
 
-  smTitle   = document.getElementById("setmenu-title");
-  smName    = document.getElementById("sm-name");
-  smPax     = document.getElementById("sm-pax");
-  smPrice   = document.getElementById("sm-price");
-  smOrder   = document.getElementById("sm-order");
-  smActive  = document.getElementById("sm-active");
-  smDesc    = document.getElementById("sm-desc");
-  smDishes  = document.getElementById("sm-dishes-container");
-  smAddDish = document.getElementById("sm-add-dish");
-  smSaveBtn = document.getElementById("sm-save-btn");
+  smTitle       = document.getElementById("setmenu-title");
+  smName        = document.getElementById("sm-name");
+  smNameCn      = document.getElementById("sm-name-cn");
+  smPax         = document.getElementById("sm-pax");
+  smPrice       = document.getElementById("sm-price");
+  smPriceSuffix = document.getElementById("sm-price-suffix");
+  smOrder       = document.getElementById("sm-order");
+  smActive      = document.getElementById("sm-active");
+  smDesc        = document.getElementById("sm-desc");
+  smImgUrl      = document.getElementById("sm-img-url");
+  smDishes      = document.getElementById("sm-dishes-container");
+  smAddDish     = document.getElementById("sm-add-dish");
+  smSaveBtn     = document.getElementById("sm-save-btn");
 
   let page = 0;
   const size = 10;
@@ -173,9 +176,7 @@ export async function showSetMenusPage() {
       if (rows.length <= 1) {
         // keep one empty row
         const nameInput = rows[0].querySelector(".dish-name");
-        const qtyInput  = rows[0].querySelector(".dish-qty");
         if (nameInput) nameInput.value = "";
-        if (qtyInput)  qtyInput.value = 1;
         return;
       }
       e.target.closest(".dish-row").remove();
@@ -194,37 +195,47 @@ function openSetMenuDrawer(mode, data) {
   smDrawer.dataset.mode = mode;
   smDrawer.dataset.id   = data?.id ?? "";
 
-  if (mode === "create") {
+
+if (mode === "create") {
     smTitle.textContent   = "New Set Menu";
     smName.value          = "";
+    smNameCn.value        = "";
     smPrice.value         = "";
-    smPax.value           = "";        
+    smPriceSuffix.value   = "";
+    smPax.value           = "";
     smOrder.value         = "";
     smActive.checked      = true;
     smDesc.value          = "";
+    smImgUrl.value        = "";
     smDishes.innerHTML    = "";
     addDishRow(); // start with one empty row
   } else {
-    smTitle.textContent   = "Edit Set Menu";
-    smName.value          = data?.nameEn ?? "";
-    smPrice.value         = data?.priceCents != null
-                              ? (data.priceCents / 100).toFixed(2)
-                              : "";
-    smPax.value           = data?.pax ?? "";    
-    smOrder.value         = data?.displayOrder ?? "";
-    smActive.checked      = !!data?.isActive;
-    smDesc.value          = data?.description ?? "";
+  smTitle.textContent   = "Edit Set Menu";
+  smName.value          = data?.nameEn ?? "";
+  smNameCn.value        = data?.nameCn ?? "";
+  smPrice.value         = data?.priceCents != null
+                            ? (data.priceCents / 100).toFixed(2)
+                            : "";
+  smPriceSuffix.value   = data?.priceSuffix ?? "";
+  smPax.value           = data?.pax ?? "";
+  smOrder.value         = data?.displayOrder ?? "";
+  smActive.checked      = !!data?.isActive;
+  smDesc.value          = data?.description ?? "";
+  smImgUrl.value        = data?.imageUrl ?? "";
 
-    smDishes.innerHTML = "";
-    const dishes = data?.dishes
-      || (data?.dishesJson ? JSON.parse(data.dishesJson) : []);
+  smDishes.innerHTML = "";
+  const dishes = data?.dishes
+    || (data?.dishesJson ? JSON.parse(data.dishesJson) : []);
 
-    if (Array.isArray(dishes) && dishes.length > 0) {
-      dishes.forEach(d => addDishRow(d.name, d.qty));
-    } else {
-      addDishRow();
-    }
+  if (Array.isArray(dishes) && dishes.length > 0) {
+    dishes.forEach(d => {
+      const name = (typeof d === "string") ? d : (d?.name || "");
+      addDishRow(name);
+    });
+  } else {
+    addDishRow();
   }
+}
 
   smOverlay.style.display = "block";
   smDrawer.style.display  = "block";
@@ -267,13 +278,16 @@ async function onSaveSetMenu() {
   const mode = smDrawer.dataset.mode;
   const id   = smDrawer.dataset.id;
 
-  const nameEn  = smName.value.trim();
-  const price = Number(smPrice.value || 0);
-  const pax     = smPax.value ? Number(smPax.value) : null;   // 👈 NEW
-  const order = smOrder.value ? Number(smOrder.value) : null;
-  const active = smActive.checked;
-  const desc   = smDesc.value.trim();
-  const dishes = collectDishes();
+  const nameEn       = smName.value.trim();
+  const nameCn       = smNameCn.value.trim() || null;
+  const price        = Number(smPrice.value || 0);
+  const priceSuffix  = smPriceSuffix.value.trim() || null;
+  const pax          = smPax.value ? Number(smPax.value) : null;
+  const order        = smOrder.value ? Number(smOrder.value) : null;
+  const active       = smActive.checked;
+  const desc         = smDesc.value.trim();
+  const imgUrl       = smImgUrl.value.trim() || null;
+  const dishes       = collectDishes();
 
   if (!nameEn) {
     alert("Please enter a set menu name.");
@@ -296,12 +310,15 @@ async function onSaveSetMenu() {
 
   const body = {
     nameEn,
+    nameCn,                         // 👈 NEW
     pax,
     priceCents: Math.round(price * 100),
+    priceSuffix,                    // 👈 NEW
+    imageUrl: imgUrl,               // 👈 NEW
     isActive: active,
     displayOrder: order,
     description: desc,
-    dishes,          // backend will serialise this to JSON column
+    dishes,                         // backend → courses_json
   };
 
   try {
