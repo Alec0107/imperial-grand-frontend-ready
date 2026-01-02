@@ -214,3 +214,197 @@ function openSetDetail(slug){
             //     </div>
                 
             // </div>
+
+
+
+
+export async function loadCny2026Promotions(page = 0){
+    openContentLoader();
+    const url = API.setmenus.fetchCny2026;
+    const payload = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+      }
+   
+    try{
+        const response = await fetch(`${url}?page=${page}&size=6`, payload);
+        const result = await response.json();
+
+        if(!response.ok){
+          console.log(response.status);
+          throw new Error("error fetching CNY set menus.");
+        }
+
+        console.log("Result for set menu:")
+        console.log(response)
+        console.log(result)
+        
+        // cache the page's items
+        result.content.forEach(it => cacheBySlug.set(`cny-${it.id}`, it));
+
+        closeContentLoader();
+
+        renderCnyMenuCard(result.content);
+        renderCnyPager(result.number, result.totalPages);
+
+
+    }catch(err){
+        console.log("Error " + err);
+        closeContentLoader();
+    }
+}
+
+
+
+function renderCnyMenuCard(items) {
+  const grid = document.getElementById("content-grid");
+  grid.innerHTML = "";
+
+  items.forEach(menu => {
+    // take first active option (you can enhance later)
+    const option = menu.options?.[0];
+    if (!option || option.priceCents == null) return;
+
+
+    const price = (option.priceCents / 100).toFixed(2);
+    const suffix = option.priceSuffix || "++";
+
+    const cardHTML = `
+      <div class="card cny-card">
+
+        <div class="img-div">
+          <img src="/${menu.imageUrl}" alt="CNY Menu" class="img">
+        </div>
+
+        <div class="txt-details-div">
+          <h4>
+            ${menu.nameEn}<br/>
+            <span class="cn">${menu.nameCn}</span>
+          </h4>
+
+          <p class="price">$${price}${suffix}</p>
+
+          <button class="view-cny-btn" data-id="${menu.id}">
+            View details
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+    grid.innerHTML += cardHTML;
+  });
+}
+
+
+const grid = document.getElementById("content-grid");
+
+grid.addEventListener("click", (e) => {
+
+
+
+  // CNY Menu
+  const cnyBtn = e.target.closest(".view-cny-btn");
+  if (cnyBtn) {
+    openCnyDetail(Number(cnyBtn.dataset.id));
+    closeModalXBtn();
+    return;
+  }
+
+});
+
+function openCnyDetail(id) {
+  const menu = cacheBySlug.get(`cny-${id}`);
+  if (!menu) return;
+
+  const options = menu.options || [];
+  if (!options.length) return;
+
+  // ✅ BUILD PRICING LINES (supports PER_PAX + FIXED_PAX, multiple options)
+  const pricingLine = options.map(option => {
+    const price = (option.priceCents / 100).toFixed(2);
+    const suffix = option.priceSuffix || "++";
+
+    if (option.pricingModel === "PER_PAX") {
+      return `
+        <div class="pricing-line">
+          Per Pax S$${price}${suffix}
+          ${option.minPax ? `<br/><small>Min. ${option.minPax} pax</small>` : ""}
+        </div>
+      `;
+    }
+
+    if (option.pricingModel === "FIXED_PAX") {
+      return `
+        <div class="pricing-line">
+          ${option.pax} Pax S$${price}${suffix}
+        </div>
+      `;
+    }
+
+    return "";
+  }).join("");
+
+  // ✅ TITLE
+  document.getElementById("setModalTitle").innerHTML = `
+    ${menu.nameEn}<br/>
+    <small>${menu.nameCn}</small>
+    ${pricingLine}
+  `;
+
+  // ✅ COURSES
+  const courses = JSON.parse(menu.coursesJson || "[]");
+  const modalCourses = document.querySelector(".courses");
+
+  modalCourses.innerHTML = courses.map(line => {
+    const parts = line.split(" / ");
+    if (parts.length === 2) {
+      const [cn, en] = parts;
+      return `
+        <li class="course">
+          <div class="cn">${cn}</div>
+          <div class="en">${en}</div>
+        </li>
+      `;
+    }
+    return `<li class="course"><div class="en">${line}</div></li>`;
+  }).join("");
+
+  openModal();
+}
+
+
+function renderCnyPager(page, totalPages){
+    const el = document.getElementById("pager");
+    el.innerHTML = `
+        <button id="prev-page" type="button" ${page <= 0 ? "disabled" : ""}>
+            Prev
+        </button>
+
+        <span class="pager-font">
+            Page ${totalPages ? page + 1 : 0} of ${totalPages}
+        </span>
+
+        <button id="next-page" type="button" ${page >= totalPages - 1 ? "disabled" : ""}>
+            Next
+        </button>
+    `;
+
+    const prevBtn = document.getElementById("prev-page");
+    const nextBtn = document.getElementById("next-page");
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            loadCny2026Promotions(page - 1);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            loadCny2026Promotions(page + 1);
+        });
+    }
+}

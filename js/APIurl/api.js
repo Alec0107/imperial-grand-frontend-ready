@@ -33,7 +33,8 @@ export const API = {
         fetchAllProduct: `${LOCALHOST_BASE_URL2}/api/menu/categories/fetch_category`
     },
     setmenus: {
-         fetchAll: `${LOCALHOST_BASE_URL2}/api/menu/set-menu/fetch_set_menu`
+        fetchAll: `${LOCALHOST_BASE_URL2}/api/menu/set-menu/fetch_set_menu`,
+        fetchCny2026: `${LOCALHOST_BASE_URL2}/api/menu/set-menu/cny`
     },
     menuItems: { 
         fetchMenuItems: `${LOCALHOST_BASE_URL2}/api/menu/items`,

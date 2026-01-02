@@ -1,5 +1,5 @@
 import { API } from "../APIurl/api.js";
-import { loadSetMenus } from "../menu/setMenu.js"; 
+import { loadSetMenus, loadCny2026Promotions} from "../menu/setMenu.js"; 
 import { loadMenuItems} from "../menu/MenuItem.js";
 
 let categoriesState = []
@@ -187,9 +187,14 @@ function initSideBarButons(){
 
             if (catSlug === "set-menus") {
             closeDrawer();
-            
             loadSetMenus(0);
             return;
+            }
+
+            if (catSlug === "cny-2026"){
+               closeDrawer();
+               loadCny2026Promotions();
+               return;
             }
 
             // ⬇️ only fetch if NO subcategories
