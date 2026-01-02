@@ -275,7 +275,7 @@ function renderCnyMenuCard(items) {
       <div class="card cny-card">
 
         <div class="img-div">
-          <img src="/${menu.imageUrl}" alt="CNY Menu" class="img">
+          <img src="${menu.imageUrl}" alt="CNY Menu" class="img">
         </div>
 
         <div class="txt-details-div">
