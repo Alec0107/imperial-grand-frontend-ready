@@ -154,6 +154,10 @@ function openSetDetail(slug){
     document.getElementById("setModalTitle").textContent = modalTitle;
     console.log(modalTitle);
 
+    const modalCard = document.querySelector(".modal__card");
+    modalCard.style
+    modalCard.classList.remove("cny_bg");
+
     const modalCourses = document.querySelector(".courses");
     const listFood = JSON.parse(item.coursesJson || "[]");
 
@@ -249,7 +253,6 @@ export async function loadCny2026Promotions(page = 0){
         renderCnyMenuCard(result.content);
         renderCnyPager(result.number, result.totalPages);
 
-
     }catch(err){
         console.log("Error " + err);
         closeContentLoader();
@@ -317,6 +320,10 @@ grid.addEventListener("click", (e) => {
 });
 
 function openCnyDetail(id) {
+
+  const modalCard = document.querySelector(".modal__card");
+  modalCard.classList.add("cny_bg");
+
   const menu = cacheBySlug.get(`cny-${id}`);
   if (!menu) return;
 
@@ -372,6 +379,8 @@ function openCnyDetail(id) {
     }
     return `<li class="course"><div class="en">${line}</div></li>`;
   }).join("");
+
+  
 
   openModal();
 }

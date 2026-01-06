@@ -15,11 +15,53 @@ document.addEventListener("DOMContentLoaded", () => {
     initGlobalVar();
     initMobileDrawerAndBackdrop(); /// init sidebar this is for mobile
     fetchAllCategories();
-    
-    loadSetMenus(0);
     initSideBarButons();
 
+
+    const category = new URLSearchParams(window.location.search).get("category");
+
+    const catId = new URLSearchParams(window.location.search).get("categoryId");
+    const subcatId = new URLSearchParams(window.location.search).get("subcategoryId");
+
+    if(category === "set-menus"){
+        loadSetMenus(0);
+        return;
+    }
+
+    if(category === "cny-2026"){
+        loadCny2026Promotions(0);
+        return;
+    }
+
+    if(catId && subcatId){
+       loadMenuItems(catId, subcatId, 0, 12);
+       return;
+    }
+
+
+    loadMenu("set-menus");
     // fetchMenuById();
+});
+
+window.addEventListener('popstate', () => {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get('category') || 'set';
+
+  const catId = params.get("categoryId");
+  const subcatId = params.get("subcategoryId");
+
+
+    if(category === "set-menus"){
+        loadSetMenus(0);
+    }
+
+    if(category === "cny-2026"){
+        loadCny2026Promotions(0);
+    }
+
+    if(catId && subcatId){
+       loadMenuItems(catId, subcatId, 0, 12);
+    }
 });
 
 
@@ -176,45 +218,53 @@ function initSideBarButons(){
             console.log(`${catSlug} : ${subSlug}`);
             const { categoryId, subcategoryId } = mapSlugsToIds(catSlug, subSlug);
             closeDrawer();
+            window.history.pushState({}, "", `menu.html?categoryId=${categoryId}&subcategoryId=${subcategoryId}`);
             loadMenuItems(categoryId, subcategoryId, 0, 12);
             return;
         }
 
         // category click
         const catBtn = e.target.closest(".sub-menu-btn, .dropdown-arrow");
-            if (catBtn) {
-            const catSlug = catBtn.parentElement.dataset.catSlug;
-
-            if (catSlug === "set-menus") {
-            closeDrawer();
-            loadSetMenus(0);
-            return;
-            }
-
-            if (catSlug === "cny-2026"){
-               closeDrawer();
-               loadCny2026Promotions();
-               return;
-            }
-
-            // ⬇️ only fetch if NO subcategories
-            const cat = categoriesState.find(c => c.catSlug === catSlug);
-            if (!cat) return;
-
-            const hasSubs = Array.isArray(cat.subcategories) && cat.subcategories.length > 0;
-            if (hasSubs) return; // let your toggle handler just open/close
-
-            const { categoryId } = mapSlugsToIds(catSlug, null);
-            closeDrawer();
-
-            loadMenuItems(categoryId, null, 0, 12);
+ 
+        if(catBtn){
+           const catSlug = catBtn.parentElement.dataset.catSlug;
+           loadMenu(catSlug);
+           console.log(`Category clicked: ${catSlug}`);
         }
 
     });
 
 }
 
+function loadMenu(catSlug){
 
+    if (catSlug === "set-menus") {
+        closeDrawer();
+        window.history.pushState({}, "", `menu.html?category=${catSlug}`);
+        loadSetMenus(0);
+        return;
+    }
+
+    if (catSlug === "cny-2026"){
+        closeDrawer();
+        loadCny2026Promotions(0);
+        window.history.pushState({}, "", `menu.html?category=${catSlug}`);
+        return;
+    }
+
+    // ⬇️ only fetch if NO subcategories
+    const cat = categoriesState.find(c => c.catSlug === catSlug);
+    if (!cat) return;
+
+    const hasSubs = Array.isArray(cat.subcategories) && cat.subcategories.length > 0;
+    if (hasSubs) return; // let your toggle handler just open/close
+
+    const { categoryId } = mapSlugsToIds(catSlug, null);
+    closeDrawer();
+
+    window.history.pushState({}, "", `menu.html?category=${catSlug}`);
+    loadMenuItems(categoryId, null, 0, 12, catSlug);
+}
 
 
 function mapSlugsToIds(catSlug, subSlug) {

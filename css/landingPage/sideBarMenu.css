@@ -16,6 +16,8 @@
 
     box-shadow: 0 10px 30px rgba(0,0,0,.2);
 
+    gap: 20px;
+
 }
 
 .menu-header h1{
@@ -161,7 +163,7 @@
 
 
 .pdf-btn{
-    width: auto;
+    width: 150px;
     letter-spacing: 1px;
     padding: 10px 15px;     /* same size for all */
     background-color: var(--background-color-2);

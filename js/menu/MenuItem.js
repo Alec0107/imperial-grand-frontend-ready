@@ -4,7 +4,7 @@ import { openContentLoader, closeContentLoader } from "./categories.js";
 
 
 
-export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12){
+export async function loadMenuItems(categoryId, subcategoryId = null, page = 0, size = 12, categorySlug){
 
     openContentLoader();
 
